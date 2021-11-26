@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of dischanalyst is to ...
+The goal of dischanalyst is to offer an easy discharge analysis. Uses a statistical approach to analyse hydrological data. Was created for a low flow Analysis. Therefore a discharge time series is required. Helps to create a descriptive statistical and graphical summary of a dataset.
 
 ## Installation
 
