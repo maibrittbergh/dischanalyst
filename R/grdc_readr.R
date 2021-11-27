@@ -14,7 +14,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' mosel=grdc_readr(data,"MOSELLE RIVER","/Users/username/Desktop/worfolder/datafolder/grdc_03_2021/grdc_disc/" )
+#' mosel=grdc_readr(data,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 #' }
 #'
 #'
