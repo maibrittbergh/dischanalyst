@@ -8,11 +8,10 @@
 #'
 #' @return Boxplot Graphic of Discharge time series.
 #' @export
-#'
 #' @import ggplot2
 #'
 #' @examples
-#' \dontrun{ QBoxplot(mosel, "Mosel", "COCHEM")}
+#' \dontrun{QBoxplot(mosel, "Mosel", "COCHEM")}
 
 QBoxplot=function(data, Name, station){
   titl=paste("Boxplot of", Name,",", station )
