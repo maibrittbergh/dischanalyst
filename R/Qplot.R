@@ -4,7 +4,7 @@
 #'
 #' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #' @param Name as character. Name of the River. e.g. "Mosel"
-#' @param station as character. Name of the Station e.g. "COCHEM" - must be named the same like list entry in data.
+#' @param station as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data
 #'
 #' @return Graphic showing Discharge time series.
 #' @export

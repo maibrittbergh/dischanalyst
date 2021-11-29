@@ -11,7 +11,7 @@ Qplot(data, Name, station)
 
 \item{Name}{as character. Name of the River. e.g. "Mosel"}
 
-\item{station}{as character. Name of the Station e.g. "COCHEM" - must be named the same like list entry in data.}
+\item{station}{as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data}
 }
 \value{
 Graphic showing Discharge time series.
