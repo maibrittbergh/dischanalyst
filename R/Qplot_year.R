@@ -8,9 +8,8 @@
 #' @return graphic of discharge time series in given year
 #' @export
 #'@import ggplot2
-#' @examples
-#' \dontrun{ Qplot_year(mosel, "Mosel", "COCHEM", 2000)}
-#' { Qplot_year(mosel, "MOSEL", "COCHEM", 2001)}
+
+
 Qplot_year=function(data, Name, station, year){
 
 

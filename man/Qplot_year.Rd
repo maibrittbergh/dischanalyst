@@ -21,7 +21,3 @@ graphic of discharge time series in given year
 \description{
 Discharge Plot in specific year
 }
-\examples{
-\dontrun{ Qplot_year(mosel, "Mosel", "COCHEM", 2000)}
-{ Qplot_year(mosel, "MOSEL", "COCHEM", 2001)}
-}
