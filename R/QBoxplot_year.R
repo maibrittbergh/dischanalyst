@@ -8,7 +8,9 @@
 #'
 #' @return Boxplot Graphic of Discharge Measurements of specific (hydrological/calendrical) year
 #' @export
+#'
 #' @import ggplot2
+#'
 #'
 #' @examples
 #' \dontrun{Boxplot_year(mosel, "MOSELLE RIVER", "COCHEM", 2000,h=T)}
