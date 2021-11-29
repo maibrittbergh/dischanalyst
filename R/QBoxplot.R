@@ -8,6 +8,8 @@
 #'
 #' @return Boxplot Graphic of Discharge time series.
 #' @export
+#'
+#'
 #' @import ggplot2
 #'
 #' @examples
