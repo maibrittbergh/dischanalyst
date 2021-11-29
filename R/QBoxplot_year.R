@@ -14,12 +14,12 @@
 #' \dontrun{ Boxplot_year(mosel, "MOSELLE RIVER", "COCHEM", 2000,h=T)}
 #'
 #'
-QBoxplot_year=function(data, Name, station, year, h=T){
+QBoxplot_year=function(data, Name, station, year, h){
 
 
 
-  nbr=which(names(mosel)==station)
-  j=rep(0, 365)
+  nbr=which(names(data)==station)
+
 
   if (h==T){
 

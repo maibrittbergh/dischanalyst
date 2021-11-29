@@ -16,6 +16,6 @@
 
 QBoxplot=function(data, Name, station){
   titl=paste("Boxplot of", Name,",", station )
-  plot=ggplot(data[[station]])+geom_boxplot(aes(y=Value, color="red"))+labs(title=titl, subtitle="Aus GRDC-Datensatz des BfG")+theme(legend.position="none")
+  plot=ggplot(data[[station]])+geom_boxplot(aes(y=Value, color="red"))+labs(title=titl, subtitle="From GRDC-Datensatz des BfG")+ theme(legend.position="none")
   return(plot)
 }
