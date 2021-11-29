@@ -1,8 +1,8 @@
 #' Discharge time series plot
 #'
-#' @description Desciptive Statistics. Time Series of Discharge at specific station.
+#' @description Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 #'
-#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations
+#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #' @param Name as character. Name of the River. e.g. "Mosel"
 #' @param station as character. Name of the Station e.g. "COCHEM" - must be named the same like list entry in data.
 #'
@@ -10,9 +10,9 @@
 #' @export
 #' @import ggplot2
 #' @examples
-#' \dontrun{ Q_plot(mosel, "Mosel", "COCHEM)}
+#' \dontrun{ Q_plot(mosel, "Mosel", "COCHEM")}
 #'
-Q_plot=function(data, Name, station ){
+Qplot=function(data, Name, station ){
 
 
   nbr=which(names(data)==station)
