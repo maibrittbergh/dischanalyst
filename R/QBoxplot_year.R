@@ -57,14 +57,14 @@ QBoxplot_year=function(data, Name, station, year, h){
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
     new_data=mosel[[nbr]][j,]
     titl=paste("Boxplot of", Name, ",", station, "in the hydrological year", year, "and", year+1)
-    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG", xlab="Discharge Value")+theme(legend.position="none")
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
   }else{
     year_=year
     j=grep(year_, mosel[[nbr]][,1])
     new_data=mosel[[nbr]][j,]
     titl=paste("Boxplot of", Name, ",", station, "in", year)
-    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG", xlab="Discharge Value")+theme(legend.position="none")
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
   }
 

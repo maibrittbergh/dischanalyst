@@ -60,7 +60,7 @@ Qplot_year=function(data, Name, station, year,h){
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
     new_data=data[[nbr]][j,]
     titl=paste("Discharge time series of hydrological year",year,"/", year+1, "at", Name,",",station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
 
   }else{
@@ -68,7 +68,7 @@ Qplot_year=function(data, Name, station, year,h){
     j=grep(year_, mosel[[nbr]][,1])
     new_data=data[[nbr]][j,]
     titl=paste("Discharge time series of calendrical year",year, "at", Name,",",station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
 
   }
