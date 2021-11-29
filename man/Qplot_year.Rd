@@ -4,16 +4,18 @@
 \alias{Qplot_year}
 \title{Discharge Plot in specific year}
 \usage{
-Qplot_year(data, Name, station, year)
+Qplot_year(data, Name, station, year, h)
 }
 \arguments{
 \item{data}{River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{Name}{as character. Name of the River. e.g. "Mosel"}
+\item{Name}{as character. Name of the River. e.g. "Mosel".}
 
 \item{station}{as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{year}{as numeric. a certain year within the time series since begin of measurements}
+\item{year}{as numeric. a certain year within the time series since begin of measurements.}
+
+\item{h}{hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{
 graphic of discharge time series in given year
