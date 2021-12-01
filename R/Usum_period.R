@@ -3,7 +3,7 @@
 #'
 #'
 #' @param U numeric; Limit Value. Function returns sum of  days  Value U within all measurements.
-#' @param station haracter; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
+#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param data list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #'
 #' @return

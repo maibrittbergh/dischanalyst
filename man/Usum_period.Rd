@@ -9,7 +9,7 @@ Usum_period(U, station, data)
 \arguments{
 \item{U}{numeric; Limit Value. Function returns sum of  days  Value U within all measurements.}
 
-\item{station}{haracter; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
+\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 }

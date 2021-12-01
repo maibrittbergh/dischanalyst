@@ -2,6 +2,7 @@
 
 export(QBoxplot)
 export(QBoxploty)
+export(Qmin_trend)
 export(Qplot)
 export(Qploty)
 export(U_period)
