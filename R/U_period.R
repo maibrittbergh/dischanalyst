@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #' Max. undercut length of value U within all measurements
+=======
+#' Max undercut length of value U within all measurements
+>>>>>>> 0fa89c95884edb2a6f7eae5130d9336087c4b3f2
 #'
 #' @description Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river),
 #' within the time period of the measurements.

@@ -2,7 +2,11 @@
 % Please edit documentation in R/U_period.R
 \name{U_period}
 \alias{U_period}
+<<<<<<< HEAD
 \title{Max. undercut length of value U within all measurements}
+=======
+\title{Max undercut length of value U within all measurements}
+>>>>>>> 0fa89c95884edb2a6f7eae5130d9336087c4b3f2
 \usage{
 U_period(U, station, data)
 }
