@@ -1,4 +1,4 @@
-#' Boxplot of Discharge Data
+#' Discharge Boxplot of measured Values within entire time series of measurements
 #'
 #'@description  Desciptive Statistics. Boxplot of Time Series of Discharge at specific station. Including all measurements in list.
 #'

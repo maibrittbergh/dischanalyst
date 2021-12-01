@@ -1,27 +1,24 @@
-#' Discharge Plot in specific year
+#' Discharge Boxplot of measured Values during specific (calendrical/hydrological) year
 #'
 #' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #' @param Name character; Name of the River. e.g. "Mosel".
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param year numeric; a certain year within the time series since begin of measurements.
+#' @param year numeric; year within time series of measurements.
 #' @param h logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
-#' @return graphic of discharge time series in given year
+#' @return Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year.
 #' @export
-#'@import ggplot2
 #'
-#'@example
-#'\dontrun{ Qplot_year(mosel, "Mosel", "COCHEM", 2000, h=T)}
-#'
+#' @examples
+#' \dontrun{ QBoxploty(mosel, "MOSEL", "COCHEM", 2000, h=T)}
 #'
 
 
-Qplot_year=function(data, Name, station, year,h){
+QBoxploty=function(data, Name, station, year, h){
 
 
 
   nbr=which(names(data)==station)
-
 
 
   if (h==T){
@@ -58,22 +55,18 @@ Qplot_year=function(data, Name, station, year,h){
 
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
-    new_data=data[[nbr]][j,]
-    titl=paste("Discharge time series of hydrological year",year,"/", year+1, "at", Name,",",station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
+    new_data=mosel[[nbr]][j,]
+    titl=paste("Boxplot of", Name, ",", station, "in the hydrological year", year, "and", year+1)
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
-
   }else{
     year_=year
     j=grep(year_, mosel[[nbr]][,1])
-    new_data=data[[nbr]][j,]
-    titl=paste("Discharge time series of calendrical year",year, "at", Name,",",station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
+    new_data=mosel[[nbr]][j,]
+    titl=paste("Boxplot of", Name, ",", station, "in", year)
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
-
   }
-
-
 
 
 }

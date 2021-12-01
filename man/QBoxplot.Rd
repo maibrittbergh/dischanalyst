@@ -2,7 +2,7 @@
 % Please edit documentation in R/QBoxplot.R
 \name{QBoxplot}
 \alias{QBoxplot}
-\title{Boxplot of Discharge Data}
+\title{Discharge Boxplot of measured Values within entire time series of measurements}
 \usage{
 QBoxplot(data, Name, station)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Qplot.R
 \name{Qplot}
 \alias{Qplot}
-\title{Discharge time series plot}
+\title{Discharge Plot of the entire time series of measurements}
 \usage{
 Qplot(data, Name, station)
 }
@@ -20,6 +20,6 @@ Graphic showing Discharge time series.
 Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 }
 \examples{
-\dontrun{ Q_plot(mosel, "Mosel", "COCHEM")}
+\dontrun{ Qplot(mosel, "Mosel", "COCHEM")}
 
 }

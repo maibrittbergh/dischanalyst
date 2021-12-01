@@ -1,4 +1,4 @@
-#' Max. undercut length of value U within a specific (calendrical/hydrological) year
+#' Max. amount of days under Value U within a specific (calendrical/hydrological) year
 #'
 #' @description Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river within a given year),
 #' within the time period of the measurements.
@@ -13,9 +13,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{ U_period_year(80, "COCHEM", mosel, "2003", h=T)}
+#' \dontrun{ U_periody(80, "COCHEM", mosel, "2003", h=T)}
 #'
-U_period_year=function(U, station, data, year,h){
+U_periody=function(U, station, data, year,h){
 
   nbr=which(names(data)==station)
 

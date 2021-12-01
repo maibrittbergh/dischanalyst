@@ -1,4 +1,4 @@
-#' Discharge time series plot
+#' Discharge Plot of the entire time series of measurements
 #'
 #' @description Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 #'
@@ -10,7 +10,7 @@
 #' @export
 #' @import ggplot2
 #' @examples
-#' \dontrun{ Q_plot(mosel, "Mosel", "COCHEM")}
+#' \dontrun{ Qplot(mosel, "Mosel", "COCHEM")}
 #'
 Qplot=function(data, Name, station ){
 
