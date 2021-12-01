@@ -1,5 +1,8 @@
 #' Max. undercut length of value U within a specific (calendrical/hydrological) year
 #'
+#' @description Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river within a given year),
+#' within the time period of the measurements.
+#'
 #' @param U numeric; Limit Value. Function returns longest time measured under Value U in specific year.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param data list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).

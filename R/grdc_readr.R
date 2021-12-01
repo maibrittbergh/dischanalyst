@@ -4,8 +4,8 @@
 #'
 #'
 #'
-#' @param data Dataframe ;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)
-#' @param rivername character ; name of the demanded river. Must equal name in column "river" in the Dataframe
+#' @param data Dataframe;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)
+#' @param rivername character; name of the demanded river. Must equal name in column "river" in the Dataframe
 #' @param path character; Pathway of your computer where the GRDC dataset is saved.
 #'
 #' @return  dataset of the demanded river

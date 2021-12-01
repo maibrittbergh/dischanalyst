@@ -2,9 +2,9 @@
 #'
 #' @description Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 #'
-#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param Name as character. Name of the River. e.g. "Mosel"
-#' @param station as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data
+#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param Name character; Name of the River. e.g. "Mosel"
+#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data
 #'
 #' @return Graphic showing Discharge time series.
 #' @export

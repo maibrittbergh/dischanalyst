@@ -4,9 +4,9 @@
 #' @description Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river),
 #' within the time period of the measurements.
 #'
-#' @param U as numeric, Limit Value. Function returns longest time measured under Value U.
-#' @param station as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param U numeric; Limit Value. Function returns longest time measured under Value U.
+#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
+#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #'
 #' @return
 #' @export

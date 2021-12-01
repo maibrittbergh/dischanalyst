@@ -1,10 +1,10 @@
 #' Discharge Boxplot of specific (year
 #'
-#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param Name as character. Name of the River. e.g. "Mosel".
-#' @param station as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param year as numeric. year within time series of measurements.
-#' @param h hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param Name character; Name of the River. e.g. "Mosel".
+#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
+#' @param year numeric; year within time series of measurements.
+#' @param h logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
 #' @return Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year.
 #' @export

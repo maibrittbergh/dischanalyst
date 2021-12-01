@@ -2,9 +2,9 @@
 #'
 #'@description  Desciptive Statistics. Boxplot of Time Series of Discharge at specific station. Including all measurements in list.
 #'
-#' @param data River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param station as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param Name as character. Name of the River. e.g. "Mosel"
+#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
+#' @param Name character; Name of the River. e.g. "Mosel"
 #'
 #' @return Boxplot Graphic of Discharge time series.
 #' @export
