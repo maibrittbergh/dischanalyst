@@ -7,11 +7,11 @@
 QBoxplot(data, Name, station)
 }
 \arguments{
-\item{data}{River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{Name}{as character. Name of the River. e.g. "Mosel"}
+\item{Name}{character; Name of the River. e.g. "Mosel"}
 
-\item{station}{as character. Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
+\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 }
 \value{
 Boxplot Graphic of Discharge time series.

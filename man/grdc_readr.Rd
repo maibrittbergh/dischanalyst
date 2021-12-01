@@ -7,9 +7,9 @@
 grdc_readr(data, rivername, path)
 }
 \arguments{
-\item{data}{Dataframe ;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)}
+\item{data}{Dataframe;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)}
 
-\item{rivername}{character ; name of the demanded river. Must equal name in column "river" in the Dataframe}
+\item{rivername}{character; name of the demanded river. Must equal name in column "river" in the Dataframe}
 
 \item{path}{character; Pathway of your computer where the GRDC dataset is saved.}
 }
