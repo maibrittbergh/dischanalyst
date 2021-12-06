@@ -2,7 +2,7 @@
 % Please edit documentation in R/U_prob.R
 \name{U_prob}
 \alias{U_prob}
-\title{Probability to to have a smaller Discharge Value than U}
+\title{Probability to to receive a smaller Discharge Value than U}
 \usage{
 U_prob(U, station, data)
 }
@@ -17,7 +17,7 @@ U_prob(U, station, data)
 
 }
 \description{
-Probability to to have a smaller Discharge Value than U
+Probability to to receive a smaller Discharge Value than U
 }
 \examples{
 \dontrun{ U_prob(88, "TRIER UP", mosel)}

@@ -1,4 +1,4 @@
-#' Probability to to have a smaller Discharge Value than U
+#' Probability to to receive a smaller Discharge Value than U
 #'
 #' @param U numeric; Limit Value. Function returns possibility to receive Value smaller than U.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
