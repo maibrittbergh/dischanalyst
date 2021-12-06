@@ -17,5 +17,5 @@ U_prob=function(U, station, data){
   under=which(Values< U)
   lu=length(under)
   p=round((lu/l)*100,2)
-  return(paste("The propability to have a Discharge value smaller than", U, "is", p, "%. At", station))
+  return(paste("The probability to have a Discharge value smaller than", U, "is", p, "%. At", station))
 }
