@@ -9,6 +9,8 @@
 #' @return
 #' @export
 #'@import ggplot2
+#'@importFrom zyp zyp.trend.vector
+#'@import Kendall
 #' @examples
 #' \dontrun{ U_probd(150,"COCHEM", mosel, "Mosel")}
 #'
@@ -29,9 +31,10 @@ U_probd=function(U, station, data,Name){
   }
   decades=decades*10
   results= data.frame(decades, U_prob)
-  model=lm(U_prob~decades, results)
+
+  model=zyp.trend.vector(y=results$U_prob, x=results$decades, method="yuepilon")
   titl=paste("Probability of falling below Value:",U,". At",Name,",",station, "from", decade_one, "to", last_decade, "[in decades]")
 
-  plot=ggplot(results)+geom_line(mapping=aes(x=decades,y=U_prob, group=1, col="red"))+labs(title=titl,  x="decades" , y="Probabilty [%]")+theme(legend.position="none")+geom_abline(intercept = model$coefficients[1], slope= model$coefficients[2])
+  plot=ggplot(results)+geom_line(mapping=aes(x=decades,y=U_prob, group=1, col="red"))+labs(title=titl,  x="decades" , y="Probabilty [%]")+theme(legend.position="none")+geom_abline(intercept = model[11], slope= model[2])
   return(plot)
 }

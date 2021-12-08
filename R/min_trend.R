@@ -6,11 +6,13 @@
 #'
 #' @return
 #' @export
-#'@import stats
+#'@importFrom zyp zyp.trend.vector
+#'@import Kendall
+#'
 #' @examples
 #' \dontrun{ min_value_lm(mosel, "COCHEM", "Mosel")}
 
-min_lm=function(data, station,Name) {
+min_trend=function(data, station,Name) {
   nbr=which(names(data)==station)
   val=data[[nbr]]
   abs_min=min(data[[nbr]][,2])
@@ -28,6 +30,6 @@ min_lm=function(data, station,Name) {
     q_min[i]=min(Val)
   }
   results=data.frame(years, q_min)
-  model=lm(q_min~years, results)
-  return(model$coefficients)
+  model=zyp.trend.vector(y=results$q_min, x=results$years, method="yuepilon")
+  return(model[c(11,2)])
 }

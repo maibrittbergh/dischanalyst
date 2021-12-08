@@ -7,6 +7,8 @@
 #' @return
 #' @export
 #' @import ggplot2
+#' @importFrom zyp zyp.trend.vector
+#'@import Kendall
 #'
 #' @examples
 #' \dontrun{ Qmin_trend(mosel, "COCHEM", "MOSEL")}
@@ -29,9 +31,10 @@ Qmin_trend=function(data, station,Name) {
     q_min[i]=min(Val)
   }
   results=data.frame(years, q_min)
-  model=lm(q_min~years, results)
+
+model=zyp.trend.vector(y=results$q_min, x=results$years, method="yuepilon")
   titl=paste("Minimum Values measured at",station,",",Name,",", "from", year_one, "to", last_year)
   subtitl=paste("Smallest Value being measurd is: ", abs_min)
-  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="red"))+labs(title=titl, subtitle=subtitl, x="years" , y="min.discharge")+theme(legend.position="none")+geom_abline(intercept = model$coefficients[1], slope= model$coefficients[2])
+  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="red"))+labs(title=titl, subtitle=subtitl, x="years" , y="min.discharge")+theme(legend.position="none")+geom_abline(intercept = model[11], slope= model[2])
   print(plot)
 }
