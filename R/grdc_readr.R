@@ -4,7 +4,7 @@
 #'
 #'
 #'
-#' @param data Dataframe;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)
+#' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function
 #' @param rivername character; name of the demanded river. Must equal name in column "river" in the Dataframe
 #' @param path character; Pathway of your computer where the GRDC dataset is saved.
 #'
@@ -22,8 +22,8 @@
 #'
 #'
 #'
-grdc_readr=function(data, rivername, path ){
-  data_fluss= data[which(data$river==rivername),]
+grdc_readr=function(metadata, rivername, path ){
+  data_fluss= metadata[which(metadata$river==rivername),]
   grdc_no=data_fluss$grdc_no
   l=length(grdc_no)
   read=c(1:l)
@@ -31,10 +31,11 @@ grdc_readr=function(data, rivername, path ){
 
     grdc_numb=grdc_no[i]
     grdc_numb=as.character(grdc_numb)
-    read[i]=paste(path,grdc_numb,"_Q_Day.Cmd.txt")
+    read[i]=paste(path,"/",grdc_numb,"_Q_Day.Cmd.txt")
   }
   read=sub(" ","", read)
   read=sub(" _","_", read)
+  read=sub("/ ", "/", read)
   name= vector(mode = "list", length = l)
   for (i in 1:l){
     Tabelle=read.table(read[i], header=T, sep=";", dec=".", na.strings = c())[-2] #-999 als NA Value

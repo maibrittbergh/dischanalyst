@@ -4,10 +4,10 @@
 \alias{grdc_readr}
 \title{GRDCC River Dataset Reader.}
 \usage{
-grdc_readr(data, rivername, path)
+grdc_readr(metadata, rivername, path)
 }
 \arguments{
-\item{data}{Dataframe;  a Dataframe including columns: "river" (rivername as character), "station" (rivername as character) and "grdc_no" (grdc number as double)}
+\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function}
 
 \item{rivername}{character; name of the demanded river. Must equal name in column "river" in the Dataframe}
 

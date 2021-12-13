@@ -11,7 +11,7 @@
 #' \dontrun{
 #' metadata_germany=metadata_grdc("DE,"/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 #' }
-#'
+#'#' @source \url{https://www.bafg.de/GRDC/EN/Home/homepage_node.html}
 metadata_grdc=function(Country, path){
   files=list.files(path)
   l=length(files)
@@ -40,7 +40,7 @@ metadata_grdc=function(Country, path){
   no_length=length(file_Country)
   grdc_no=rep(0, no_length)
   for (i in 1:no_length){
-    grdc_no[i]= substring(grdc_nom[i], 1,7)
+    grdc_no[i]= substring(file_Country[i], 1,7)
   }
   grdc_no=as.numeric(grdc_no)
 
@@ -224,7 +224,7 @@ metadata_grdc=function(Country, path){
 
   }
 
-  longitude
+  longitude=as.numeric(longitude)
   #Latitude
   latitude=rep(0, no_length)
   for (i in 1:no_length){
@@ -237,10 +237,20 @@ metadata_grdc=function(Country, path){
     latitude[i]=as.numeric(s[p+2])
 
   }
-  latitude
+  latitude=as.numeric(latitude)
   #Create Data.Frame
-  metadata=cbind(grdc_no, river, station, country, catch_area, altitude, startday, endday, startyear,endyear, d_years, longitude, latitude)
-  return(metadata)
+
+
+   metadata=as.data.frame(cbind(grdc_no, river, station, country, catch_area, altitude, startday, endday, startyear,endyear, d_years, longitude, latitude))
+metadata$grdc_no=as.numeric(metadata$grdc_no)
+metadata$catch_area=as.numeric(metadata$catch_area)
+metadata$altitude=as.numeric(metadata$altitude)
+metadata$startyear=as.numeric(metadata$startyear)
+metadata$endyear=as.numeric(metadata$endyear)
+metadata$d_years=as.numeric(metadata$d_years)
+metadata$longitude=as.numeric(metadata$longitude)
+metadata$latitude=as.numeric(metadata$latitude)
+   return(metadata)
 
 
 
