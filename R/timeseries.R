@@ -8,8 +8,11 @@
 #'
 #' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function
 #' @param path character; pathway to grdc_discharge folder on computer
+
 #' @param startyear integer
 #' @param endyear integer
+#' @param startyear integer; year- when did time series begin
+#' @param endyear integer; year- when did time series end
 #' @param type type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path())
 #'
 #' @return
@@ -90,6 +93,11 @@ timeseries=function(metadata, path, startyear, endyear, type=geom_line()){
       theme(legend.position="bottom", legend.box = "horizontal")+ylim(0,4000)+ ylab("Discharge Value")+xlab("Time [years]")+
       labs(title=title)
 
+
+    graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+type+ xlim(startyear,endyear)+
+      theme(legend.position="bottom", legend.box = "horizontal")+ylim(0,4000)+ ylab("Discharge Value")+xlab("Time [years]")
+
+
     print(graph)
 
 
@@ -114,11 +122,17 @@ timeseries=function(metadata, path, startyear, endyear, type=geom_line()){
       number=which(hh$station== i)
       hh$station[number]=ts[i,1]
     }
+
 title=paste("Timeseries of Discharge Values from", startyear, "to", endyear)
 
     graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+type+ xlim(startyear,endyear)+
      ylim(0,4000)+ylab("Discharge Value")+xlab("Time [years]")+ theme(legend.position="bottom", legend.box = "horizontal")+
       labs(title=title)
+
+
+    graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+type+ xlim(startyear,endyear)+
+     ylim(0,4000)+ylab("Discharge Value")+xlab("Time [years]")+ theme(legend.position="bottom", legend.box = "horizontal")
+
 
     print(graph)
   }

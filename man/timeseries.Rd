@@ -11,9 +11,9 @@ timeseries(metadata, path, startyear, endyear, type = geom_line())
 
 \item{path}{character; pathway to grdc_discharge folder on computer}
 
-\item{startyear}{integer}
+\item{startyear}{integer; year- when did time series begin}
 
-\item{endyear}{integer}
+\item{endyear}{integer; year- when did time series end}
 
 \item{type}{type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path())}
 }
