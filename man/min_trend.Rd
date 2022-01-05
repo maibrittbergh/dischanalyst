@@ -2,23 +2,28 @@
 % Please edit documentation in R/min_trend.R
 \name{min_trend}
 \alias{min_trend}
-\title{Calculates minimum Value for every year since the begin of the measurements. Returns Linear Model Coefficients for the Minimum Values over the years. Minimum Values ~ Years.}
+\title{Trend of minimum value}
 \usage{
-min_trend(data, station, Name)
+min_trend(data, station, mod = 1)
 }
 \arguments{
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
-
-\item{Name}{character; Name of the Dataset. e.g. "Mosel"}
+\item{mod}{numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=3: \link[stats]{lm} with a least squares approach is used. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series.}
 }
 \value{
-
+list
+\describe{
+  \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+  \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+  \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+  \item{intercept_ls}{intercept created by \link[stats]{lm}}
+  \item{slope_ls}{slope created by \link[stats]{lm}}
+}
 }
 \description{
-Calculates minimum Value for every year since the begin of the measurements. Returns Linear Model Coefficients for the Minimum Values over the years. Minimum Values ~ Years.
+Calculates minimum Value for every year since the begin of the measurements. Coefficiencts for a model. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening.
 }
 \examples{
-\dontrun{ min_value_lm(mosel, "COCHEM", "Mosel")}
+\dontrun{ min_value(mosel, "TRIER UP")}
 }
