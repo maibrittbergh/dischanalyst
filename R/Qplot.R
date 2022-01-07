@@ -23,18 +23,14 @@ Qplot=function(data,  station ){
 
 
 
-  modellm=lm(data[[nbr]][,2]~data[[nbr]][,1])
+
 
   titl=paste("Discharge time series: ", station , "start", minDate,"end", maxDate)
 
   plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Date")
-  +labs(title=titl, subtitle="Datasource: GRDC- Dataset ")+
+  +labs(title=titl, subtitle="Datasource: GRDC- Dataset ")
 
-    geom_abline(aes(intercept=modellm$coefficients[1], slope=modellm$coefficients[2], col="2"))+
-    scale_color_manual(name = "Legend",
-                       labels=c("Probability [%]",
-                                "Trend Line-Least Squares"), values=c("a"="#F8766D", "#00BDD0"), guide="legend")+
-    theme(legend.position = "right" )
+
 
   return(plot)
 }

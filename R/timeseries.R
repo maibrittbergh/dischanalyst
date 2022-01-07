@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #' Plot timeseries of measurements
 #'
 #' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function
@@ -13,27 +7,21 @@
 #' @param endyear integer
 #' @param startyear integer; year- when did time series begin
 #' @param endyear integer; year- when did time series end
-#' @param type type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path())
+#' @param type type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path()), geom_smooth(method="auto"))
 #'
 #' @return
 #' @export
 #' @import dplyr
-#'@import ggplot2
+#' @import ggplot2
 #' @examples
 #' \dontrun{
 #' timeseries(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020)
 #' }
 #'
-
-#'
-#'
-#'
 timeseries=function(metadata, path, startyear, endyear,type=geom_smooth(method="auto")){
 
 
-
-
-  l=nrow(metadata) #all stations included in measurements
+  l=nrow(metadata) #all stations, included in measurements
   stations_s=rep(F,l)
   stations_e=rep(F,l)
   for ( i in 1:l){
@@ -89,6 +77,8 @@ timeseries=function(metadata, path, startyear, endyear,type=geom_smooth(method="
       hh$station[number]=ts[i,1]
     }
 
+
+
     title=paste("Timeseries of Discharge Values from", startyear, "to", endyear)
     graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+type+ xlim(startyear,endyear)+
       theme(legend.position="right", legend.box = "vertical")+ylab("Discharge Value")+xlab("Time [years]")+
@@ -135,7 +125,6 @@ timeseries=function(metadata, path, startyear, endyear,type=geom_smooth(method="
 
  #   print(graph)
   #}
-print(graph)
+return(graph)
 }
-
 

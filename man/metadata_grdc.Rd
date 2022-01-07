@@ -4,7 +4,7 @@
 \alias{metadata_grdc}
 \title{Create Metadata for GRDC Dataset}
 \usage{
-metadata_grdc(Country, path)
+metadata_grdc(Country, path, trend = F)
 }
 \arguments{
 \item{Country}{character; abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.}

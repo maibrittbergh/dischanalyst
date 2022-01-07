@@ -21,7 +21,7 @@ timeseries(
 
 \item{endyear}{integer; year- when did time series end}
 
-\item{type}{type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path())}
+\item{type}{type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path()), geom_smooth(method="auto"))}
 }
 \value{
 
@@ -33,8 +33,5 @@ Plot timeseries of measurements
 \dontrun{
 timeseries(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020)
 }
-
-
-
 
 }
