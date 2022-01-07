@@ -1,4 +1,4 @@
-#' Probabilty to fall under U for every year during since begin of the measurements
+#' Probabilty to fall under U for every year since begin of the measurements
 #'
 #' @param U numeric; Limit Value. Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
@@ -12,13 +12,16 @@
 #'@importFrom zyp zyp.trend.vector
 #'@import Kendall
 #' @examples
-#' \dontrun{ U_prob_years(150,"COCHEM", mosel, "Mosel",h=T)}
+#' \dontrun{ U_proby(150,"COCHEM", mosel,h=T)}
 #'
-U_proby=function(U, station, data,Name,h){
+U_proby=function(U, station, data,h){
+
+
+
   nbr=which(names(data)==station)
 
   if (h==T){
-    Novem=grep("11-01" ,mosel[[nbr]][,1])
+    Novem=grep("11-01" ,mosel[[nbr]][,1]) #Problem : January counted as well.
     Oct=grep("10-31" ,mosel[[nbr]][,1])
     l=length(Novem)
     a=length(Novem)-1
@@ -35,12 +38,69 @@ U_proby=function(U, station, data,Name,h){
 
     years=data[[nbr]][Novem,1]
 
-    results= data.frame(years, U_prob)
-    model= zyp.trend.vector(y=results$q_min, x=results$years, method="yuepilon")
-    titl=paste("Probability of falling below Value:",U,". At",Name,",",station, "from", years[1], "to", years[length(years)])
+    l=length(years)
+    years.numeric=rep(0,l)
+    for ( i in 1: l){
+      years.numeric[i]= as.numeric(substr(years[i],1,4))
+    }
 
-    plot=ggplot(results)+geom_line(mapping=aes(x=years,y=U_prob, group=1, col="red"))+labs(title=titl,  x="years" , y="Probabilty [%]")+theme(legend.position="none")+geom_abline(intercept = model[11], slope= model[2])
+  #eliminate january
+    if(any(years.numeric==1911)){
+      vec=which(years.numeric==1911)
+     l= length(which(years.numeric==1911))
+
+      january= l-1
+     jan=vec[1:january]
+
+      years.numeric= years.numeric[-jan]
+    years=years[-jan]
+    U_prob=U_prob[-jan]
+
+    }
+    if(any(years.numeric==2011)){
+      vec=which(years.numeric==2011)
+      l= length(which(years.numeric==2011))
+
+      january= l-1
+      jan=vec[1:january]
+
+      years.numeric= years.numeric[-jan]
+      years=years[-jan]
+      U_prob=U_prob[-jan]
+
+    }
+
+
+
+
+
+
+
+    results= data.frame(years, U_prob, years.numeric)
+
+
+
+    titl=paste("Probability of falling below Value:",U,". At:",station, "from", years[1], "to", years[length(years)], "[hydrological years]")
+
+
+
+    model= zyp.trend.vector(y=results$U_prob, x=results$years.numeric, method="yuepilon")
+    modellm=lm(U_prob~years.numeric, results)
+
+
+
+
+    plot=ggplot(results)+geom_line(mapping=aes(x=years.numeric,y=U_prob, group=1, col="1"))+labs(title=titl,  x="years" , y="Probabilty [%]")+
+      geom_abline(aes(intercept = model[11], slope= model[2], col="2"))+
+      geom_abline(aes(intercept=modellm$coefficients[1], slope=modellm$coefficients[2], col="3"))+
+      scale_color_manual(name = "Legend",
+                         labels=c("Probability [%]", "Trend Line - Sens Sloap",
+                                  "Trend Line-Least Squares"), values=c("a"="#F8766D", "#00BDD0", "darkblue"), guide="legend")+ theme(legend.position = "right" )
+
+
+
     return(plot)
+
 
 
   }else{
@@ -59,15 +119,36 @@ U_proby=function(U, station, data,Name,h){
       under=which(Val<U)
       U_prob[i]=100*(length(under)/length(Val))
     }
-    results= data.frame(years, U_prob)
-    model= zyp.trend.vector(y=results$q_min, x=results$years, method="yuepilon")
+
+years.numeric=as.numeric(years)
 
 
-    title=paste("Probability of falling below Value:",U,". At",Name,",",station, "from", year_one, "to", last_year)
 
-    plot=ggplot(results)+geom_line(mapping=aes(x=years,y=U_prob, group=1, col="red"))+labs(title=title,  x="years" , y="Probabilty [%]")+theme(legend.position="none")+geom_abline(intercept = model[11], slope= model[2])
-    return(plot)
+
+    results= data.frame(years, U_prob, years.numeric)
+
+
+
+    model= zyp.trend.vector(y=results$U_prob, x=results$years.numeric, method="yuepilon")
+    modellm=lm(U_prob~years.numeric, results)
+
+
+    title=paste("Probability of falling below Value:",U,". At: ",station, "from", year_one, "to", last_year)
+
+    plot=ggplot(results)+geom_line(mapping=aes(x=years.numeric,y=U_prob, group=1, col="1"))+labs(title=title,  x="years" , y="Probabilty [%]")+
+      geom_abline(aes(intercept = model[11], slope= model[2], col="2"))+
+      geom_abline(aes(intercept=modellm$coefficients[1], slope=modellm$coefficients[2], col="3"))+
+      scale_color_manual(name = "Legend",
+                         labels=c("Probability [%]", "Trend Line - Sens Sloap",
+                                  "Trend Line-Least Squares"), values=c("a"="#F8766D", "#00BDD0", "darkblue"), guide="legend")+ theme(legend.position = "right" )
+
+  return(plot)
   }
 
 
 }
+
+
+
+
+

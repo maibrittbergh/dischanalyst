@@ -6,16 +6,16 @@
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param Name character; Name of the River. e.g. "Mosel"
 #'
-#' @return Boxplot Graphic of Discharge time series.
+#' @return Boxplot Graphic of Discharge time series. Using \link[ggplot2]{geom_boxplot}
 #' @export
 #'
 #' @import ggplot2
 #'
 #' @examples
-#' \dontrun{ QBoxplot(mosel, "Mosel", "COCHEM")}
+#' \dontrun{ QBoxplot(mosel, "COCHEM")}
 
-QBoxplot=function(data, Name, station){
-  titl=paste("Boxplot of", Name,",", station )
+QBoxplot=function(data,  station){
+  titl=paste("Boxplot of",  station )
   plot=ggplot(data[[station]])+geom_boxplot(aes(y=data[[station]][,2], color="red"))+labs(title=titl, subtitle="GRDC-Dataset by the BfG")+theme(legend.position="none")
   return(plot)
 }

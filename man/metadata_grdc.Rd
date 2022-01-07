@@ -12,8 +12,15 @@ metadata_grdc(Country, path)
 \item{path}{character; pathway to grdc_discharge folder on computer}
 }
 \value{
-
+data.frame; metadata of GRDC -Dataset and a given Country
 }
 \description{
 Create Metadata for GRDC Dataset
+}
+\examples{
+\dontrun{
+metadata_germany=metadata_grdc("DE","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
+}
+#' @source \url{https://www.bafg.de/GRDC/EN/Home/homepage_node.html}
+
 }

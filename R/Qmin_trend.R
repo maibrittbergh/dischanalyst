@@ -11,9 +11,12 @@
 #'@import Kendall
 #'
 #' @examples
-#' \dontrun{ Qmin_trend(mosel, "COCHEM", "MOSEL")}
+#' \dontrun{ Qmin_trend(mosel, "COCHEM")}
 #'
-Qmin_trend=function(data, station,Name) {
+Qmin_trend=function(data, station) {
+data=mosel
+station="COCHEM "
+
   nbr=which(names(data)==station)
   val=data[[nbr]]
   abs_min=min(data[[nbr]][,2])
@@ -31,10 +34,18 @@ Qmin_trend=function(data, station,Name) {
     q_min[i]=min(Val)
   }
   results=data.frame(years, q_min)
-
-model=zyp.trend.vector(y=results$q_min, x=results$years, method="yuepilon")
-  titl=paste("Minimum Values measured at",station,",",Name,",", "from", year_one, "to", last_year)
+model= min_trend(data, station)
+  titl=paste("Minimum Values measured at",station, "from", year_one, "to", last_year)
   subtitl=paste("Smallest Value being measurd is: ", abs_min)
-  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="red"))+labs(title=titl, subtitle=subtitl, x="years" , y="min.discharge")+theme(legend.position="none")+geom_abline(intercept = model[11], slope= model[2])
-  print(plot)
+  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, x="years" , y="min.discharge")+
+   geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
+    geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend",
+                       labels=c("Minimum values", "Trend Line - Sens Sloap",
+                                "Trend Line-Least Squares"), values=c("a"="#F8766D", "#00BDD0", "darkblue"), guide="legend")+ theme(legend.position = "right" )
+
+return(plot)
+
+
 }
+
+

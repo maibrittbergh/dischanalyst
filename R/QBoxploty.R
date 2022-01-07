@@ -4,17 +4,18 @@
 #' @param Name character; Name of the River. e.g. "Mosel".
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param year numeric; year within time series of measurements.
-#' @param h logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#' @param h logical; hydrological year. If h=TRUE (default); hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
-#' @return Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year.
+#' @return Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year. Using \link[ggplot2]{geom_boxplot}.
+#' @import ggplot2
 #' @export
 #'
 #' @examples
-#' \dontrun{ QBoxploty(mosel, "MOSEL", "COCHEM", 2000, h=T)}
+#' \dontrun{ QBoxploty(mosel, "COCHEM", 2000, h=T)}
 #'
 
 
-QBoxploty=function(data, Name, station, year, h){
+QBoxploty=function(data,  station, year, h=T){
 
 
 
@@ -63,7 +64,7 @@ QBoxploty=function(data, Name, station, year, h){
     year_=year
     j=grep(year_, mosel[[nbr]][,1])
     new_data=mosel[[nbr]][j,]
-    titl=paste("Boxplot of", Name, ",", station, "in", year)
+    titl=paste("Boxplot of",station, "in", year)
     plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
   }

@@ -4,15 +4,17 @@
 #' @param Country character; abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.
 #' @param path character; pathway to grdc_discharge folder on computer
 #'
-#' @return
+#' @return data.frame; metadata of GRDC -Dataset and a given Country
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' metadata_germany=metadata_grdc("DE,"/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
+#' metadata_germany=metadata_grdc("DE","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 #' }
 #'#' @source \url{https://www.bafg.de/GRDC/EN/Home/homepage_node.html}
-metadata_grdc=function(Country, path){
+#'
+metadata_grdc=function(Country, path, trend=F){
+
   files=list.files(path)
   l=length(files)
   vec=as.logical(rep(0,l))
@@ -61,7 +63,22 @@ metadata_grdc=function(Country, path){
   }
 
   river=sub("#","", river)
-  river
+
+
+
+  for ( i in 1:no_length){ #Fehler: Leerzeichen
+
+    nch=nchar(river[i])
+    lastdigit=substr(river[i],nch,nch)
+    if (lastdigit==" "){
+      river[i]=substr(river[i], 1, (nch-1))
+    }
+  }
+
+
+
+
+
 
   #station
 
@@ -79,7 +96,19 @@ metadata_grdc=function(Country, path){
 
   station=sub("#","", station)
 
-  station
+
+for ( i in 1:no_length){ #Fehler: Leerzeichen
+
+  nch=nchar(station[i])
+  lastdigit=substr(station[i],nch,nch)
+if (lastdigit==" "){
+  station[i]=substr(station[i], 1, (nch-1))
+}
+}
+
+
+
+
 
   #country
 
@@ -112,7 +141,7 @@ metadata_grdc=function(Country, path){
   }
 
 
-  catch_area
+
 
   #altitude
 
@@ -128,7 +157,7 @@ metadata_grdc=function(Country, path){
     altitude[i]=as.numeric(s[(p+3)])
 
   }
-  altitude
+
   # startday
 
   startday=rep(0, no_length)
@@ -158,7 +187,7 @@ metadata_grdc=function(Country, path){
     startyear[i]=as.numeric(substring(s[p+2],1,4))
 
   }
-  startyear
+
 
   #endday
   endday=rep(0, no_length)
@@ -174,7 +203,7 @@ metadata_grdc=function(Country, path){
 
   }
 
-  endday
+
 
   #endyear
 
@@ -190,7 +219,7 @@ metadata_grdc=function(Country, path){
 
   }
 
-  endyear
+
 
 
 
@@ -208,7 +237,7 @@ metadata_grdc=function(Country, path){
 
   }
 
-  d_years
+
 
 
   #Longitude
@@ -251,8 +280,38 @@ metadata$d_years=as.numeric(metadata$d_years)
 metadata$longitude=as.numeric(metadata$longitude)
 metadata$latitude=as.numeric(metadata$latitude)
 
+if (trend== T){
+
+
+
+  intercept_sensl=rep(0,no_length)
+  slope_sensl=rep(0,no_length)
+  sig_sensl=rep(0,no_length)
+  intercept_lm=rep(0,no_length)
+  slope_lm=rep(0,no_length)
+  for (i in 1:no_length){
+  fluss= einlesen(metadata, metadata$river[i])
+  model = min_trend(fluss, data$station[i],data$river[i])
+  intercept_sensl=rep(0,no_length)
+
+  intercept_sensl[i]=model$intercept_zyp
+  slope_sensl[i]=model$slope_zyp
+  sig_sensl[i]=model$sig_zyp
+  intercept_lm[i]=model$intercept_lm
+  slope_lm[i]=model$slope_lm
+}
+
+  metadata$intercept_sensl=intercept_sensl
+  metadata$slope_sensl= slope_sensl
+  metadata$sig_sensl=sig_sensl
+  metadata$intercept_lm=  intercept_lm
+  metadata$slope_lm=  slope_lm
+}
+
+
 
   return(metadata)
 }
+
 
 

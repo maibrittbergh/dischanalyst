@@ -4,18 +4,18 @@
 \alias{Qploty}
 \title{Discharge Plot in specific (calendrical/hydrological) year}
 \usage{
-Qploty(data, Name, station, year, h)
+Qploty(data, station, year, h)
 }
 \arguments{
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
-
-\item{Name}{character; Name of the River. e.g. "Mosel".}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
 \item{year}{numeric; a certain year within the time series since begin of measurements.}
 
 \item{h}{logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
+
+\item{Name}{character; Name of the River. e.g. "Mosel".}
 }
 \value{
 graphic of discharge time series in given year

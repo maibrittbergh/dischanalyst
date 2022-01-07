@@ -4,7 +4,7 @@
 \alias{Qmin_trend}
 \title{Trend of Annual Discharge Minima since begin of Measurements}
 \usage{
-Qmin_trend(data, station, Name)
+Qmin_trend(data, station)
 }
 \arguments{
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
@@ -20,6 +20,6 @@ Qmin_trend(data, station, Name)
 Trend of Annual Discharge Minima since begin of Measurements
 }
 \examples{
-\dontrun{ Qmin_trend(mosel, "COCHEM", "MOSEL")}
+\dontrun{ Qmin_trend(mosel, "COCHEM")}
 
 }

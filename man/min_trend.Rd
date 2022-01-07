@@ -25,5 +25,5 @@ list
 Calculates minimum Value for every year since the begin of the measurements. Coefficiencts for a model. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening.
 }
 \examples{
-\dontrun{ min_value(mosel, "TRIER UP")}
+\dontrun{ min_trend(mosel, "TRIER UP")}
 }

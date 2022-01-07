@@ -4,7 +4,7 @@
 \alias{U_probd}
 \title{Probability to receive Discharge Values under U within the decades since begin of measurements}
 \usage{
-U_probd(U, station, data, Name)
+U_probd(U, station, data)
 }
 \arguments{
 \item{U}{numeric; Limit Value. Function returns possibility to receive Value smaller than U for every decade since begin of measurements.}
@@ -22,6 +22,6 @@ U_probd(U, station, data, Name)
 Probability to receive Discharge Values under U within the decades since begin of measurements
 }
 \examples{
-\dontrun{ U_probd(150,"COCHEM", mosel, "Mosel")}
+\dontrun{ U_probd(150,"COCHEM", mosel)}
 
 }

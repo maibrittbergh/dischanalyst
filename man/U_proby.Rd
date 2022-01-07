@@ -2,9 +2,9 @@
 % Please edit documentation in R/U_proby.R
 \name{U_proby}
 \alias{U_proby}
-\title{Probabilty to fall under U for every year during since begin of the measurements}
+\title{Probabilty to fall under U for every year since begin of the measurements}
 \usage{
-U_proby(U, station, data, Name, h)
+U_proby(U, station, data, h)
 }
 \arguments{
 \item{U}{numeric; Limit Value. Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.}
@@ -13,17 +13,17 @@ U_proby(U, station, data, Name, h)
 
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{Name}{character; Name of the dataset. e.g. "Mosel"}
-
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
+
+\item{Name}{character; Name of the dataset. e.g. "Mosel"}
 }
 \value{
 
 }
 \description{
-Probabilty to fall under U for every year during since begin of the measurements
+Probabilty to fall under U for every year since begin of the measurements
 }
 \examples{
-\dontrun{ U_prob_years(150,"COCHEM", mosel, "Mosel",h=T)}
+\dontrun{ U_proby(150,"COCHEM", mosel,h=T)}
 
 }

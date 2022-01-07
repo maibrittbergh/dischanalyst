@@ -27,23 +27,33 @@ devtools::install_github("maibrittbergh/dischanalyst")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(dischanalyst)
-## basic example code
+
+#to be able to run the functions of dischanalyst on your computer
+
+# Library Packages --------------------------------------------------------
+
+
+#library(Kendall)
+#library(dischanalyst)
+
+
+
+
+# Load in data ------------------------------------------------------------
+#enter path: where did you save GRDC-Dataset (path to grdc_disc)
+#path="/Users/maibrittberghofer/Desktop/Bachelorarbeit/Datafolder/grdc_03_2021/grdc_disc"
+#Country="DE" #in which country are you interested?
+#metadata_germany=metadata_grdc(Country, path)
+
+
+# Load in datset of interest (specific river as well as station )
+#rivername="MOSELLE RIVER" #rivername must be equal like rivername in metadata
+#station= "COCHEM" #stationname must be equal like stationname  in metadata
+#mosel=grdc_readr(metadata_germany, rivername, path )
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
 up-to-date. `devtools::build_readme()` is handy for this. You could also
@@ -52,8 +62,6 @@ example workflow can be found here:
 <https://github.com/r-lib/actions/tree/v1/examples>.
 
 You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
 
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.

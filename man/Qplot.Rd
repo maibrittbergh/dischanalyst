@@ -4,14 +4,14 @@
 \alias{Qplot}
 \title{Discharge Plot of the entire time series of measurements}
 \usage{
-Qplot(data, Name, station)
+Qplot(data, station)
 }
 \arguments{
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{Name}{character; Name of the River. e.g. "Mosel"}
-
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data}
+
+\item{Name}{character; Name of the River. e.g. "Mosel"}
 }
 \value{
 Graphic showing Discharge time series.
@@ -20,6 +20,6 @@ Graphic showing Discharge time series.
 Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 }
 \examples{
-\dontrun{ Qplot(mosel, "Mosel", "COCHEM")}
+\dontrun{ Qplot(mosel, "COCHEM")}
 
 }

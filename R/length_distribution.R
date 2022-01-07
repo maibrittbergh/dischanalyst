@@ -16,17 +16,13 @@
 #'
 length_distribution=function(metadata, type="map"){
 
-
+nr=nrow(metadata)
   vec=rep("0", nr)
   for ( i in 1: nr){
     vec[i]=sub("  - ", "-", paste(metadata$river[i], "-", metadata$station[i]))
 
   }
   metadata$river_station=vec
-  metadata$length_timeseries=length_timeseries
-
-
-
 
   st_meta=st_as_sf(metadata, coords=c("longitude","latitude"), crs=4326 )
 
@@ -34,6 +30,13 @@ length_distribution=function(metadata, type="map"){
 
 
   length_timeseries=st_meta$d_years
+
+  metadata$length_timeseries=length_timeseries
+  st_meta$length_timeseries=length_timeseries
+
+
+
+
 
   st_meta$startyear=as.character(st_meta$startyear)
   st_meta$endyear=as.character(st_meta$endyear)
@@ -46,18 +49,22 @@ length_distribution=function(metadata, type="map"){
     "Length of Timeseries"="length_timeseries",
     "Startyear" = "startyear",
     "Endyear"= "endyear"
-  ) , palette="-RdBu",size=0.08)+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+tm_layout("Length of Timeseries [years]")
+  ) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
+    tm_layout("Length of Timeseries [years]")
 
 
 
 
-  pl=ggplot(meta)+geom_density(aes(y=length_timeseries, color="#3"))+coord_flip()+theme(legend.position = "none")+ labs(x = "Length of timeseries[years]", y = "density",
-                                                                                                                        title ="Plot: Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
+  pl=ggplot(metadata)+geom_density(aes(y=length_timeseries, col="red"))+coord_flip()+
+    theme(legend.position = "none")+ labs(x = "Length of timeseries[years]", y = "density",
+            title ="Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
+
   if (type=="dens"){
     return(pl)
-  }
-  if (type=="map"){
+  }else {
     return(tm)
   }
 
 }
+
+

@@ -4,21 +4,21 @@
 \alias{QBoxplot}
 \title{Discharge Boxplot of measured Values within entire time series of measurements}
 \usage{
-QBoxplot(data, Name, station)
+QBoxplot(data, station)
 }
 \arguments{
 \item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{Name}{character; Name of the River. e.g. "Mosel"}
-
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
+
+\item{Name}{character; Name of the River. e.g. "Mosel"}
 }
 \value{
-Boxplot Graphic of Discharge time series.
+Boxplot Graphic of Discharge time series. Using \link[ggplot2]{geom_boxplot}
 }
 \description{
 Desciptive Statistics. Boxplot of Time Series of Discharge at specific station. Including all measurements in list.
 }
 \examples{
-\dontrun{ QBoxplot(mosel, "Mosel", "COCHEM")}
+\dontrun{ QBoxplot(mosel, "COCHEM")}
 }

@@ -3,7 +3,7 @@
 #'@description Calculates minimum Value for every year since the begin of the measurements. Coefficiencts for a model. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening.
 #'
 #' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param mod numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=3: \link[stats]{lm} with a least squares approach is used. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series.
+#' @param mod numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series. For mod=3: \link[stats]{lm} with a least squares approach is used.
 #' @return list
 #' \describe{
 #'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
@@ -21,7 +21,7 @@
 #'@import Kendall
 #'
 #' @examples
-#' \dontrun{ min_value(mosel, "TRIER UP")}
+#' \dontrun{ min_trend(mosel, "TRIER UP")}
 
 min_trend=function(data, station, mod= 1) {
 
@@ -55,7 +55,7 @@ min_trend=function(data, station, mod= 1) {
     return(llm)
 
   }else if (mod == 2){
-    mod=zyp.trend.vector(results$q_min,  method="yuepilon")  #
+    mod=zyp.trend.vector(y=results$q_min, x=years,  method="yuepilon")  #
     intercept_zyp=as.numeric(mod[11])
     slope_zyp=as.numeric(mod[2])
     sig_zyp=as.numeric(mod[6])
@@ -75,7 +75,7 @@ min_trend=function(data, station, mod= 1) {
     intercept_ls=as.numeric(model$coefficients[1])
     slope_ls=as.numeric(model$coefficients[2])
 
-    mod=zyp.trend.vector(results$q_min,  method="yuepilon")  #
+    mod=zyp.trend.vector(results$q_min, x=years, method="yuepilon")  #
     intercept_zyp=as.numeric(mod[11])
     slope_zyp=as.numeric(mod[2])
     sig_zyp=as.numeric(mod[6])
@@ -89,5 +89,4 @@ min_trend=function(data, station, mod= 1) {
 
 
 }
-
 

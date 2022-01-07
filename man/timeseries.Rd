@@ -4,7 +4,13 @@
 \alias{timeseries}
 \title{Plot timeseries of measurements}
 \usage{
-timeseries(metadata, path, startyear, endyear, type = geom_line())
+timeseries(
+  metadata,
+  path,
+  startyear,
+  endyear,
+  type = geom_smooth(method = "auto")
+)
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function}
@@ -27,5 +33,8 @@ Plot timeseries of measurements
 \dontrun{
 timeseries(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020)
 }
+
+
+
 
 }
