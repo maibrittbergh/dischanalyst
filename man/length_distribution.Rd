@@ -7,7 +7,7 @@
 length_distribution(metadata, type = "map")
 }
 \arguments{
-\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function}
+\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 
 \item{type}{output; as character: "map" or "dens", default="map"- returns interactive tmap. if type"dens"- fucntion returns densityplot.}
 }

@@ -1,6 +1,6 @@
 #' Distribution of Length of Discharge Measurements Timeseries
 #'
-#' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function
+#' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
 #' @param type output; as character: "map" or "dens", default="map"- returns interactive tmap. if type"dens"- fucntion returns densityplot.
 #'
 #' @return tmap or density plot

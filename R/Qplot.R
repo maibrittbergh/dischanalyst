@@ -14,23 +14,27 @@
 #'
 Qplot=function(data,  station ){
 
-
   nbr=which(names(data)==station)
   minDate= data[[nbr]][1,1]
   l=length(data[[nbr]][,1])
   maxDate=data[[nbr]][l,1]
 
 
-
-
+min=as.numeric(substr(minDate, 1, 4))
+max=as.numeric(substr(maxDate, 1, 4))
+y=data[[nbr]]$Value
+x=seq(from=min, to= max, length=l)
 
 
   titl=paste("Discharge time series: ", station , "start", minDate,"end", maxDate)
 
-  plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Date")
-  +labs(title=titl, subtitle="Datasource: GRDC- Dataset ")
 
 
+
+  plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Date")+
+    labs(title=titl, subtitle="Datasource: GRDC- Dataset ")
+
+print(plot)
 
   return(plot)
 }

@@ -8,6 +8,7 @@
 #' @export
 #' @import ggplot2
 #' @importFrom zyp zyp.trend.vector
+#' @import stats
 #'@import Kendall
 #'
 #' @examples
