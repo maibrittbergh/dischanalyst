@@ -10,8 +10,10 @@
 #' @export
 #'@import ggplot2
 #'
-#'@example
-#'\dontrun{ Qploty(mosel, "COCHEM", 2000, h=T)}
+#'@examples
+#'\dontrun{
+#'Qploty(mosel, "COCHEM", 2000, h=T)
+#'}
 #'
 #'
 
@@ -43,18 +45,18 @@ Qploty=function(data, station, year,h){
     }
     year_=c(one,two)
 
-    Nov=grep(year_[1],mosel[[nbr]][,1] )
-    Dec=grep(year_[2],mosel[[nbr]][,1] )
-    Jan=grep(year_[3],mosel[[nbr]][,1] )
-    Feb=grep(year_[4],mosel[[nbr]][,1] )
-    Mar=grep(year_[5],mosel[[nbr]][,1] )
-    April=grep(year_[6],mosel[[nbr]][,1] )
-    May=grep(year_[7],mosel[[nbr]][,1] )
-    June=grep(year_[8],mosel[[nbr]][,1] )
-    July=grep(year_[9],mosel[[nbr]][,1] )
-    August=grep(year_[10],mosel[[nbr]][,1] )
-    Sep=grep(year_[11],mosel[[nbr]][,1] )
-    Oct=grep(year_[12],mosel[[nbr]][,1] )
+    Nov=grep(year_[1],data[[nbr]][,1] )
+    Dec=grep(year_[2],data[[nbr]][,1] )
+    Jan=grep(year_[3],data[[nbr]][,1] )
+    Feb=grep(year_[4],data[[nbr]][,1] )
+    Mar=grep(year_[5],data[[nbr]][,1] )
+    April=grep(year_[6],data[[nbr]][,1] )
+    May=grep(year_[7],data[[nbr]][,1] )
+    June=grep(year_[8],data[[nbr]][,1] )
+    July=grep(year_[9],data[[nbr]][,1] )
+    August=grep(year_[10],data[[nbr]][,1] )
+    Sep=grep(year_[11],data[[nbr]][,1] )
+    Oct=grep(year_[12],data[[nbr]][,1] )
 
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
@@ -65,7 +67,7 @@ Qploty=function(data, station, year,h){
 
   }else{
     year_=year
-    j=grep(year_, mosel[[nbr]][,1])
+    j=grep(year_, data[[nbr]][,1])
     new_data=data[[nbr]][j,]
     titl=paste("Discharge time series of calendrical year",year, "at", station)
     plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")

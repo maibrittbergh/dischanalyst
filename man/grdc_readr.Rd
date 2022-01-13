@@ -7,9 +7,9 @@
 grdc_readr(metadata, rivername, path)
 }
 \arguments{
-\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function}
+\item{metadata}{metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 
-\item{rivername}{character; name of the demanded river. Must equal name in column "river" in the Dataframe}
+\item{rivername}{character; name of the demanded river. Must equal name in column "river" of metadata}
 
 \item{path}{character; Pathway of your computer where the GRDC dataset is saved.}
 }

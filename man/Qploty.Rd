@@ -23,3 +23,10 @@ graphic of discharge time series in given year
 \description{
 Discharge Plot in specific (calendrical/hydrological) year
 }
+\examples{
+\dontrun{
+Qploty(mosel, "COCHEM", 2000, h=T)
+}
+
+
+}

@@ -4,8 +4,8 @@
 #'
 #'
 #'
-#' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by metadata_grdc function
-#' @param rivername character; name of the demanded river. Must equal name in column "river" in the Dataframe
+#' @param metadata metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
+#' @param rivername character; name of the demanded river. Must equal name in column "river" of metadata
 #' @param path character; Pathway of your computer where the GRDC dataset is saved.
 #'
 #' @return  dataset of the demanded river
