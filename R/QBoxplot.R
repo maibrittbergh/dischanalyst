@@ -2,9 +2,8 @@
 #'
 #'@description  Desciptive Statistics. Boxplot of Time Series of Discharge at specific station. Including all measurements in list.
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param Name character; Name of the River. e.g. "Mosel"
 #'
 #' @return Boxplot Graphic of Discharge time series. Using \link[ggplot2]{geom_boxplot}
 #' @export
@@ -16,6 +15,8 @@
 
 QBoxplot=function(data,  station){
   titl=paste("Boxplot of",  station )
-  plot=ggplot(data[[station]])+geom_boxplot(aes(y=data[[station]][,2], color="red"))+labs(title=titl, subtitle="GRDC-Dataset by the BfG")+theme(legend.position="none")
+  plot=ggplot(data[[station]])+geom_boxplot(aes(y=data[[station]][,2], color="red"))+labs( title=titl, subtitle=paste("from", format(data[[station]][,1], "%Y"),"to", format(data[[station]][(nrow(data[[station]])),1] , "%Y") ))+theme(legend.position="none")+ylab("DIscharge Value")
   return(plot)
 }
+
+

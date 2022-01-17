@@ -15,18 +15,107 @@
 #' @param station character- must equal name of station in data.
 #' @param Startyear numeric; Startyear.
 #' @param Endyear numeric; Endyear.
-#' @param month_start character; Begin of the season. E.g. Febuary="02"
-#' @param month_end character: End of the seasoan. E.g. August="11"
+#' @param month_start numeric; Begin of the season. E.g. Febuary=2
+#' @param month_end numeric; End of the seasoan. E.g. August=8
 #'
 #' @return seasonal plot.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' seasonpl(mosel, "COCHEM", 2013, 2017, "02", "05")
+#' seasonpl(mosel, "COCHEM", 2013, 2017, 2,3)
 #' }
 #'
 seasonpl=function(data, station, Startyear, Endyear, month_start, month_end){
+
+
+
+# convert month -----------------------------------------------------------
+
+
+
+
+  if (month_start==1){
+    month_start="01"
+  }
+  if(month_end==1){
+    month_end="01"
+  }
+
+  if (month_start==2){
+    month_start="02"
+  }
+  if(month_end==2){
+    month_end="02"
+  }
+
+
+  if (month_start==3){
+    month_start="03"
+  }
+  if(month_end==3){
+    month_end="03"
+  }
+
+
+  if (month_start==4){
+    month_start="04"
+  }
+  if(month_end==4){
+    month_end="04"
+  }
+
+  if (month_start==5){
+    month_start="05"
+  }
+  if(month_end==5){
+    month_end="05"
+  }
+
+
+  if (month_start==6){
+    month_start="06"
+  }
+  if(month_end==6){
+    month_end="06"
+  }
+
+
+
+  if (month_start==7){
+    month_start="07"
+  }
+  if(month_end==7){
+    month_end="07"
+  }
+
+
+  if (month_start==8){
+    month_start="08"
+  }
+  if(month_end==8){
+    month_end="08"
+  }
+
+
+  if (month_start==9){
+    month_start="09"
+  }
+  if(month_end==9){
+    month_end="09"
+  }
+
+month_start=as.character(month_start)
+
+month_end=as.character(month_end)
+
+########
+
+
+
+
+
+
 years=Startyear:Endyear
 years
 l=length(years)
@@ -104,7 +193,6 @@ list3[[b]]$Number=1:length(start:end)
 
 
 Result=bind_rows(list3, .id="HydroYear")
-View(Result)
 
 for ( i in 1:l){
 
@@ -112,11 +200,8 @@ for ( i in 1:l){
 }
 
 
-Result
 
 
-
-title=paste("Timeseries of Discharge Values from", Startyear, "to", Endyear)
 graph= ggplot(Result, aes(x=Number, y=Value, group=HydroYear, col=HydroYear ))+geom_line()+
   labs(title= paste("Seasonal plot within the timespan of month" ,month_start, "-", month_end ),
                            subtitle = paste ("During the years", Startyear, "to", Endyear, "at", station) ,
@@ -133,9 +218,6 @@ graph= ggplot(Result, aes(x=Number, y=Value, group=HydroYear, col=HydroYear ))+g
 
 
 }
-
-
-
 
 
 

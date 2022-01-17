@@ -1,6 +1,6 @@
 
 
-#' GRDCC River Dataset Reader.
+#' GRDC River Dataset Reader.
 #'
 #'
 #'
@@ -8,13 +8,13 @@
 #' @param rivername character; name of the demanded river. Must equal name in column "river" of metadata
 #' @param path character; Pathway of your computer where the GRDC dataset is saved.
 #'
-#' @return  dataset of the demanded river
+#' @return  Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station of the given river.
 #' @export
 #'
 #' @examples
 #'
 #' \dontrun{
-#' mosel=grdc_readr(data,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
+#' mosel=grdc_readr(metadata,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 #' }
 #'
 #'

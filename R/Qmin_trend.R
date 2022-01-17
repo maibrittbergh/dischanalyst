@@ -1,8 +1,7 @@
 #' Trend of Annual Discharge Minima since begin of Measurements
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param Name character; Name of the River. e.g. "Mosel"
 #'
 #' @return
 #' @export
@@ -15,8 +14,6 @@
 #' \dontrun{ Qmin_trend(mosel, "COCHEM")}
 #'
 Qmin_trend=function(data, station) {
-data=mosel
-station="COCHEM "
 
   nbr=which(names(data)==station)
   val=data[[nbr]]
@@ -36,13 +33,13 @@ station="COCHEM "
   }
   results=data.frame(years, q_min)
 model= min_trend(data, station)
-  titl=paste("Minimum Values measured at",station, "from", year_one, "to", last_year)
-  subtitl=paste("Smallest Value being measurd is: ", abs_min)
-  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, x="years" , y="min.discharge")+
+  titl=paste("Trend of Minimum Values at",station)
+ cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
    geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
-    geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend",
+    geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend:   ",
                        labels=c("Minimum values", "Trend Line - Sens Sloap",
-                                "Trend Line-Least Squares"), values=c("a"="#F8766D", "#00BDD0", "darkblue"), guide="legend")+ theme(legend.position = "right" )
+                                "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "#00BDD0", "c"="darkblue"), guide="legend")+ theme(legend.position = "bottom" )
 
 return(plot)
 

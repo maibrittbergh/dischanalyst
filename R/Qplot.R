@@ -2,8 +2,7 @@
 #'
 #' @description Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param Name character; Name of the River. e.g. "Mosel"
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data
 #'
 #' @return Graphic showing Discharge time series.
@@ -26,15 +25,14 @@ y=data[[nbr]]$Value
 x=seq(from=min, to= max, length=l)
 
 
-  titl=paste("Discharge time series: ", station , "start", minDate,"end", maxDate)
+  titl=paste("Discharge Time Series at: ", station)
+
+subtitl=paste("from", format(data[[station]][,1], "%Y"),"to", format(data[[station]][(nrow(data[[station]])),1] , "%Y") )
 
 
+  plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Year")+
+    labs(title=titl, subtitle=subtitl, y="Discharge Value")+theme(legend.position="none")
 
-
-  plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Date")+
-    labs(title=titl, subtitle="Datasource: GRDC- Dataset ")
-
-print(plot)
 
   return(plot)
 }

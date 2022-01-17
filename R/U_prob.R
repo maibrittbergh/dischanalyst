@@ -2,7 +2,7 @@
 #'
 #' @param U numeric; Limit Value. Function returns possibility to receive Value smaller than U.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #'
 #' @return
 #' @export
@@ -19,3 +19,4 @@ U_prob=function(U, station, data){
   p=round((lu/l)*100,2)
   return(paste("The probability to have a Discharge value smaller than", U, "is", p, "%. At", station))
 }
+

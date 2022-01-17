@@ -1,7 +1,6 @@
 #' Discharge Boxplot of measured Values during specific (calendrical/hydrological) year
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param Name character; Name of the River. e.g. "Mosel".
+#' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param year numeric; year within time series of measurements.
 #' @param h logical; hydrological year. If h=TRUE (default); hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
@@ -11,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{ QBoxploty(mosel, "COCHEM", 2000, h=T)}
+#' \dontrun{ QBoxploty(data, "COCHEM", 2000, h=T)}
 #'
 
 
@@ -41,33 +40,35 @@ QBoxploty=function(data,  station, year, h=T){
     }
     year_=c(one,two)
 
-    Nov=grep(year_[1],mosel[[nbr]][,1] )
-    Dec=grep(year_[2],mosel[[nbr]][,1] )
-    Jan=grep(year_[3],mosel[[nbr]][,1] )
-    Feb=grep(year_[4],mosel[[nbr]][,1] )
-    Mar=grep(year_[5],mosel[[nbr]][,1] )
-    April=grep(year_[6],mosel[[nbr]][,1] )
-    May=grep(year_[7],mosel[[nbr]][,1] )
-    June=grep(year_[8],mosel[[nbr]][,1] )
-    July=grep(year_[9],mosel[[nbr]][,1] )
-    August=grep(year_[10],mosel[[nbr]][,1] )
-    Sep=grep(year_[11],mosel[[nbr]][,1] )
-    Oct=grep(year_[12],mosel[[nbr]][,1] )
+    Nov=grep(year_[1],data[[nbr]][,1] )
+    Dec=grep(year_[2],data[[nbr]][,1] )
+    Jan=grep(year_[3],data[[nbr]][,1] )
+    Feb=grep(year_[4],data[[nbr]][,1] )
+    Mar=grep(year_[5],data[[nbr]][,1] )
+    April=grep(year_[6],data[[nbr]][,1] )
+    May=grep(year_[7],data[[nbr]][,1] )
+    June=grep(year_[8],data[[nbr]][,1] )
+    July=grep(year_[9],data[[nbr]][,1] )
+    August=grep(year_[10],data[[nbr]][,1] )
+    Sep=grep(year_[11],data[[nbr]][,1] )
+    Oct=grep(year_[12],data[[nbr]][,1] )
 
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
-    new_data=mosel[[nbr]][j,]
-    titl=paste("Boxplot of", Name, ",", station, "in the hydrological year", year, "and", year+1)
-    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
+    new_data=data[[nbr]][j,]
+    titl=paste("Boxplot of", station)
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=paste("in the Hydrological Year", year, "/", year+1))+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
   }else{
     year_=year
-    j=grep(year_, mosel[[nbr]][,1])
-    new_data=mosel[[nbr]][j,]
+    j=grep(year_, data[[nbr]][,1])
+    new_data=data[[nbr]][j,]
     titl=paste("Boxplot of",station, "in", year)
-    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl, subtitle=" GRDC-Data by the  BfG")+theme(legend.position="none")+ylab("Discharge Value")
+    plot=ggplot(new_data)+geom_boxplot(aes(y=new_data[,2], color="red"))+labs(title=titl,subtitle=paste("in the Hydrological Year", year, "/", year+1))+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
   }
 
 
 }
+
+

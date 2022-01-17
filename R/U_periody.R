@@ -5,15 +5,14 @@
 #'
 #' @param U numeric; Limit Value. Function returns longest time measured under Value U in specific year.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param year character; specific year
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param h logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' \dontrun{ U_periody(80, "COCHEM", mosel, "2003", h=T)}
+#' \dontrun{ U_periody(80, "COCHEM", data, "2003", h=T)}
 #'
 U_periody=function(U, station, data, year,h){
 
@@ -42,18 +41,18 @@ U_periody=function(U, station, data, year,h){
     }
     year_=c(one,two)
 
-    Nov=grep(year_[1],mosel[[nbr]][,1] )
-    Dec=grep(year_[2],mosel[[nbr]][,1] )
-    Jan=grep(year_[3],mosel[[nbr]][,1] )
-    Feb=grep(year_[4],mosel[[nbr]][,1] )
-    Mar=grep(year_[5],mosel[[nbr]][,1] )
-    April=grep(year_[6],mosel[[nbr]][,1] )
-    May=grep(year_[7],mosel[[nbr]][,1] )
-    June=grep(year_[8],mosel[[nbr]][,1] )
-    July=grep(year_[9],mosel[[nbr]][,1] )
-    August=grep(year_[10],mosel[[nbr]][,1] )
-    Sep=grep(year_[11],mosel[[nbr]][,1] )
-    Oct=grep(year_[12],mosel[[nbr]][,1] )
+    Nov=grep(year_[1],data[[nbr]][,1] )
+    Dec=grep(year_[2],data[[nbr]][,1] )
+    Jan=grep(year_[3],data[[nbr]][,1] )
+    Feb=grep(year_[4],data[[nbr]][,1] )
+    Mar=grep(year_[5],data[[nbr]][,1] )
+    April=grep(year_[6],data[[nbr]][,1] )
+    May=grep(year_[7],data[[nbr]][,1] )
+    June=grep(year_[8],data[[nbr]][,1] )
+    July=grep(year_[9],data[[nbr]][,1] )
+    August=grep(year_[10],data[[nbr]][,1] )
+    Sep=grep(year_[11],data[[nbr]][,1] )
+    Oct=grep(year_[12],data[[nbr]][,1] )
 
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
@@ -103,3 +102,4 @@ U_periody=function(U, station, data, year,h){
   }
 
 }
+

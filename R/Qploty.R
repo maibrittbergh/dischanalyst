@@ -1,7 +1,6 @@
 #' Discharge Plot in specific (calendrical/hydrological) year
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
-#' @param Name character; Name of the River. e.g. "Mosel".
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param year numeric; a certain year within the time series since begin of measurements.
 #' @param h logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
@@ -18,7 +17,7 @@
 #'
 
 
-Qploty=function(data, station, year,h){
+Qploty=function(data, station, year,h=T){
 
 
 
@@ -61,16 +60,18 @@ Qploty=function(data, station, year,h){
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
     new_data=data[[nbr]][j,]
-    titl=paste("Discharge time series of hydrological year",year,"/", year+1, "at",station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
+    titl=paste("Discharge Time Series","at",station)
+    subtitl=paste("In Hydrological Year:", year, "/", year+1)
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
 
   }else{
     year_=year
     j=grep(year_, data[[nbr]][,1])
     new_data=data[[nbr]][j,]
-    titl=paste("Discharge time series of calendrical year",year, "at", station)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle="Datasource: GRDC-Data")+theme(legend.position="none")+ylab("Discharge Value")
+    titl=paste("Discharge Time Series","at",station)
+    subtitl=paste("In  Year:", year)
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
 
   }
@@ -79,3 +80,6 @@ Qploty=function(data, station, year,h){
 
 
 }
+
+
+

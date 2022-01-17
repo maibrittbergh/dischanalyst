@@ -2,7 +2,8 @@
 #'Trend of minimum value
 #'@description Calculates minimum Value for every year since the begin of the measurements. Coefficiencts for a model. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening.
 #'
-#' @param data list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
+#' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param station character; Name of the station. Must equal one entry of the data list.
 #' @param mod numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series. For mod=3: \link[stats]{lm} with a least squares approach is used.
 #' @return list
 #' \describe{
@@ -26,20 +27,20 @@
 min_trend=function(data, station, mod= 1) {
 
 
-  nbr=which(names(data)== station)
-  val=data[[nbr]]
-  abs_min=min(data[[nbr]][,2])
+  data=data[[station]]
+  val=data[,2]
+  abs_min=min(val)
   #Minima der Jahre
-  year_one=as.numeric(substring(as.character(data[[nbr]][1,1]),1,4))
-  length=length(data[[nbr]][,1])
-  last_year=as.numeric(substring(as.character(data[[nbr]][length,1]),1,4))
+  year_one=as.numeric(substring(as.character(data[1,1]),1,4))
+
+  last_year=as.numeric(substring(as.character(data[length(val),1]),1,4))
   years=c(year_one:last_year)
   l=length(years)
   q_min=rep(0, l)
   for ( i in 1:l){
     year=as.character(years[i])
-    j=grep(year, data[[nbr]][,1])
-    Val=data[[nbr]][,2][j]
+    j=grep(year, data[,1])
+    Val=data[,2][j]
     q_min[i]=min(Val)
   }
   results=data.frame(years, q_min)
@@ -89,4 +90,5 @@ min_trend=function(data, station, mod= 1) {
 
 
 }
+
 
