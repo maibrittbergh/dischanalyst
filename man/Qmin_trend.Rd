@@ -7,11 +7,9 @@
 Qmin_trend(data, station)
 }
 \arguments{
-\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
-
-\item{Name}{character; Name of the River. e.g. "Mosel"}
 }
 \value{
 

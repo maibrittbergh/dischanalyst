@@ -7,15 +7,13 @@
 QBoxploty(data, station, year, h = T)
 }
 \arguments{
-\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
 \item{year}{numeric; year within time series of measurements.}
 
 \item{h}{logical; hydrological year. If h=TRUE (default); hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
-
-\item{Name}{character; Name of the River. e.g. "Mosel".}
 }
 \value{
 Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year. Using \link[ggplot2]{geom_boxplot}.
@@ -24,6 +22,6 @@ Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrologica
 Discharge Boxplot of measured Values during specific (calendrical/hydrological) year
 }
 \examples{
-\dontrun{ QBoxploty(mosel, "COCHEM", 2000, h=T)}
+\dontrun{ QBoxploty(data, "COCHEM", 2000, h=T)}
 
 }

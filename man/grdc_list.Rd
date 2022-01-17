@@ -12,15 +12,15 @@ grdc_list(metadata, path)
 \item{path}{character; pathway to grdc_discharge folder on computer}
 }
 \value{
-List
+Grdc List
 }
 \description{
-Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.
-It may take some time to load the GRDC-List.
+Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.It may take some time to load the GRDC-List.
 }
 \examples{
+\dontrun{
 grdc_list(metadata_germany, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/")
-
+}
 
 
 }

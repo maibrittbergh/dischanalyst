@@ -2,7 +2,7 @@
 % Please edit documentation in R/grdc_readr.R
 \name{grdc_readr}
 \alias{grdc_readr}
-\title{GRDCC River Dataset Reader.}
+\title{GRDC River Dataset Reader.}
 \usage{
 grdc_readr(metadata, rivername, path)
 }
@@ -14,15 +14,15 @@ grdc_readr(metadata, rivername, path)
 \item{path}{character; Pathway of your computer where the GRDC dataset is saved.}
 }
 \value{
-dataset of the demanded river
+Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station of the given river.
 }
 \description{
-GRDCC River Dataset Reader.
+GRDC River Dataset Reader.
 }
 \examples{
 
 \dontrun{
-mosel=grdc_readr(data,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
+mosel=grdc_readr(metadata,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 }
 
 

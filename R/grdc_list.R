@@ -1,7 +1,6 @@
 #'GRDC List
 #'
-#'@description Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.
-#'It may take some time to load the GRDC-List. This List contains every date and discharge value that the analysis  should consider.
+#'@description Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.It may take some time to load the GRDC-List.
 #'
 #'
 #' @param metadata Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function
@@ -11,8 +10,9 @@
 #' @export
 #'
 #' @examples
+#'\dontrun{
 #' grdc_list(metadata_germany, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/")
-#'
+#'}
 #'
 #'
 grdc_list=function(metadata, path){

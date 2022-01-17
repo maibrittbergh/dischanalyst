@@ -15,9 +15,9 @@ seasonpl(data, station, Startyear, Endyear, month_start, month_end)
 
 \item{Endyear}{numeric; Endyear.}
 
-\item{month_start}{character; Begin of the season. E.g. Febuary="02"}
+\item{month_start}{numeric; Begin of the season. E.g. Febuary=2}
 
-\item{month_end}{character: End of the seasoan. E.g. August="11"}
+\item{month_end}{numeric; End of the seasoan. E.g. August=8}
 }
 \value{
 seasonal plot.
@@ -28,7 +28,7 @@ It allows the user to compare the same season/timespan within different hydrolog
 }
 \examples{
 \dontrun{
-seasonpl(mosel, "COCHEM", 2013, 2017, "02", "05")
+seasonpl(mosel, "COCHEM", 2013, 2017, 2,3)
 }
 
 }

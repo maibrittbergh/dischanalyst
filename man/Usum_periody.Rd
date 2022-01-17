@@ -11,7 +11,9 @@ Usum_periody(U, station, data, year, h)
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+
+\item{year}{numeric; year /hydrological year. Timespan of Analysis.}
 
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
@@ -23,6 +25,6 @@ Function returns sum of days under a certain value (at a given measuring point o
 within one year.
 }
 \examples{
-\dontrun{ Usum_periody(88, "TRIER UP", mosel, "2003", h=T)}
+\dontrun{ Usum_periody(88, "TRIER UP", data, 2003, h=T)}
 
 }

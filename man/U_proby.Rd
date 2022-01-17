@@ -4,18 +4,16 @@
 \alias{U_proby}
 \title{Probabilty to fall under U for every year since begin of the measurements}
 \usage{
-U_proby(U, station, data, h)
+U_proby(U, station, data, h = T)
 }
 \arguments{
 \item{U}{numeric; Limit Value. Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
-
-\item{Name}{character; Name of the dataset. e.g. "Mosel"}
 }
 \value{
 
@@ -24,6 +22,6 @@ U_proby(U, station, data, h)
 Probabilty to fall under U for every year since begin of the measurements
 }
 \examples{
-\dontrun{ U_proby(150,"COCHEM", mosel,h=T)}
+\dontrun{ U_proby(150,"COCHEM", data,h=T)}
 
 }

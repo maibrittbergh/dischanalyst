@@ -11,9 +11,7 @@ U_periody(U, station, data, year, h)
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; River from GRDC - Dataset. Output of grdc-readr function. list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
-
-\item{year}{character; specific year}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
@@ -25,6 +23,6 @@ Function indicates how long the longest period existed that a certain value was 
 within the time period of the measurements.
 }
 \examples{
-\dontrun{ U_periody(80, "COCHEM", mosel, "2003", h=T)}
+\dontrun{ U_periody(80, "COCHEM", data, "2003", h=T)}
 
 }
