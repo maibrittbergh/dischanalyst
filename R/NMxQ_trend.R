@@ -11,7 +11,14 @@
 #'@import zyp
 #'@import ggplot2
 #'
-#' @return Graph/ List.
+#' @return Graphic/ list:
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
 #' @export
 #'
 #' @examples

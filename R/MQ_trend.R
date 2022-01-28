@@ -5,11 +5,18 @@
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param seasonal character; Possible Inputs:  "Y"( MQ Trend of (hydrological) Years); "WI"(MQ Trend of Winters during years); "SP"(MQ Trend of Springs during (hydrological) years); "SU"(MQ Trend of Summers during (hydrological) years); "AU"(MQ Trend of Autums during (hydrological) years)
 #' @param graphic logical; default=T. For graphic=T, function returns a graph and visualizes the trend.   For graphic=F, function returns the model coefficients as list. For the Sens Sloap Approach (using: \link[zyp]{zyp.trend.vector}) and for the linear model approach (using: \link[stats]{lm}).
-#'
-#' @return graphic / list
+#' @return Graphic/ list:
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
 #' @export
 #'@import zyp
 #'@import ggplot2
+#'
 #'
 #' @examples
 #'  \dontrun{

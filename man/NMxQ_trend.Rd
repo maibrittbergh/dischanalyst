@@ -18,7 +18,14 @@ NMxQ_trend(data, station, x, seasonal = "Y", graphic = T)
 \item{graphic}{logical; default=T. For graphic=T, function returns a graph and visualizes the trend.   For graphic=F, function returns the model coefficients as list. For the Sens Sloap Approach (using: \link[zyp]{zyp.trend.vector}) and for the linear model approach (using: \link[stats]{lm}).}
 }
 \value{
-Graph/ List.
+Graphic/ list:
+\describe{
+  \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+  \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+  \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+  \item{intercept_ls}{intercept created by \link[stats]{lm}}
+  \item{slope_ls}{slope created by \link[stats]{lm}}
+}
 }
 \description{
 Function calculates for every year within measurements NMxQ Value (Description: \link[dischanalyst]{NMxQ}). It returns a trend: Sens Sloap Trend and Linear Trend. The Trend can be calculated for a specific season or for a whole year.

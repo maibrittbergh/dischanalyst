@@ -16,7 +16,14 @@ MQ_trend(data, station, seasonal = Y, graphic = T)
 \item{graphic}{logical; default=T. For graphic=T, function returns a graph and visualizes the trend.   For graphic=F, function returns the model coefficients as list. For the Sens Sloap Approach (using: \link[zyp]{zyp.trend.vector}) and for the linear model approach (using: \link[stats]{lm}).}
 }
 \value{
-graphic / list
+Graphic/ list:
+\describe{
+  \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+  \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+  \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+  \item{intercept_ls}{intercept created by \link[stats]{lm}}
+  \item{slope_ls}{slope created by \link[stats]{lm}}
+}
 }
 \description{
 MQ_trend
