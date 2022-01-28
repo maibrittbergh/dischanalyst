@@ -4,7 +4,7 @@
 \alias{NMxQ_trend}
 \title{NMxQ_trend}
 \usage{
-NMxQ_trend(data, station, x, graphic = T)
+NMxQ_trend(data, station, x, seasonal = "Y", graphic = T)
 }
 \arguments{
 \item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
@@ -13,16 +13,20 @@ NMxQ_trend(data, station, x, graphic = T)
 
 \item{x}{length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30}
 
-\item{graphic}{logical; default=T. For graphic=T, function returns a graph and visualizes the trend.   For graphic=F, function returns the model coefficients. For the Sens Sloap Approach (using: \link[zyp]{zyp.trend.vector}) and for the linear model approach (using: \link[stats]{lm}).}
+\item{seasonal}{character; default= "Y". Possible Inputs:  "Y"( MQ Trend of (hydrological) Years); "WI"(MQ Trend of Winters during years); "SP"(MQ Trend of Springs during (hydrological) years); "SU"(MQ Trend of Summers during (hydrological) years); "AU"(MQ Trend of Autums during (hydrological) years)}
+
+\item{graphic}{logical; default=T. For graphic=T, function returns a graph and visualizes the trend.   For graphic=F, function returns the model coefficients as list. For the Sens Sloap Approach (using: \link[zyp]{zyp.trend.vector}) and for the linear model approach (using: \link[stats]{lm}).}
 }
 \value{
 Graph/ List.
 }
 \description{
-Function calculates for every year within measurements NMxQ Value (Description: \link[dischanalyst]{NMxQ}). It returns a trend: Sens Sloap and Linear Model.
+Function calculates for every year within measurements NMxQ Value (Description: \link[dischanalyst]{NMxQ}). It returns a trend: Sens Sloap Trend and Linear Trend. The Trend can be calculated for a specific season or for a whole year.
 }
 \examples{
  \dontrun{
-list=NMxQ_trend(data, "COCHEM", 4, graphic=F)}
+list=NMxQ_trend(data, "COCHEM", 4, graphic=F)
+list_SUMMER=NMxQ_trend(mata, "COCHEM",4,  seasonal="SU", graphic=F)}
+
 
 }
