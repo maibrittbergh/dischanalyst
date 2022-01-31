@@ -2,7 +2,7 @@
 #'
 #' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#'
+#'@param mod numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series. For mod=3: \link[stats]{lm} with a least squares approach is used.
 #' @return
 #' @export
 #' @import ggplot2
@@ -13,7 +13,7 @@
 #' @examples
 #' \dontrun{ Qmin_trend(mosel, "COCHEM")}
 #'
-Qmin_trend=function(data, station) {
+Qmin_trend=function(data, station, mod=1) {
 
   nbr=which(names(data)==station)
   val=data[[nbr]]
@@ -33,13 +33,38 @@ Qmin_trend=function(data, station) {
   }
   results=data.frame(years, q_min)
 model= min_trend(data, station)
-  titl=paste("Trend of Minimum Values at",station)
- cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+
+
+if(mod==1){
+  titl=paste("Yuepilon and Linear Trend of Minimum Values at",station)
+  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
   plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
-   geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
+    geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
     geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend:   ",
-                       labels=c("Minimum values", "Trend Line - Sens Sloap",
-                                "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "#00BDD0", "c"="darkblue"), guide="legend")+ theme(legend.position = "bottom" )
+                                                                                                                         labels=c("Minimum values", "Trend Line - Sens Sloap",
+                                                                                                                                  "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "#00BDD0", "c"="darkblue"), guide="legend")+ theme(legend.position = "bottom" )
+
+}else if (mod==2){
+
+  titl=paste("Yuepilon  Trend of Minimum Values at",station)
+  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
+    geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
+  scale_color_manual(name = "Legend:   ",
+                                                                                                                         labels=c("Minimum values", "Trend Line - Sens Sloap"
+                                                                                                                                 ), values=c("a"="#F8766D","b"= "#00BDD0"), guide="legend")+ theme(legend.position = "bottom" )
+}else if(mod==3){
+
+  titl=paste("Linear Trend of Minimum Values at",station)
+  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
+    geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend:   ",
+                                                                                                                         labels=c("Minimum values",
+                                                                                                                                  "Trend Line-Least Squares"), values=c("a"="#F8766D", "c"="darkblue"), guide="legend")+ theme(legend.position = "bottom" )
+}
+
+
+
 
 return(plot)
 
