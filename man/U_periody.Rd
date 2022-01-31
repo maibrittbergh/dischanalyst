@@ -7,7 +7,7 @@
 U_periody(U, station, data, year, h)
 }
 \arguments{
-\item{U}{numeric; Limit Value. Function returns longest time measured under Value U in specific year.}
+\item{U}{numeric; Limit Value.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
@@ -16,7 +16,7 @@ U_periody(U, station, data, year, h)
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{
-
+Function returns longest time measured under Value U in specific year.
 }
 \description{
 Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river within a given year),

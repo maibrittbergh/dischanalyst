@@ -23,7 +23,7 @@ max=sub(" -", "-",max)
 mindate=grep(min,data[,1])
 maxdate=grep(max,data[,1])
 Val=data[,2]
-U=quantile(Value, probs=quantile)
+U=quantile(Val, probs=quantile)
 datayear=data[mindate:maxdate,]
 valyear=datayear[,2]
 le=length(mindate:maxdate)
@@ -35,6 +35,7 @@ le=length(mindate:maxdate)
 
 
 #calculate deficite
+if(any(valyear<U)==F){return(paste("No results.Please select a value higher than",U, "or change the year"))}else{
 g=which(valyear<U)
 vals=valyear[g]
 suml=length(g)
@@ -44,8 +45,8 @@ for(i in 1:suml){
 }
 deficite=sum(sum)
 
-Uu=g
-l=length(Uu)
+uU=g
+l=length(uU)
 c=rep(0,l)#oder l-1
 for ( i in 1:l){
   c[i]=(uU[i+1]-uU[i])
@@ -53,10 +54,14 @@ for ( i in 1:l){
 
 
 
+G=which(c>1)
+c[G]=0  #Vektor c in 0 und 1
+c[is.na(c)] = 0
+
+
 d=c
 l=length(c)
 e=rep(0,l)
-
 
 for (i in 2:l){
   e[1]=d[1]
@@ -67,7 +72,7 @@ for (i in 2:l){
 
 
 if (graph==T){
-plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U, "the", quantile*100, "% quantile (of complete timeseries at the station)"), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days"))+
+plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U, "the", quantile*100, "% quantile (of complete timeseries at the station)"), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days. Mean Value:",mean(data[,2])))+
   ylab("Discharge Value")+xlab("Days")+
   geom_polygon(aes(c(datayear$YYYY.MM.DD[1],datayear$YYYY.MM.DD[1],  datayear$YYYY.MM.DD[le], datayear$YYYY.MM.DD[le] ),c(0,U,U,0 ), col="i"), colour="red", fill="brown3")+
   geom_polygon(aes(c(datayear$YYYY.MM.DD[1], datayear$YYYY.MM.D, datayear$YYYY.MM.DD[le] ), c(0, valyear, 0)), colour="cornflowerblue", fill="cornflowerblue")+
@@ -83,7 +88,7 @@ else{
 
 
   return(lb)
-}
+}}
 
 }
 
