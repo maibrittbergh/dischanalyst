@@ -7,7 +7,7 @@
 U_proby(U, station, data, h = T)
 }
 \arguments{
-\item{U}{numeric; Limit Value. Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.}
+\item{U}{numeric; Limit Value.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
@@ -16,7 +16,7 @@ U_proby(U, station, data, h = T)
 \item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{
-
+Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.
 }
 \description{
 Probabilty to fall under U for every year since begin of the measurements

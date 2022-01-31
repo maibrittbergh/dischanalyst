@@ -3,12 +3,12 @@
 #' @description Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river within a given year),
 #' within the time period of the measurements.
 #'
-#' @param U numeric; Limit Value. Function returns longest time measured under Value U in specific year.
+#' @param U numeric; Limit Value.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param h logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
-#' @return
+#' @return Function returns longest time measured under Value U in specific year.
 #' @export
 #'
 #' @examples
