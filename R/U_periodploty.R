@@ -83,7 +83,11 @@ if(any(valyear<U)==F){return(paste("No results.Please select a value higher than
 
 
   if (graph==T){
+<<<<<<< HEAD
     plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U, "Mean Value:",mean(data[,2]), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days.")))+
+=======
+    plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days. Mean Value:",mean(data[,2])))+
+>>>>>>> c49ec13f66af66015fedb0a5befc4bcbe2ce6899
       ylab("Discharge Value")+xlab("Days")+
       geom_polygon(aes(c(datayear$YYYY.MM.DD[1],datayear$YYYY.MM.DD[1],  datayear$YYYY.MM.DD[le], datayear$YYYY.MM.DD[le] ),c(0,U,U,0 ), col="i"), colour="red", fill="brown3")+
       geom_polygon(aes(c(datayear$YYYY.MM.DD[1], datayear$YYYY.MM.D, datayear$YYYY.MM.DD[le] ), c(0, valyear, 0)), colour="cornflowerblue", fill="cornflowerblue")+
