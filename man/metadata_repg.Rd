@@ -4,18 +4,22 @@
 \alias{metadata_repg}
 \title{Representative levels in Germany}
 \usage{
-metadata_repg(metadata)
+metadata_repg(metadata, mark = F)
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
+
+\item{mark}{logical; default=F; if FALSE: function returns new, metadata containing representative stations. if TRUE: function returns same metadata (of GRDC-Germany Dataset) and adds column that identifies if station is representative.}
 }
 \value{
 "matrix". Same Arrangement like metadata (input- parameter). Contains representative stations.
 }
 \description{
-this fucntion only contains representative levels for Germany.
+this fucntion only contains representative levels for Germany. If
 }
 \examples{
-\dontrun{metadata_repg(metadata_germany)}
+\dontrun{metadata_repg(metadata_germany)
+metadata_germany=metadata_repg(metadata_germany, mark=T)}
+
 
 }
