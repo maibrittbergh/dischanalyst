@@ -13,7 +13,7 @@ periodplot_quantile(data, station, quantile, year, graph = T)
 
 \item{quantile}{numeric; If Input is 0.1; 90% of all Values are bigger than this Value.}
 
-\item{year}{logical;  hydrological year November - October (given year/given year +1)}
+\item{year}{numeric;  hydrological year November - October (given year/given year +1)}
 
 \item{graph}{logical; default=T. If graph=T, function returns graph, visualizing LowFlowPeriod. If graph=F, function returns List containing characteristic Values of LowFlow Period.}
 }

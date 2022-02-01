@@ -11,9 +11,9 @@ U_periodploty(data, station, U, year, graph = T)
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{U}{numeric;  Limit Value.}
+\item{U}{numeric; Limit Value.}
 
-\item{year}{logical;  hydrological year November - October (given year/given year +1)}
+\item{year}{numeric;  hydrological year November - October (given year/given year +1)}
 
 \item{graph}{logical; default=T. If graph=T, function returns graph, visualizing LowFlowPeriod. If graph=F, function returns List containing characteristic Values of LowFlow Period.}
 }
@@ -24,5 +24,6 @@ Graph/List. Visualizing/ characterizing Low Flow Period. Threshold based.
 U_periodploty
 }
 \examples{
-\dontrun{ list=periodplot_thres(data, "COCHEM", 150, 2009,F)}
+\dontrun{ U_periodploty(data, station, U, year, graph = T)}
+
 }
