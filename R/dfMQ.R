@@ -25,7 +25,7 @@ mata=data
 if (mod==1){
 
 df <- data.frame(matrix(ncol = 8, nrow = leng))
-colnames(df)=c("Stationname", "intercept-zyp","slope-zyp","significance-zyp","linear model- intercept","linear model-slope","normalized slope", "Season" )
+colnames(df)=c("Stationname", "intercept-zyp","slope-zyp","significance-zyp","linear model- intercept","linear model-slope","normalized_slope", "Season" )
 
 
 for(k in 1:leng){
