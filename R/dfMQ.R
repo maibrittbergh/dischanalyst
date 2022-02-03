@@ -9,7 +9,7 @@
 #'@import ggplot2
 #'@import zyp
 #'
-#' @return dataframe. Contains for every station columns: "Stationname", "intercept-zyp","slope-zyp","significance-zyp","linear model- intercept","linear model-slope","normalized slope", "Season" .
+#' @return dataframe. Contains for every station columns: "Stationname", "intercept-zyp","slope-zyp","significance-zyp","linear model- intercept","linear model-slope","normalized_slope", "Season" .
 #' @export
 #'
 #' @examples
@@ -266,7 +266,7 @@ else if(mod==2){
   #zyp only
 
   df <- data.frame(matrix(ncol = 6, nrow = leng))
-  colnames(df)=c("Stationname", "intercept-zyp","slope-zyp","significance-zyp","normalized slope", "Season" )
+  colnames(df)=c("Stationname", "intercept-zyp","slope-zyp","significance-zyp","normalized_slope", "Season" )
 
 
   for(k in 1:leng){
@@ -514,7 +514,7 @@ else if (mod==3){
 
 
   df <- data.frame(matrix(ncol = 5, nrow = leng))
-  colnames(df)=c("Stationname", "linear model- intercept","linear model-slope","normalized slope", "Season" )
+  colnames(df)=c("Stationname", "linear model- intercept","linear model-slope","normalized_slope", "Season" )
 
 
   for(k in 1:leng){
