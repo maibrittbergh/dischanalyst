@@ -6,12 +6,12 @@
 #'this function only produces a meaningflu result for german stations
 #'
 #' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param path character; pathway to grdc_discharge folder on computer. E.g. "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/"
+#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param startyear integer; last possible startyear of timeseries. Minimum of xlim for plot.
 #' @param endyear integer; minimum endyear of timeseries. maximum of xlim for plot.
-#' @param type type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path()), geom_smooth(method="auto"))
-#' @param metadata_repg "matrix" "array" ;  metadata of grdc dataset germany only contains relevant levels for Germany. Can be created by \link[dischanalyst]{metadata_repg} function.
-#'
+#'@param frame1 minimum of Y-Axis -Resolution
+#'@param frame2 maximum of X-Axis - Resolution
+#
 #' @return
 #' @export
 #' @import dplyr
@@ -21,9 +21,12 @@
 #' timeseriesg(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
 #' }
 #'
-tiseger=function(metadata, path, startyear, endyear,type=geom_line()){
+
+
+
+tiseger=function(metadata, data, startyear, endyear,frame1, frame2){
   metadata_repg=metadata_repg(metadata)
-library(dplyr)
+  library(dplyr)
   l=nrow(metadata) #all stations, included in measurements
   stations_s=rep(F,l)
   stations_e=rep(F,l)
@@ -50,7 +53,7 @@ library(dplyr)
   ts=cbind(stations, rivernames)     #concluded in table
   lts=nrow(ts)
 
-if (lts > 20){
+  if (lts > 20){
     nr= nrow(metadata_repg)
     g= rep(0,nr)
 
@@ -66,77 +69,74 @@ if (lts > 20){
 
 
 
- list2 =vector(mode = "list", length = ltsn)    # measurements added to table, new format: list
- for ( i in 1:ltsn){
+    list2 =vector(mode = "list", length = ltsn)    # measurements added to table, new format: list
+    names(list2)=ts_
+    for ( i in 1:ltsn){
 
-    data=grdc_readr(metadata_repg, tsn[i,2], path)
-    station=as.character(tsn[i,1])
-    nbr=which(names(data)== station)
-    val=data[[nbr]]
+      val=data[[ts_[i]]]
 
 
 
-   list2[[i]]=val
-
-   names(list2)=ts_
-
-
-   hh=na.omit(bind_rows(list2, .id="station"))
-   for ( i in 1:ltsn){
-     number=which(hh$station== i)
-     hh$station[number]=tsn[i,1]
-   }
-
-
- }
-
-
-
-}else{
-
-
-  list2 =vector(mode = "list", length = lts)    # measurements added to table, new format: list
-  for ( i in 1:lts){
-
-    data=grdc_readr(metadata, ts[i,2], path)
-    station=as.character(ts[i,1])
-    nbr=which(names(data)== station)
-    val=data[[nbr]]
-
-
-
-    list2[[i]]=val
-
-    names(list2)=stations
+      list2[[i]]=val
 
 
 
 
+      hh=na.omit(bind_rows(list2, .id="station"))
+      for ( i in 1:ltsn){
+        number=which(hh$station== i)
+        hh$station[number]=tsn[i,1]
+      }
 
-    hh=na.omit(bind_rows(list2, .id="station"))
+
+    }
+
+
+
+  }else{
+
+
+    list2 =vector(mode = "list", length = lts)    # measurements added to table, new format: list
     for ( i in 1:lts){
-      number=which(hh$station== i)
-      hh$station[number]=ts[i,1]
+
+
+      val=data[[stations[i]]]
+
+
+
+      list2[[i]]=val
+
+      names(list2)=stations
+
+
+
+
+
+      hh=na.omit(bind_rows(list2, .id="station"))
+      for ( i in 1:lts){
+        number=which(hh$station== i)
+        hh$station[number]=ts[i,1]
+      }
+
+    }
+
   }
 
+
+
+
+  title=paste("Timeseries of Discharge Values from", startyear, "to", endyear)
+  graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+geom_line()+ xlim(startyear,endyear)+ylim(frame1,frame2)+
+    theme(legend.position="right", legend.box = "vertical")+ylab("Discharge Value")+xlab("Time [years]")+
+    labs(title=title)
+
+
+
+
+
+
+
+  return(graph)
 }
 
-}
-
-
-
-
-    title=paste("Timeseries of Discharge Values from", startyear, "to", endyear)
-    graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+type+ xlim(startyear,endyear)+ylim(0, 4500)+
-      theme(legend.position="right", legend.box = "vertical")+ylab("Discharge Value")+xlab("Time [years]")+
-      labs(title=title)
-
-
-
-
-
-
-
-return(graph)
-}
 

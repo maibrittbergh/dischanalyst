@@ -1,55 +1,28 @@
 
-
-nor_metaMQ_1980_2019=metaMQ(1980, 2019, metadata, data)
-
-nor_metaMQ_1940_2019=nor_metaMQ_1940_2020
-
- #write.csv(nor_metaMQ_1940_2019, "nor_metaMQ_1940_2019.csv")
-
-#' metaMQ
-#'
-#'
-#'@description Function creates metadataset. Measurements of stations within metadataset are at least as long as the given timeframe. To guarantee comparability between stations the measurement series of the stations are adapted to the time frame and shortened to the same length.
-#'
-#'
-#' @param Startyear numeric; startyear of timerange.
-#' @param Endyear numeric; endyear of timerange.
-#' @param metadata  Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#'
-#'@import zyp
-#'@import stats
-#'
-#' @return dataframe; metadata of stations whose measurement series are at least as long as the given time frame. The Dataframe includes different approaches to calculate the trend of the annual Normalized MQ (within the whole Year/the Spring/the Summer/the Autumn/the Winter)
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' MQtf1820_2019=dataset(1820, 2019, metadata, data)
-
-#'}
-#'
-#'
-#'
-#'
-metaMQ=function(Startyear, Endyear, metadata, data){
+View(data)
 
 
+#normalized teilt hier durch null-generell mal die normalized überarebeiten
+mintrend_1900_2019=mintrendmeta(metadata, data, 1900, 2019)
+View(mintrend_1820_2019)
+
+write.csv(mintrend_1860_2019, "mintrend_1820_2019.csv")
+
+
+
+
+mintrendmeta=function(metadata, data,  Startyear, Endyear){
+
+
+
+  # Filter Stations within Timeframe ----------------------------------------
 
 
 
 
   dataset=which(metadata$startyear<=Startyear)
 
-  datasetnames=metadata$station[dataset]  #stationnames that fit in startyear
-
-
   datasetend=which(metadata$endyear>=Endyear)
-
-  datasetendnames=metadata$station[datasetend]  #stationnames that fit in endyear
-
-
-
 
   vec=rep(F,length(dataset))
   for ( i in 1:length(dataset) ){
@@ -58,34 +31,20 @@ metaMQ=function(Startyear, Endyear, metadata, data){
   }
 
   stations=dataset[which(vec==T)]
-
-
-  #stations that fit in start as well as endyear
-
-
-  ######
-
-
-
-
-
   l=length(stations)
 
+  abs_min=rep(0, l)
+
+  #Calculate the year
 
 
 
-
-
-
-
-  # calculate for Year ------------------------------------------------------
-
-
-  Yslopezyp=rep(0, l)
+  Yslopezyp=rep(0, l)         #Calculate Vals for every Station
   Yinterceptzyp=rep(0, l)
   Ysigzyp=rep(0, l)
   Yslopelm=rep(0, l)
   Yintlm=rep(0, l)
+
 
   Wslopezyp=rep(0, l)
   Winterceptzyp=rep(0, l)
@@ -94,17 +53,26 @@ metaMQ=function(Startyear, Endyear, metadata, data){
   Wintlm=rep(0, l)
 
 
+
   Spslopezyp=rep(0, l)
   Spinterceptzyp=rep(0, l)
   Spsigzyp=rep(0, l)
   Spslopelm=rep(0, l)
   Spintlm=rep(0, l)
 
+
+
+
+
+
+
   Sslopezyp=rep(0, l)
   Sinterceptzyp=rep(0, l)
   Ssigzyp=rep(0, l)
   Sslopelm=rep(0, l)
   Sintlm=rep(0, l)
+
+
 
   Aslopezyp=rep(0, l)
   Ainterceptzyp=rep(0, l)
@@ -115,9 +83,13 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
 
 
-  for ( i in 1:l){
+  for( i in 1:l) {
 
     datan=data[[stations[i]]]
+
+    #Calculate the Absolute Min at Station
+
+
 
 
     min=paste((Startyear+1), "-11") #calc min of dataset
@@ -130,20 +102,21 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
     max=max(grep(max, datan[,1]))
 
-    datak=datan[min:max,]
+    datak=datan[min:max,]    #Stational Dataframe
 
-    MEAN=(mean(datak[,2]))
-
-
+    abs_min[i]=min(datak[,2])
 
     years=(Startyear+1):(Endyear-1)
     ls=length(years)
-    lm=length(years)-1
-    MQ=rep(0,lm)
-    NMQ=rep(0,lm)
+    lm=ls-1
 
 
 
+    # ANNUAL TRENDS -----------------------------------------------------------
+
+
+
+    annualmin=rep(0, lm)
 
     for (t in 1:lm){
       yearmin=years[t]
@@ -158,23 +131,17 @@ metaMQ=function(Startyear, Endyear, metadata, data){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      mean=(mean(h[,2]))
-      MQ[t]=mean
-      NMQ[t]=(mean/MEAN)
-
+      annualmin[t]=min(h[,2])
 
 
     }
 
 
+    hyears=years[1:lm]
+    yf=data.frame(hyears, annualmin)
 
-
-    hyears=years[-length(years)]
-    df=data.frame(hyears, MQ, NMQ)
-
-
-    zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
-    linmod=lm(df$NMQ~df$hyears)
+    zyp=zyp.trend.vector(yf$annualmin, yf$hyears, "yuepilon")
+    linmod=lm(yf$annualmin~yf$hyears)
 
 
     Yslopezyp[i]=zyp[2]
@@ -185,20 +152,11 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     Yintlm[i]=as.numeric(linmod$coefficients[1])
 
 
+    # WINTER ------------------------------------------------------------------
 
 
 
-  # Winter ------------------------------------------------------------------
-
-
-
-
-
-
-    MQ=rep(0,lm)
-    NMQ=rep(0,lm)
-
-
+    annualmin=rep(0, lm)
 
 
     for (t in 1:lm){
@@ -214,23 +172,17 @@ metaMQ=function(Startyear, Endyear, metadata, data){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      mean=(mean(h[,2]))
-      MQ[t]=mean
-      NMQ[t]=(mean/MEAN)
-
+      annualmin[t]=min(h[,2])
 
 
     }
 
 
+    hyears=years[1:lm]
+    wf=data.frame(hyears, annualmin )
 
-
-    hyears=years[-length(years)]
-    wdf=data.frame(hyears, MQ, NMQ)
-
-
-    zyp=zyp.trend.vector(wdf$NMQ, wdf$hyears, "yuepilon")
-    linmod=lm(wdf$NMQ~wdf$hyears)
+    zyp=zyp.trend.vector(wf$annualmin, wf$hyears, "yuepilon")
+    linmod=lm(wf$annualmin~wf$hyears)
 
 
     Wslopezyp[i]=zyp[2]
@@ -240,49 +192,51 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     Wslopelm[i]=as.numeric(linmod$coefficients[2])
     Wintlm[i]=as.numeric(linmod$coefficients[1])
 
+    # SPRING ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    annualmin=rep(0, ls)
+
 
 
     for (t in 2:ls){
       yearmin=years[t]
 
 
-
       min=paste(yearmin,"-02")
       min=sub(" -", "-",min)
       min
-      max= paste(yearmin,"-04")
-
-
+      max= paste(yearmax,"-04")
       max=sub(" -", "-",max)
       start=min(grep(min, datak[,1]))
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      mean=(mean(h[,2]))
-      MQ[t]=mean
-      NMQ[t]=(mean/MEAN)
-
+      annualmin[t]=min(h[,2])
 
 
     }
 
+    annualmin=annualmin[-1]
 
 
-
-
-
-    MQ=MQ[-1]
-    NMQ=NMQ[-1]
 
     hyears=years[-1]
-    spdf=data.frame(hyears, MQ, NMQ)
+
+    spf=data.frame(hyears, annualmin )
 
 
-    zyp=zyp.trend.vector(spdf$NMQ, spdf$hyears, "yuepilon")
-    linmod=lm(spdf$NMQ~spdf$hyears)
-
-
-
+    zyp=zyp.trend.vector(spf$annualmin, spf$hyears, "yuepilon")
+    linmod=lm(spf$annualmin~spf$hyears)
 
 
     Spslopezyp[i]=zyp[2]
@@ -294,12 +248,9 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
 
 
+    # SUMMER ------------------------------------------------------------------
 
-
-
-  # Summer renew ------------------------------------------------------------
-
-
+    annualmin=rep(0, ls)
 
 
 
@@ -307,46 +258,31 @@ metaMQ=function(Startyear, Endyear, metadata, data){
       yearmin=years[t]
 
 
-
-
-
-
       min=paste(yearmin,"-05")
       min=sub(" -", "-",min)
-
-      max= paste(yearmin,"-07")
-
-
-
+      min
+      max= paste(yearmax,"-07")
       max=sub(" -", "-",max)
       start=min(grep(min, datak[,1]))
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      mean=(mean(h[,2]))
-      MQ[t]=mean
-      NMQ[t]=(mean/MEAN)
-
+      annualmin[t]=min(h[,2])
 
 
     }
 
-    MQ=MQ[-1]
-    NMQ=NMQ[-1]
+    annualmin=annualmin[-1]
+
+
 
     hyears=years[-1]
 
-sdf=data.frame(hyears, MQ, NMQ)
+    sf=data.frame(hyears, annualmin)
 
 
-
-
-    zyp=zyp.trend.vector(sdf$NMQ, sdf$hyears, "yuepilon")
-    linmod=lm(sdf$NMQ~sdf$hyears)
-
-
-
-
+    zyp=zyp.trend.vector(sf$annualmin, sf$hyears, "yuepilon")
+    linmod=lm(sf$annualmin~sf$hyears)
 
 
     Sslopezyp[i]=zyp[2]
@@ -358,17 +294,10 @@ sdf=data.frame(hyears, MQ, NMQ)
 
 
 
+    # AUTUMN  -----------------------------------------------------------------
 
 
-
-  # Autumn ------------------------------------------------------------------
-
-
-
-
-    MQ=rep(0,ls)
-    NMQ=rep(0,ls)
-
+    annualmin=rep(0, ls)
 
 
 
@@ -376,38 +305,31 @@ sdf=data.frame(hyears, MQ, NMQ)
       yearmin=years[t]
 
 
-
       min=paste(yearmin,"-08")
       min=sub(" -", "-",min)
       min
-      max= paste(yearmin,"-10")
+      max= paste(yearmax,"-10")
       max=sub(" -", "-",max)
       start=min(grep(min, datak[,1]))
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      mean=(mean(h[,2]))
-      MQ[t]=mean
-      NMQ[t]=(mean/MEAN)
-
+      annualmin[t]=min(h[,2])
 
 
     }
 
+    annualmin=annualmin[-1]
 
-    MQ=MQ[-1]
-    NMQ=NMQ[-1]
+
 
     hyears=years[-1]
-    adf=data.frame(hyears, MQ, NMQ)
 
-    zyp=zyp.trend.vector(adf$NMQ, adf$hyears, "yuepilon")
-    linmod=lm(adf$NMQ~adf$hyears)
+    af=data.frame(hyears, annualmin )
 
 
-
-
-
+    zyp=zyp.trend.vector(af$annualmin, af$hyears, "yuepilon")
+    linmod=lm(af$annualmin~af$hyears)
 
     Aslopezyp[i]=zyp[2]
     Ainterceptzyp[i]=zyp[11]
@@ -417,23 +339,11 @@ sdf=data.frame(hyears, MQ, NMQ)
     Aintlm[i]=as.numeric(linmod$coefficients[1])
 
 
+
+
   }
 
-
-
-
-
-
-
-
-  # metadata ----------------------------------------------------------------
-
-
-
-
-
-
-
+  #metadata
 
 
   meta=data.frame( metadata$station[stations] ,  metadata$river[stations]  , metadata$longitude[stations],
@@ -483,9 +393,4 @@ sdf=data.frame(hyears, MQ, NMQ)
   return(meta)
 
 
-
-
-
 }
-
-

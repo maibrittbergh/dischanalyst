@@ -28,7 +28,7 @@
 #'
 #'
 
-
+NMxQ_trend(data, "COCHEM", 4, "Y")
 
 NMxQ_trend=function(data, station, x, seasonal="Y", graphic=T){
 
@@ -69,7 +69,7 @@ int=as.numeric(model[11])
 
 if (graphic==T){
 
-  res=ggplot(results)+geom_line(mapping=aes(x=V2,y=nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+  res=ggplot(results)+geom_line(mapping=aes(x=V2,y=nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
 
     geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
     geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -143,7 +143,7 @@ la=le-1
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -223,7 +223,7 @@ la=le-1
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -299,7 +299,7 @@ return(res)
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -375,7 +375,7 @@ return(res)
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
