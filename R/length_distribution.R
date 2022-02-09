@@ -45,7 +45,7 @@ nr=nrow(metadata)
   tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
 
 
-  tm=tm_shape(st_meta)+ tm_dots("length_timeseries", id="river_station",interactive=T, popup.vars=c(
+  tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
     "Length of Timeseries"="length_timeseries",
     "Startyear" = "startyear",
     "Endyear"= "endyear"
@@ -67,6 +67,5 @@ if (type=="map"){
 
 
 }
-
 
 

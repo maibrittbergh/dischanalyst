@@ -4,7 +4,7 @@
 \alias{tiseger}
 \title{Plot timeseries of measurements}
 \usage{
-tiseger(metadata, path, startyear, endyear, type = geom_line(), metadata_repg)
+tiseger(metadata, path, startyear, endyear, type = geom_line())
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}

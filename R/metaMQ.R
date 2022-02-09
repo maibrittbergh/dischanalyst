@@ -1,5 +1,6 @@
 
 
+
 #' metaMQ
 #'
 #'
@@ -32,12 +33,12 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
   dataset=which(metadata$startyear<=Startyear)
 
-  dataset=metadata$station[dataset]
-  dataset
+  dataset=metadata$station[dataset]  #stationnames that fit in startyear
+
 
   datasetend=which(metadata$endyear>=Endyear)
 
-  datasetend=metadata$station[datasetend]
+  datasetend=metadata$station[datasetend]  #stationnames that fit in endyear
 
 
 
@@ -50,7 +51,7 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
   stations=which(vec==T)
 
-  stations=dataset[stations]
+  stations=dataset[stations]   #stations that fit in start as well as endyear
 
 
   ######
@@ -60,7 +61,7 @@ metaMQ=function(Startyear, Endyear, metadata, data){
   l=length(datanew)
   index=rep(0, l)
 
-  list=vector(mode="list", length=l)
+
 
 
 
@@ -80,23 +81,31 @@ metaMQ=function(Startyear, Endyear, metadata, data){
   for ( i in 1:l){
 
     datan=datanew[[i]]
-    ld=nrow(datan)
-min=paste(Startyear+1, "-11")
-min=sub(" -", "-", min)
-min=min(grep(min, datan[,1]))
 
-max=paste(Startyear+1, "-10")
-max=sub(" -", "-", max)
-max=max(grep(max, datan[,1]))
 
-datan=datan[min:max, ]
+    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=sub(" -", "-",  min)
+
+    min=min(grep(min, datan[,1]))
+
+    max=paste((Endyear-1), "-10")
+    max=sub(" -", "-",  max)
+
+    max=max(grep(max, datan[,1]))
+
+    datan=datan[min:max,]
+
+    MEAN=round(mean(datan[,2],2))
+
+
 
 years=(Startyear+1):(Endyear-1)
-MEAN=round(mean(datan[,2],0))
 
     lm=length(years)-1
     MQ=rep(0,lm)
     NMQ=rep(0,lm)
+
+
 
 
     for (t in 1:lm){
@@ -120,9 +129,11 @@ MEAN=round(mean(datan[,2],0))
 
     }
 
-    hyears=years[-lm]
-    df=data.frame(hyears, MQ, NMQ)
 
+
+
+    hyears=years[-length(years)]
+    df=data.frame(hyears, MQ, NMQ)
 
 
     zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
@@ -142,14 +153,7 @@ MEAN=round(mean(datan[,2],0))
 
 
 
-
-
-
-  # Winter ------------------------------------------------------------------
-
-
-
-
+# Winter ------------------------------------------------------------------
 
 
   Wslopezyp=rep(0, l)
@@ -159,26 +163,40 @@ MEAN=round(mean(datan[,2],0))
   Wintlm=rep(0, l)
 
 
+
+
+
+
+
+
   for ( i in 1:l){
 
     datan=datanew[[i]]
-    ld=nrow(datan)
-    min=paste(Startyear+1, "-11")
-    min=sub(" -", "-", min)
+
+
+    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=sub(" -", "-",  min)
+
     min=min(grep(min, datan[,1]))
 
-    max=paste(Startyear+1, "-10")
-    max=sub(" -", "-", max)
+    max=paste((Endyear-1), "-10")
+    max=sub(" -", "-",  max)
+
     max=max(grep(max, datan[,1]))
 
-    datan=datan[min:max, ]
+    datan=datan[min:max,]
+
+    MEAN=round(mean(datan[,2],2))
+
+
 
     years=(Startyear+1):(Endyear-1)
-    MEAN=round(mean(datan[,2],0))
 
     lm=length(years)-1
     MQ=rep(0,lm)
     NMQ=rep(0,lm)
+
+
 
 
     for (t in 1:lm){
@@ -202,14 +220,15 @@ MEAN=round(mean(datan[,2],0))
 
     }
 
-    hyears=years[-lm]
-    df=data.frame(hyears, MQ, NMQ)
 
+
+
+    hyears=years[-length(years)]
+    df=data.frame(hyears, MQ, NMQ)
 
 
     zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
     linmod=lm(df$NMQ~df$hyears)
-
 
 
     Wslopezyp[i]=zyp[2]
@@ -218,13 +237,24 @@ MEAN=round(mean(datan[,2],0))
 
     Wslopelm[i]=as.numeric(linmod$coefficients[2])
     Wintlm[i]=as.numeric(linmod$coefficients[1])
+    index[i]=which(metadata$station==stations[i])
 
 
   }
 
 
 
-  # Spring ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+# Spring ------------------------------------------------------------------
 
   Spslopezyp=rep(0, l)
   Spinterceptzyp=rep(0, l)
@@ -235,37 +265,45 @@ MEAN=round(mean(datan[,2],0))
 
   for ( i in 1:l){
 
-    datan=datanew[[i]]
-    ld=nrow(datan)
-    min=paste(Startyear+1, "-11")
-    min=sub(" -", "-", min)
+    datan=datanew[[1]]
+
+
+    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=sub(" -", "-",  min)
+
     min=min(grep(min, datan[,1]))
 
-    max=paste(Startyear+1, "-10")
-    max=sub(" -", "-", max)
+    max=paste((Endyear-1), "-10")
+    max=sub(" -", "-",  max)
+
     max=max(grep(max, datan[,1]))
 
-    datan=datan[min:max, ]
+    datan=datan[min:max,]
+
+    MEAN=round(mean(datan[,2],2))
+
+
 
     years=(Startyear+1):(Endyear-1)
-    MEAN=round(mean(datan[,2],0))
 
     lm=length(years)-1
     MQ=rep(0,lm)
     NMQ=rep(0,lm)
 
 
-    for (t in 2:lm){
+
+
+    for (t in 2:lm){     #Bei Spring ab year+1 rechnen
       yearmin=years[t]
       yearmax=years[t+1]
 
-      min=paste(yearmin,"-", "02-01")
+      min=paste(yearmin,"-", "02")
       min=sub(" - ", "-",min)
       min
-      max= paste(yearmax,"-", "04-30")
+      max= paste(yearmax,"-", "04")
       max=sub(" - ", "-",max)
-      start=grep(min, datan[,1])
-      end=grep(max, datan[,1])
+      start=min(grep(min, datan[,1]))
+      end=max(grep(max, datan[,1]))
 
       h=datan[start:end, ]
       mean=round(mean(h[,2],2))
@@ -276,14 +314,15 @@ MEAN=round(mean(datan[,2],0))
 
     }
 
-    hyears=years[-lm]
-    df=data.frame(hyears, MQ, NMQ)
 
+
+
+    hyears=years[-length(years)]
+    df=data.frame(hyears, MQ, NMQ)
 
 
     zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
     linmod=lm(df$NMQ~df$hyears)
-
 
 
     Spslopezyp[i]=zyp[2]
@@ -295,6 +334,10 @@ MEAN=round(mean(datan[,2],0))
 
 
   }
+
+
+
+
 
 
   # Summer ------------------------------------------------------------------
@@ -309,23 +352,31 @@ MEAN=round(mean(datan[,2],0))
   for ( i in 1:l){
 
     datan=datanew[[i]]
-    ld=nrow(datan)
-    min=paste(Startyear+1, "-11")
-    min=sub(" -", "-", min)
+
+
+    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=sub(" -", "-",  min)
+
     min=min(grep(min, datan[,1]))
 
-    max=paste(Startyear+1, "-10")
-    max=sub(" -", "-", max)
+    max=paste((Endyear-1), "-10")
+    max=sub(" -", "-",  max)
+
     max=max(grep(max, datan[,1]))
 
-    datan=datan[min:max, ]
+    datan=datan[min:max,]
+
+    MEAN=round(mean(datan[,2],2))
+
+
 
     years=(Startyear+1):(Endyear-1)
-    MEAN=round(mean(datan[,2],0))
 
     lm=length(years)-1
     MQ=rep(0,lm)
     NMQ=rep(0,lm)
+
+
 
 
     for (t in 2:lm){
@@ -349,13 +400,17 @@ MEAN=round(mean(datan[,2],0))
 
     }
 
-    hyears=years[-lm]
-    df=data.frame(hyears, MQ, NMQ)
 
+
+
+    hyears=years[-length(years)]
+    df=data.frame(hyears, MQ, NMQ)
 
 
     zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
     linmod=lm(df$NMQ~df$hyears)
+
+
 
 
 
@@ -383,31 +438,43 @@ MEAN=round(mean(datan[,2],0))
   Aslopelm=rep(0, l)
   Aintlm=rep(0, l)
 
+
+
+
   for ( i in 1:l){
 
     datan=datanew[[i]]
-    ld=nrow(datan)
-    min=paste(Startyear+1, "-11")
-    min=sub(" -", "-", min)
+
+
+    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=sub(" -", "-",  min)
+
     min=min(grep(min, datan[,1]))
 
-    max=paste(Startyear+1, "-10")
-    max=sub(" -", "-", max)
+    max=paste((Endyear-1), "-10")
+    max=sub(" -", "-",  max)
+
     max=max(grep(max, datan[,1]))
 
-    datan=datan[min:max, ]
+    datan=datan[min:max,]
+
+    MEAN=round(mean(datan[,2],2))
+
+
 
     years=(Startyear+1):(Endyear-1)
-    MEAN=round(mean(datan[,2],0))
 
     lm=length(years)-1
     MQ=rep(0,lm)
     NMQ=rep(0,lm)
 
 
+
+
     for (t in 2:lm){
       yearmin=years[t]
       yearmax=years[t+1]
+
 
       min=paste(yearmin,"-", "08-01")
       min=sub(" - ", "-",min)
@@ -426,9 +493,11 @@ MEAN=round(mean(datan[,2],0))
 
     }
 
-    hyears=years[-lm]
-    df=data.frame(hyears, MQ, NMQ)
 
+
+
+    hyears=years[-length(years)]
+    df=data.frame(hyears, MQ, NMQ)
 
 
     zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
@@ -450,6 +519,13 @@ MEAN=round(mean(datan[,2],0))
   }
 
 
+
+
+
+
+
+
+# metadata ----------------------------------------------------------------
 
 
 
@@ -516,9 +592,5 @@ MEAN=round(mean(datan[,2],0))
 
 
 }
-
-
-
-
 
 
