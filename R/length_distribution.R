@@ -51,20 +51,22 @@ nr=nrow(metadata)
     "Endyear"= "endyear"
   ) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
     tm_layout("Length of Timeseries [years]")
-
-
-
+if (type=="map"){
+  return(tm)
+}else{
 
   pl=ggplot(metadata)+geom_density(aes(y=length_timeseries, col="red"))+coord_flip()+
-    theme(legend.position = "none")+ labs(x = "Length of timeseries[years]", y = "density",
-            title ="Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
+    theme(legend.position = "none")+ labs(y = "Length of timeseries[years]", x = "density",
+                                                                             title ="Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
 
-  if (type=="dens"){
-    return(pl)
-  }else {
-    return(tm)
-  }
+  return(pl)
+}
+
+
+
+
 
 }
+
 
 

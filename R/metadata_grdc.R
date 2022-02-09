@@ -309,8 +309,25 @@ if (trend== T){
 }
 
 
+n=nrow(metadata)
 
+doubles=rep(F, n-1)
+  for ( i in 1:(n-1)){
+
+    doubles[i]=(metadata[i,]==metadata[i+1,])
+
+  }
+
+if(any(doubles==T)){
+  true=which(doubles==T)
+  metadata=metadata[-true,]
   return(metadata)
+}else{return(metadata)}
+
+
+
+
+
 }
 
 
