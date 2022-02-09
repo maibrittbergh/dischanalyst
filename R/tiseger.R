@@ -21,8 +21,8 @@
 #' timeseriesg(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
 #' }
 #'
-tiseger=function(metadata, path, startyear, endyear,type=geom_line(), metadata_repg){
-
+tiseger=function(metadata, path, startyear, endyear,type=geom_line()){
+  metadata_repg=metadata_repg(metadata)
 library(dplyr)
   l=nrow(metadata) #all stations, included in measurements
   stations_s=rep(F,l)
