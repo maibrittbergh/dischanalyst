@@ -4,7 +4,7 @@
 \alias{Qploty}
 \title{Discharge Plot in specific (calendrical/hydrological) year}
 \usage{
-Qploty(data, station, year, h = T)
+Qploty(data, station, year, h = T, pettitt = F)
 }
 \arguments{
 \item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
@@ -14,6 +14,8 @@ Qploty(data, station, year, h = T)
 \item{year}{numeric; a certain year within the time series since begin of measurements.}
 
 \item{h}{logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
+
+\item{pettitt}{logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} )}
 }
 \value{
 graphic of discharge time series in given year

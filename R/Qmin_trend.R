@@ -37,7 +37,7 @@ model= min_trend(data, station)
 
 if(mod==1){
   titl=paste("Yuepilon and Linear Trend of Minimum Values at",station)
-  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  cap=paste("Absolute Minimum is: ", abs_min, "slope: Trend Line- Sens Sloap:",model$slope_zyp,"slope: Trend Line- Least Squares:", model$slope_lm)
   plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
     geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
     geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend:   ",
@@ -47,7 +47,7 @@ if(mod==1){
 }else if (mod==2){
 
   titl=paste("Yuepilon  Trend of Minimum Values at",station)
-  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  cap=paste("Absolute Minimum is: ", abs_min, "slope: Trend Line- Sens Sloap:",model$slope_zyp)
   plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
     geom_abline(aes(intercept = model$intercept_zyp, slope= model$slope_zyp,  col="b"), show.legend=TRUE)+
   scale_color_manual(name = "Legend:   ",
@@ -56,7 +56,7 @@ if(mod==1){
 }else if(mod==3){
 
   titl=paste("Linear Trend of Minimum Values at",station)
-  cap=paste("Smallest Value being measured at",station, "is: ", abs_min)
+  cap=paste("Absolute Minimum is: ", abs_min,"slope: Trend Line- Least Squares:", model$slope_lm)
   plot=ggplot(results)+geom_line(mapping=aes(x=years,y=q_min, group=1, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=paste("from", year_one, "to", last_year), x="Years" , y="Minimum Discharge Value", caption=cap)+
     geom_abline(aes(intercept= model$intercept_lm, slope=model$slope_lm,col="c"), show.legend=TRUE)+  scale_color_manual(name = "Legend:   ",
                                                                                                                          labels=c("Minimum values",

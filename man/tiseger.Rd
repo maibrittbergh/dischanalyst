@@ -4,20 +4,20 @@
 \alias{tiseger}
 \title{Plot timeseries of measurements}
 \usage{
-tiseger(metadata, path, startyear, endyear, type = geom_line())
+tiseger(metadata, data, startyear, endyear, frame1, frame2)
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 
-\item{path}{character; pathway to grdc_discharge folder on computer. E.g. "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/"}
+\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{startyear}{integer; last possible startyear of timeseries. Minimum of xlim for plot.}
 
 \item{endyear}{integer; minimum endyear of timeseries. maximum of xlim for plot.}
 
-\item{type}{type of visualization in ggplot. default: geom_line() (e.g. geom_point(), geom_path()), geom_smooth(method="auto"))}
+\item{frame1}{minimum of Y-Axis -Resolution}
 
-\item{metadata_repg}{"matrix" "array" ;  metadata of grdc dataset germany only contains relevant levels for Germany. Can be created by \link[dischanalyst]{metadata_repg} function.}
+\item{frame2}{maximum of X-Axis - Resolution}
 }
 \value{
 

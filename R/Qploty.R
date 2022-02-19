@@ -4,10 +4,12 @@
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param year numeric; a certain year within the time series since begin of measurements.
 #' @param h logical; hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#'@param pettitt logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} )
 #'
 #' @return graphic of discharge time series in given year
 #' @export
 #'@import ggplot2
+#'@import trend
 #'
 #'@examples
 #'\dontrun{
@@ -17,7 +19,7 @@
 #'
 
 
-Qploty=function(data, station, year,h=T){
+Qploty=function(data, station, year,h=T, pettitt=F ){
 
 
 
@@ -60,19 +62,94 @@ Qploty=function(data, station, year,h=T){
 
     j=c(Nov,Dec,Jan, Feb,Mar, April, May, June, July, August, Sep, Oct)
     new_data=data[[nbr]][j,]
+
+
+    if (pettitt==F){
     titl=paste("Discharge Time Series","at",station)
     subtitl=paste("In Hydrological Year:", year, "/", year+1)
     plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
     return(plot)
 
+    }else {
+
+     datan=new_data
+      s.res=pettitt.test(datan[,2])
+
+
+    n <- s.res$nobs
+    n
+    i <- s.res$estimate
+
+    s.1 <- mean(datan[1:i,2])
+    s.2 <- mean(datan[(i+1):n,2])
+    s <- ts(c(rep(s.1,i), rep(s.2,(n-i))))
+    s
+    tsp(s) <- tsp(datan[,2])
+
+
+      titl=paste("Discharge Time Series","at",station)
+    subtitl=paste("In Hydrological Year:", year, "/", year+1)
+    cap=paste("With detection of shift in central tendency of time series in red (pettitt test)")
+
+
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=datan[,1],y=datan[,2], group=1))+geom_line(aes(y=s, x=datan[,1]), col="red")+
+      scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab("Discharge Value")
+    return(plot)
+
+
+    }
+
+
   }else{
     year_=year
     j=grep(year_, data[[nbr]][,1])
     new_data=data[[nbr]][j,]
-    titl=paste("Discharge Time Series","at",station)
-    subtitl=paste("In  Year:", year)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
-    return(plot)
+
+
+
+
+    if (pettitt==F){
+      titl=paste("Discharge Time Series","at",station)
+      subtitl=paste("In  Year:", year)
+      plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
+      return(plot)
+
+    }else {
+
+      datan=new_data
+      s.res=pettitt.test(datan[,2])
+
+
+      n <- s.res$nobs
+      n
+      i <- s.res$estimate
+
+      s.1 <- mean(datan[1:i,2])
+      s.2 <- mean(datan[(i+1):n,2])
+      s <- ts(c(rep(s.1,i), rep(s.2,(n-i))))
+      s
+      tsp(s) <- tsp(datan[,2])
+
+      titl=paste("Discharge Time Series","at",station)
+      subtitl=paste("In  Year:", year)
+      cap=paste("With detection of shift in central tendency of time series in red (pettitt test)")
+
+
+      plot= ggplot()+geom_line(new_data, mapping=aes(x=datan[,1],y=datan[,2], group=1))+geom_line(aes(y=s, x=datan[,1]), col="red")+
+        scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab("Discharge Value")
+      return(plot)
+
+
+    }
+
+
+
+
+
+
+
+
+
 
   }
 

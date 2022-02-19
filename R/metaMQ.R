@@ -1,11 +1,23 @@
 
 
-nor_metaMQ_1980_2019=metaMQ(1980, 2019, metadata, data)
-
-nor_metaMQ_1940_2019=nor_metaMQ_1940_2020
-
+#nor_metaMQ_1820_2019=metaMQ(1820, 2019, metadata, data)
+#write.csv(nor_metaMQ_1820_2019, "f.nor_metaMQ_1820_2019.csv")
+#nor_metaMQ_1840_2019=metaMQ(1840, 2019, metadata, data)
+#write.csv(nor_metaMQ_1840_2019, "f.nor_metaMQ_1840_2019.csv")
  #write.csv(nor_metaMQ_1940_2019, "nor_metaMQ_1940_2019.csv")
+#nor_metaMQ_1860_2019=metaMQ(1860, 2019, metadata, data)
+#write.csv(nor_metaMQ_1860_2019, "f.nor_metaMQ_1860_2019.csv")
+#nor_metaMQ_1900_2019=metaMQ(1900, 2019, metadata, data)
+#write.csv(nor_metaMQ_1900_2019, "f.nor_metaMQ_1900_2019.csv")
+#View(nor_metaMQ_1900_2019)
+nor_metaMQ_1940_2019=metaMQ(1940, 2019, metadata, data=data_)
+write.csv(nor_metaMQ_1940_2019, "f.nor_metaMQ_1940_2019.csv")
 
+View(data_)
+Startyear=1940
+Endyear=2019
+
+data=data2
 #' metaMQ
 #'
 #'
@@ -110,12 +122,13 @@ metaMQ=function(Startyear, Endyear, metadata, data){
   Ainterceptzyp=rep(0, l)
   Asigzyp=rep(0, l)
   Aslopelm=rep(0, l)
+
   Aintlm=rep(0, l)
 
 
 
 
-  for ( i in 1:l){
+  for ( i in 1:l ){
 
     datan=data[[stations[i]]]
 
@@ -242,6 +255,18 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
 
 
+
+
+
+
+
+# Spring ------------------------------------------------------------------
+
+
+
+    MQ=rep(0,lm)
+    NMQ=rep(0,lm)
+
     for (t in 2:ls){
       yearmin=years[t]
 
@@ -299,6 +324,8 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
   # Summer renew ------------------------------------------------------------
 
+    MQ=rep(0,lm)
+    NMQ=rep(0,lm)
 
 
 

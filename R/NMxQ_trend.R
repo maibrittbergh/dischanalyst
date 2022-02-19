@@ -28,378 +28,430 @@
 #'
 #'
 
-NMxQ_trend(data, "COCHEM", 4, "Y")
-
 NMxQ_trend=function(data, station, x, seasonal="Y", graphic=T){
 
-datan=data[[station]]
-l=nrow(datan)
-j=l-x
-NMXQ=rep(0,j)
-for ( i in 1:j){
-  NMXQ[i]=round(mean(datan[i:(i+x), 2]),0)
+  datan=data[[station]]
+  l=nrow(datan)
+  j=l-x
+  NMXQ=rep(0,j)
+  for ( i in 1:j){
+    NMXQ[i]=mean(datan[i:(i+x), 2])
 
-}
+  }
 
-mNMXQ=mean(NMXQ)
-
-
-if (seasonal=="Y"){
-startyear=as.numeric(substr(datan[1,1],1,4))
-endyear=as.numeric(substr(datan[l,1],1,4))-1
-years=c(startyear:endyear)
-le=length(years)
-l=le-1
-nmxq=rep(0,l)
-for ( i in 1: l){
-  nmxq[i]=NMxQ(x,data, station, years[i] )
-
-}
-
-results=data.frame(cbind(nmxq, years[-le]))
-
-titl=paste("NMxQ- Trend for x=", x, "at", station)
-subtitl=paste("Timeseries from", startyear, "to", endyear)
-model=zyp.trend.vector(results$nmxq, results$V2 , "yuepilon")
-
-linmod=lm(nmxq~V2, results)
-slop=as.numeric(model[2])
-sig=as.numeric(model[6])
-int=as.numeric(model[11])
-
-if (graphic==T){
-
-  res=ggplot(results)+geom_line(mapping=aes(x=V2,y=nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
-
-    geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
-    geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
-    scale_color_manual(name = "Legend:   ",
-                       labels=c("NMxQ", "Trend Line - Sens Sloap",
-                                "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
-    theme(legend.position = "bottom" )
-
-
-}else{
-
-
-res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
-
-  names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
-}
-
-return(res)
-
-}else if (seasonal=="WI"){
+  mNMXQ=mean(NMXQ)
 
 
 
-  startyear=as.numeric(substr(datan[1,1],1,4))
-  endyear=as.numeric(substr(datan[l,1],1,4))-1
-  years=c(startyear:endyear)
-  le=length(years)
-
-la=le-1
-  Nmxq=rep(0,la)
-
-  for (i in 1:la){
-    yearmin=years[i]
-    yearmax=years[i+1]
-
-    min=paste(yearmin,"-", "11-01")
-    min=sub(" - ", "-",min)
-    max= paste(yearmax,"-", "01-31")
-    max=sub(" - ", "-",max)
-    start=grep(min, datan[,1])
-    end=grep(max, datan[,1])
-
-    datam=datan[start:end, ]
+  if (seasonal=="SP"){
 
 
-    l=nrow(datam)
 
-    le=l-x
+    startyear=as.numeric(substr(datan[1,1],1,4))+1
+    endyear=as.numeric(substr(datan[l,1],1,4))-1
+    years=c(startyear:endyear)
+    le=length(years)
 
-    for ( k in 1:le){
-      Nmxq[i]=round(mean(datam[k:(k+x), 2]),0)
+
+    Nmxq=rep(0,le)
+
+    for (i in 2:le){
+
+      yearmax=years[i]
+
+      min=paste(yearmax,"-", "02-01")
+      min=sub(" - ", "-",min)
+      max= paste(yearmax,"-", "04-30")
+      max=sub(" - ", "-",max)
+      start=grep(min, datan[,1])
+      end=grep(max, datan[,1])
+
+      datam=datan[start:end, ]
 
 
+      l=nrow(datam)
+
+      len=l-x
+
+      for ( k in 1:len){
+        Nmxq[i]=mean(datam[k:(k+x), 2])
+
+
+      }
     }
-  }
 
-  results=data.frame(cbind(Nmxq, years[-le]))
-  results
-
+    Nmxq=Nmxq[-1]
+    results=data.frame(cbind(Nmxq, years[-1]))
 
 
 
-  titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Winter")
-  subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Dec, Jan, Feb")
-  model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
-
-  linmod=lm(Nmxq~V2, results)
-  slop=as.numeric(model[2])
-  sig=as.numeric(model[6])
-  int=as.numeric(model[11])
-
-  if (graphic==T){
-
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
-
-      geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
-      geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
-      scale_color_manual(name = "Legend:   ",
-                         labels=c("NMxQ", "Trend Line - Sens Sloap",
-                                  "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
-      theme(legend.position = "bottom" )
 
 
+    titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Spring")
+    subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Feb, Mar, Apr")
+    model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
 
+    linmod=lm(Nmxq~V2, results)
+    slop=round(as.numeric(model[2]),4)
+    sig=as.numeric(model[6])
+    int=as.numeric(model[11])
+    slope=round(linmod$coefficients[2], 4)
+
+    if (graphic==T){
+
+      res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", slope) )+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+
+        geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
+        geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
+        scale_color_manual(name = "Legend:   ",
+                           labels=c("NMxQ", "Trend Line - Sens Sloap",
+                                    "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
+        theme(legend.position = "bottom" )
 
 
 
 
 
 
-  }else{
+    }else{
 
+      res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
 
-    res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
-
-    names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
-  }
-
-  return(res)
-}else if (seasonal=="SP"){
-
-
-
-  startyear=as.numeric(substr(datan[1,1],1,4))
-  endyear=as.numeric(substr(datan[l,1],1,4))-1
-  years=c(startyear:endyear)
-  le=length(years)
-
-  la=le-1
-  Nmxq=rep(0,la)
-
-  for (i in 1:la){
-
-    yearmax=years[i+1]
-
-    min=paste(yearmax,"-", "02-01")
-    min=sub(" - ", "-",min)
-    max= paste(yearmax,"-", "04-30")
-    max=sub(" - ", "-",max)
-    start=grep(min, datan[,1])
-    end=grep(max, datan[,1])
-
-    datam=datan[start:end, ]
-
-
-    l=nrow(datam)
-
-    le=l-x
-
-    for ( k in 1:le){
-      Nmxq[i]=round(mean(datam[k:(k+x), 2]),0)
-
-
+      names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
     }
-  }
 
-  results=data.frame(cbind(Nmxq, years[-le]))
-  results
+    return(res)
 
 
 
-
-  titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Spring")
-  subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Feb, Mar, Apr")
-  model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
-
-  linmod=lm(Nmxq~V2, results)
-  slop=as.numeric(model[2])
-  sig=as.numeric(model[6])
-  int=as.numeric(model[11])
-
-  if (graphic==T){
-
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
-
-      geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
-      geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
-      scale_color_manual(name = "Legend:   ",
-                         labels=c("NMxQ", "Trend Line - Sens Sloap",
-                                  "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
-      theme(legend.position = "bottom" )
+  }else if (seasonal=="SU"){
 
 
 
+    startyear=as.numeric(substr(datan[1,1],1,4))+1
+    endyear=as.numeric(substr(datan[l,1],1,4))-1
+    years=c(startyear:endyear)
+    le=length(years)
 
 
+    Nmxq=rep(0,le)
 
-}else{
+    for (i in 2:le){
 
-  res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
+      yearmax=years[i]
 
-  names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
-}
+      min=paste(yearmax,"-", "05-01")
+      min=sub(" - ", "-",min)
+      max= paste(yearmax,"-", "07-31")
+      max=sub(" - ", "-",max)
+      start=grep(min, datan[,1])
+      end=grep(max, datan[,1])
 
-return(res)
-}else if (seasonal=="SU"){
-
-
-
-  startyear=as.numeric(substr(datan[1,1],1,4))
-  endyear=as.numeric(substr(datan[l,1],1,4))-1
-  years=c(startyear:endyear)
-  le=length(years)
-
-  la=le-1
-  Nmxq=rep(0,la)
-
-  for (i in 1:la){
-
-    yearmax=years[i+1]
-
-    min=paste(yearmax,"-", "05-01")
-    min=sub(" - ", "-",min)
-    max= paste(yearmax,"-", "07-31")
-    max=sub(" - ", "-",max)
-    start=grep(min, datan[,1])
-    end=grep(max, datan[,1])
-
-    datam=datan[start:end, ]
+      datam=datan[start:end, ]
 
 
-    l=nrow(datam)
+      l=nrow(datam)
 
-    le=l-x
+      len=l-x
 
-    for ( k in 1:le){
-      Nmxq[i]=round(mean(datam[k:(k+x), 2]),0)
+      for ( k in 1:len){
+        Nmxq[i]=mean(datam[k:(k+x), 2])
 
 
+      }
     }
-  }
-
-  results=data.frame(cbind(Nmxq, years[-le]))
-  results
-
-
-
-
-  titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Summer")
-  subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: May, June, July")
-  model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
-
-  linmod=lm(Nmxq~V2, results)
-  slop=as.numeric(model[2])
-  sig=as.numeric(model[6])
-  int=as.numeric(model[11])
-
-  if (graphic==T){
-
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
-
-      geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
-      geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
-      scale_color_manual(name = "Legend:   ",
-                         labels=c("NMxQ", "Trend Line - Sens Sloap",
-                                  "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
-      theme(legend.position = "bottom" )
+    Nmxq=Nmxq[-1]
+    results=data.frame(cbind(Nmxq, years[-1]))
+    results
 
 
 
 
+    titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Summer")
+    subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: May, June, July")
+    model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
+
+    linmod=lm(Nmxq~V2, results)
+    slop=round(as.numeric(model[2]),4)
+    sig=as.numeric(model[6])
+    int=as.numeric(model[11])
+    slope=round(linmod$coefficients[2], 4)
+
+    if (graphic==T){
+
+      res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", slope) )+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+
+        geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
+        geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
+        scale_color_manual(name = "Legend:   ",
+                           labels=c("NMxQ", "Trend Line - Sens Sloap",
+                                    "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
+        theme(legend.position = "bottom" )
 
 
-}else{
-
-  res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
-
-  names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
-}
-
-return(res)
-}else if (seasonal=="AU"){
 
 
 
-  startyear=as.numeric(substr(datan[1,1],1,4))
-  endyear=as.numeric(substr(datan[l,1],1,4))-1
-  years=c(startyear:endyear)
-  le=length(years)
 
-  la=le-1
-  Nmxq=rep(0,la)
+    }else{
 
-  for (i in 1:la){
+      res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
 
-    yearmax=years[i+1]
-
-    min=paste(yearmax,"-", "08-01")
-    min=sub(" - ", "-",min)
-    max= paste(yearmax,"-", "10-31")
-    max=sub(" - ", "-",max)
-    start=grep(min, datan[,1])
-    end=grep(max, datan[,1])
-
-    datam=datan[start:end, ]
-
-
-    l=nrow(datam)
-
-    le=l-x
-
-    for ( k in 1:le){
-      Nmxq[i]=round(mean(datam[k:(k+x), 2]),0)
-
-
+      names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
     }
-  }
 
-  results=data.frame(cbind(Nmxq, years[-le]))
-  results
-
-
-
-
-  titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Autumn")
-  subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Aug, Sep, Oct")
-  model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
-
-  linmod=lm(Nmxq~V2, results)
-  slop=as.numeric(model[2])
-  sig=as.numeric(model[6])
-  int=as.numeric(model[11])
-
-  if (graphic==T){
-
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:", slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2] ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
-
-      geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
-      geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
-      scale_color_manual(name = "Legend:   ",
-                         labels=c("NMxQ", "Trend Line - Sens Sloap",
-                                  "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
-      theme(legend.position = "bottom" )
+    return(res)
 
 
 
 
 
-
-}else{
-
-  res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
-
-  names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
-}
-
-return(res)
-}
+  }else if (seasonal=="AU"){
 
 
 
-}
+    startyear=as.numeric(substr(datan[1,1],1,4))+1
+    endyear=as.numeric(substr(datan[l,1],1,4))-1
+    years=c(startyear:endyear)
+    le=length(years)
+
+
+    Nmxq=rep(0,le)
+
+    for (i in 1:le){
+
+      yearmax=years[i]
+
+      min=paste(yearmax,"-", "08-01")
+      min=sub(" - ", "-",min)
+      max= paste(yearmax,"-", "10-31")
+      max=sub(" - ", "-",max)
+      start=grep(min, datan[,1])
+      end=grep(max, datan[,1])
+
+      datam=datan[start:end, ]
+
+
+      l=nrow(datam)
+
+      len=l-x
+
+      for ( k in 1:len){
+        Nmxq[i]=mean(datam[k:(k+x), 2])
+
+
+      }
+    }
+    Nmxq=Nmxq[-1]
+
+    results=data.frame(cbind(Nmxq, years[-1]))
+    results
+
+
+
+
+    titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Autumn")
+    subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Aug, Sep, Oct")
+    model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
+
+    linmod=lm(Nmxq~V2, results)
+    slop=round(as.numeric(model[2]),4)
+    sig=as.numeric(model[6])
+    int=as.numeric(model[11])
+    slope=round(linmod$coefficients[2], 4)
+
+    if (graphic==T){
+
+      res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", slope) )+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+
+        geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
+        geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
+        scale_color_manual(name = "Legend:   ",
+                           labels=c("NMxQ", "Trend Line - Sens Sloap",
+                                    "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
+        theme(legend.position = "bottom" )
+
+
+
+
+
+
+    }else{
+
+      res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
+
+      names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
+    }
+
+    return(res)
+
+
+  }else if (seasonal=="WI"){
+
+
+
+    startyear=as.numeric(substr(datan[1,1],1,4))+1
+    endyear=as.numeric(substr(datan[l,1],1,4))-1
+    years=c(startyear:endyear)
+    le=length(years)
+
+    la=le-1
+    Nmxq=rep(0,la)
+
+    for (i in 1:la){
+      yearmin=years[i]
+      yearmax=years[i+1]
+
+      min=paste(yearmin,"-", "11-01")
+      min=sub(" - ", "-",min)
+      max= paste(yearmax,"-", "01-30")
+      max=sub(" - ", "-",max)
+      start=grep(min, datan[,1])
+      end=grep(max, datan[,1])
+
+      datam=datan[start:end, ]
+
+
+      l=nrow(datam)
+
+      len=l-x
+
+      for ( k in 1:len){
+        Nmxq[i]=mean(datam[k:(k+x), 2])
+
+
+      }
+    }
+
+    results=data.frame(cbind(Nmxq, years[1:la]))
+
+
+
+
+
+    titl=paste("NMxQ- Trend. For x=", x, "at", station, "in Winter")
+    subtitl=paste("Timeseries from", startyear, "to", endyear, "Months: Nov, Dec, Jan")
+    model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
+
+    linmod=lm(Nmxq~V2, results)
+    slop=round(as.numeric(model[2]),4)
+    sig=as.numeric(model[6])
+    int=as.numeric(model[11])
+    slope=round(linmod$coefficients[2], 4)
+
+    if (graphic==T){
+
+      res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", slope))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+
+        geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
+        geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
+        scale_color_manual(name = "Legend:   ",
+                           labels=c("NMxQ", "Trend Line - Sens Sloap",
+                                    "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
+        theme(legend.position = "bottom" )
+
+
+
+
+
+
+    }else{
+
+      res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
+
+      names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
+    }
+
+    return(res)
+
+
+
+
+
+
+
+
+  }else if (seasonal=="Y"){
+
+
+
+    startyear=as.numeric(substr(datan[1,1],1,4))+1
+    endyear=as.numeric(substr(datan[l,1],1,4))-1
+    years=c(startyear:endyear)
+    le=length(years)
+
+    la=le-1
+    Nmxq=rep(0,la)
+
+    for (i in 1:la){
+      yearmin=years[i]
+      yearmax=years[i+1]
+
+      min=paste(yearmin,"-", "11-01")
+      min=sub(" - ", "-",min)
+      max= paste(yearmax,"-", "10-31")
+      max=sub(" - ", "-",max)
+      start=grep(min, datan[,1])
+      end=grep(max, datan[,1])
+
+      datam=datan[start:end, ]
+
+
+      l=nrow(datam)
+
+      len=l-x
+
+      for ( k in 1:len){
+        Nmxq[i]=mean(datam[k:(k+x), 2])
+
+
+      }
+    }
+
+    results=data.frame(cbind(Nmxq, years[1:la]))
+
+
+
+
+
+    titl=paste("NMxQ- Trend. For x=", x, "at", station)
+    subtitl=paste("Timeseries from", startyear, "to", endyear)
+    model=zyp.trend.vector(results$Nmxq, results$V2 , "yuepilon")
+
+    linmod=lm(Nmxq~V2, results)
+    slop=round(as.numeric(model[2]),4)
+    sig=as.numeric(model[6])
+    int=as.numeric(model[11])
+    slope=round(linmod$coefficients[2], 4)
+
+    if (graphic==T){
+
+      res=ggplot(results)+geom_line(mapping=aes(x=V2,y=Nmxq, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", slope ))+ylab("NMxQ-Value")+xlab("Year [hydrological Year]")+
+
+        geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
+        geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
+        scale_color_manual(name = "Legend:   ",
+                           labels=c("NMxQ", "Trend Line - Sens Sloap",
+                                    "Trend Line-Least Squares"), values=c("a"="#F8766D","b"= "darkblue", "c"="lightblue"), guide="legend")+
+        theme(legend.position = "bottom" )
+
+
+
+
+
+
+    }else{
+
+      res= list(int, slop, sig, linmod$coefficients[1] ,linmod$coefficients[2], (slop/mNMXQ)*100 )
+
+      names(res)=c("intercept_zyp", "slope_zyp","sig_zyp",  "intercept_lm", "slope_lm", "normalized Trend")
+    }
+
+    return(res)
+
+
+
+  }}
+
+
 

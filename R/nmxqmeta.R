@@ -4,9 +4,9 @@
 
 
 
-View(new_nmxq_1820_2019)
-write.csv(new_nmxq_1820_2019, "7_new_nmxq_19_2019.csv")
-new_nmxq_1820_2019=  NMxQmeta(7, data, metadata, 1820, 2019)
+#View(new_nmxq_1820_2019)
+#write.csv(new_nmxq_1820_2019, "7_new_nmxq_19_2019.csv")
+#new_nmxq_1820_2019=  NMxQmeta(7, data, metadata, 1820, 2019)
 
 
 

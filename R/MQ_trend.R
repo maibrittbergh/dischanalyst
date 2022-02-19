@@ -33,7 +33,7 @@ MEAN=mean(datan$Value)
 if (seasonal=="Y"){
 
   l=nrow(datan)
-startyear=as.numeric(substr(datan[1,1],1,4))
+startyear=as.numeric(substr(datan[1,1],1,4))+1
 endyear=as.numeric(substr(datan[l,1],1,4))-1
   years=c(startyear:endyear)
   l=length(years)-1
@@ -69,7 +69,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2]))+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -92,7 +92,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
 
   l=nrow(datan)
-  startyear=as.numeric(substr(datan[1,1],1,4))
+  startyear=as.numeric(substr(datan[1,1],1,4))+1
   endyear=as.numeric(substr(datan[l,1],1,4))-1
   years=c(startyear:endyear)
   l=length(years)-1
@@ -131,7 +131,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2]))+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -157,7 +157,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
 
   l=nrow(datan)
-  startyear=as.numeric(substr(datan[1,1],1,4))
+  startyear=as.numeric(substr(datan[1,1],1,4))+1
   endyear=as.numeric(substr(datan[l,1],1,4))-1
   years=c(startyear:endyear)
   l=length(years)-1
@@ -196,7 +196,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2]))+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -222,7 +222,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
 
   l=nrow(datan)
-  startyear=as.numeric(substr(datan[1,1],1,4))
+  startyear=as.numeric(substr(datan[1,1],1,4))+1
   endyear=as.numeric(substr(datan[l,1],1,4))-1
   years=c(startyear:endyear)
   l=length(years)-1
@@ -261,7 +261,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2]))+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+
@@ -287,7 +287,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
 
   l=nrow(datan)
-  startyear=as.numeric(substr(datan[1,1],1,4))
+  startyear=as.numeric(substr(datan[1,1],1,4))+1
   endyear=as.numeric(substr(datan[l,1],1,4))-1
   years=c(startyear:endyear)
   l=length(years)-1
@@ -326,7 +326,7 @@ results=data.frame(cbind(MQ, years[-l]))
 
   if (graphic==T){
 
-    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl)+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
+    res=ggplot(results)+geom_line(mapping=aes(x=V2,y=MQ, col="a"), show.legend  =TRUE)+labs(title=titl, subtitle=subtitl, caption=paste("slope: Trend Line- Sens Sloap:",slop,"slope: Trend Line- Least Squares:", linmod$coefficients[2]))+ylab("MQ-Value")+xlab("Year [hydrological Year]")+
 
       geom_abline(aes(intercept = int, slope=slop,  col="b"), show.legend=TRUE)+
       geom_abline(aes(intercept= linmod$coefficients[1], slope=linmod$coefficients[2],col="c"), show.legend=TRUE)+

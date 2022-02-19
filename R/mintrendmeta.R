@@ -1,12 +1,9 @@
 
-View(data)
 
+#NOR_mintrend_1820_2019=mintrendmeta(metadata, data, 1820, 2019)
+#View(mintrend_1820_2019)
 
-#normalized teilt hier durch null-generell mal die normalized überarebeiten
-mintrend_1900_2019=mintrendmeta(metadata, data, 1900, 2019)
-View(mintrend_1820_2019)
-
-write.csv(mintrend_1860_2019, "mintrend_1820_2019.csv")
+#write.csv(mintrend_1860_2019, "mintrend_1820_2019.csv")
 
 
 
@@ -116,7 +113,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 
 
-    annualmin=rep(0, lm)
+    annualminy=rep(0, lm)
 
     for (t in 1:lm){
       yearmin=years[t]
@@ -131,17 +128,17 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      annualmin[t]=min(h[,2])
+      annualminy[t]=min(h[,2])
 
 
     }
 
 
     hyears=years[1:lm]
-    yf=data.frame(hyears, annualmin)
+    yf=data.frame(hyears, annualminy)
 
-    zyp=zyp.trend.vector(yf$annualmin, yf$hyears, "yuepilon")
-    linmod=lm(yf$annualmin~yf$hyears)
+    zyp=zyp.trend.vector(yf$annualminy, yf$hyears, "yuepilon")
+    linmod=lm(yf$annualminy~yf$hyears)
 
 
     Yslopezyp[i]=zyp[2]
@@ -156,7 +153,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 
 
-    annualmin=rep(0, lm)
+    annualminw=rep(0, lm)
 
 
     for (t in 1:lm){
@@ -172,17 +169,17 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      annualmin[t]=min(h[,2])
+      annualminw[t]=min(h[,2])
 
 
     }
 
 
     hyears=years[1:lm]
-    wf=data.frame(hyears, annualmin )
+    wf=data.frame(hyears, annualminw )
 
-    zyp=zyp.trend.vector(wf$annualmin, wf$hyears, "yuepilon")
-    linmod=lm(wf$annualmin~wf$hyears)
+    zyp=zyp.trend.vector(wf$annualminw, wf$hyears, "yuepilon")
+    linmod=lm(wf$annualminw~wf$hyears)
 
 
     Wslopezyp[i]=zyp[2]
@@ -198,13 +195,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 
 
-
-
-
-
-
-
-    annualmin=rep(0, ls)
+    annualminf=rep(0, ls)
 
 
 
@@ -221,22 +212,22 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      annualmin[t]=min(h[,2])
+      annualminf[t]=min(h[,2])
 
 
     }
 
-    annualmin=annualmin[-1]
+    annualminf=annualminf[-1]
 
 
 
     hyears=years[-1]
 
-    spf=data.frame(hyears, annualmin )
+    spf=data.frame(hyears, annualminf )
 
 
-    zyp=zyp.trend.vector(spf$annualmin, spf$hyears, "yuepilon")
-    linmod=lm(spf$annualmin~spf$hyears)
+    zyp=zyp.trend.vector(spf$annualminf, spf$hyears, "yuepilon")
+    linmod=lm(spf$annualminf~spf$hyears)
 
 
     Spslopezyp[i]=zyp[2]
@@ -250,7 +241,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
     # SUMMER ------------------------------------------------------------------
 
-    annualmin=rep(0, ls)
+    annualmins=rep(0, ls)
 
 
 
@@ -267,22 +258,22 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      annualmin[t]=min(h[,2])
+      annualmins[t]=min(h[,2])
 
 
     }
 
-    annualmin=annualmin[-1]
+    annualmins=annualmins[-1]
 
 
 
     hyears=years[-1]
 
-    sf=data.frame(hyears, annualmin)
+    sf=data.frame(hyears, annualmins)
 
 
-    zyp=zyp.trend.vector(sf$annualmin, sf$hyears, "yuepilon")
-    linmod=lm(sf$annualmin~sf$hyears)
+    zyp=zyp.trend.vector(sf$annualmins, sf$hyears, "yuepilon")
+    linmod=lm(sf$annualmins~sf$hyears)
 
 
     Sslopezyp[i]=zyp[2]
@@ -297,7 +288,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
     # AUTUMN  -----------------------------------------------------------------
 
 
-    annualmin=rep(0, ls)
+    annualmina=rep(0, ls)
 
 
 
@@ -314,22 +305,22 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
       end=max(grep(max, datak[,1]))
 
       h=datak[start:end, ]
-      annualmin[t]=min(h[,2])
+      annualmina[t]=min(h[,2])
 
 
     }
 
-    annualmin=annualmin[-1]
+    annualmina=annualmina[-1]
 
 
 
     hyears=years[-1]
 
-    af=data.frame(hyears, annualmin )
+    af=data.frame(hyears, annualmina )
 
 
-    zyp=zyp.trend.vector(af$annualmin, af$hyears, "yuepilon")
-    linmod=lm(af$annualmin~af$hyears)
+    zyp=zyp.trend.vector(af$annualmina, af$hyears, "yuepilon")
+    linmod=lm(af$annualmina~af$hyears)
 
     Aslopezyp[i]=zyp[2]
     Ainterceptzyp[i]=zyp[11]

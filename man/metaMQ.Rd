@@ -7,9 +7,9 @@
 metaMQ(Startyear, Endyear, metadata, data)
 }
 \arguments{
-\item{Startyear}{numeric; Startyear of timerange}
+\item{Startyear}{numeric; startyear of timerange.}
 
-\item{Endyear}{numeric; Endyear of Timerange}
+\item{Endyear}{numeric; endyear of timerange.}
 
 \item{metadata}{Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function}
 
