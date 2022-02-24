@@ -10,10 +10,18 @@
 #nor_metaMQ_1900_2019=metaMQ(1900, 2019, metadata, data)
 #write.csv(nor_metaMQ_1900_2019, "f.nor_metaMQ_1900_2019.csv")
 #View(nor_metaMQ_1900_2019)
-nor_metaMQ_1940_2019=metaMQ(1940, 2019, metadata, data=data_)
-write.csv(nor_metaMQ_1940_2019, "f.nor_metaMQ_1940_2019.csv")
+#nor_metaMQ_1940_2019=metaMQ(1940, 2019, metadata, data=data_) nur die sind mit data_
+#write.csv(nor_metaMQ_1940_2019, "f.nor_metaMQ_1940_2019.csv")
+#nor_metaMQ_1980_2019=metaMQ(1980, 2019, metadata, data=data_)
+#write.csv(nor_metaMQ_1980_2019, "f.nor_metaMQ_1980_2019.csv")
+#nor_metaMQ_1900_2019=metaMQ(1900, 2019, metadata, data=data_)
+#write.csv(nor_metaMQ_1900_2019, "f.nor_metaMQ_1900_2019_2.csv")
+#nor_metaMQ_1860_2019=metaMQ(1860, 2019, metadata, data=data_)
+#write.csv(nor_metaMQ_1860_2019, "f.nor_metaMQ_1860_2019_2.csv")
+#nor_metaMQ_1820_2019=metaMQ(1820, 2019, metadata, data=data_)
 
-View(data_)
+#write.csv(nor_metaMQ_1820_2019, "f.nor_metaMQ_1820_2019_2.csv")
+#View(data_)
 Startyear=1940
 Endyear=2019
 
@@ -50,15 +58,37 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
 
 
-
   dataset=which(metadata$startyear<=Startyear)
 
-  datasetnames=metadata$station[dataset]  #stationnames that fit in startyear
+  #stationnames that fit in startyear
+  ld=length(dataset)
+  starthydro=rep(0,ld )
+  for ( i in 1:ld){
 
+    starthydro[i]=as.numeric(substr(metadata$startday[dataset[i]], 6,7))
+    start=which(starthydro<12)
+
+  }
+  dataset=dataset[start]
+  datasetnames=metadata$station[dataset]
+
+  #Stations ending at least with October within Endyear
 
   datasetend=which(metadata$endyear>=Endyear)
+  lde=length( datasetend)
+  endhydro=rep(0,lde )
+  for ( i in 1:lde){
 
-  datasetendnames=metadata$station[datasetend]  #stationnames that fit in endyear
+    endhydro[i]=as.numeric(substr(metadata$endday[datasetend[i]], 6,7))
+    end=which(endhydro>9)
+
+  }
+
+  datasetend=datasetend[end]
+
+  datasetendnames=metadata$station[datasetend]
+
+  #stationnames that fit in endyear
 
 
 
@@ -133,12 +163,12 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     datan=data[[stations[i]]]
 
 
-    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=paste(Startyear, "-11") #calc min of dataset
     min=sub(" -", "-",  min)
 
     min=min(grep(min, datan[,1]))
 
-    max=paste((Endyear-1), "-10")
+    max=paste(Endyear, "-10")
     max=sub(" -", "-",  max)
 
     max=max(grep(max, datan[,1]))
@@ -149,7 +179,7 @@ metaMQ=function(Startyear, Endyear, metadata, data){
 
 
 
-    years=(Startyear+1):(Endyear-1)
+    years=(Startyear):(Endyear)
     ls=length(years)
     lm=length(years)-1
     MQ=rep(0,lm)

@@ -3,6 +3,12 @@
 #NOR_mintrend_1820_2019=mintrendmeta(metadata, data, 1820, 2019)
 #View(mintrend_1820_2019)
 
+mintrend_1980_2019_2=mintrendmeta(metadata, data_, 1980, 2019)
+#write.csv(mintrend_1980_2019_2,"new_mintrend_1980_2019_2.csv" )
+#write.csv(mintrend_1940_2019_2,"new_mintrend_1940_2019_2.csv" )
+#write.csv(mintrend_1900_2019_2,"new_mintrend_1900_2019_2.csv" )
+#write.csv(mintrend_1860_2019_2,"new_mintrend_1860_2019_2.csv" )
+#write.csv(mintrend_1820_2019_2,"new_mintrend_1820_2019_2.csv" )
 #write.csv(mintrend_1860_2019, "mintrend_1820_2019.csv")
 
 
@@ -16,10 +22,37 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 
 
-
   dataset=which(metadata$startyear<=Startyear)
 
+  #stationnames that fit in startyear
+  ld=length(dataset)
+  starthydro=rep(0,ld )
+  for ( i in 1:ld){
+
+    starthydro[i]=as.numeric(substr(metadata$startday[dataset[i]], 6,7))
+    start=which(starthydro<12)
+
+  }
+  dataset=dataset[start]
+  datasetnames=metadata$station[dataset]
+
+  #Stations ending at least with October within Endyear
+
   datasetend=which(metadata$endyear>=Endyear)
+  lde=length( datasetend)
+  endhydro=rep(0,lde )
+  for ( i in 1:lde){
+
+    endhydro[i]=as.numeric(substr(metadata$endday[datasetend[i]], 6,7))
+    end=which(endhydro>9)
+
+  }
+
+  datasetend=datasetend[end]
+
+  datasetendnames=metadata$station[datasetend]
+
+  #stationnames that fit in endyear
 
   vec=rep(F,length(dataset))
   for ( i in 1:length(dataset) ){
@@ -89,12 +122,12 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 
 
-    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=paste(Startyear, "-11") #calc min of dataset
     min=sub(" -", "-",  min)
 
     min=min(grep(min, datan[,1]))
 
-    max=paste((Endyear-1), "-10")
+    max=paste(Endyear, "-10")
     max=sub(" -", "-",  max)
 
     max=max(grep(max, datan[,1]))
@@ -103,7 +136,7 @@ mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
     abs_min[i]=min(datak[,2])
 
-    years=(Startyear+1):(Endyear-1)
+    years=(Startyear):(Endyear)
     ls=length(years)
     lm=ls-1
 

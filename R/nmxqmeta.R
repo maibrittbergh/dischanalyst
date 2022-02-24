@@ -1,14 +1,11 @@
 
 
+metadata=metadata_repg
 
 
+nmxq_7_1940_2019=NMxQmeta(7, data, metadata,1940, 2019)
 
-
-#View(new_nmxq_1820_2019)
-#write.csv(new_nmxq_1820_2019, "7_new_nmxq_19_2019.csv")
-#new_nmxq_1820_2019=  NMxQmeta(7, data, metadata, 1820, 2019)
-
-
+View(nmxq_7_1940_2019)
 
 #' NMxQmeta
 #'
@@ -33,19 +30,41 @@
 
 
 
-
 NMxQmeta=function(x, data, metadata, Startyear, Endyear){
 
-
+#Stations starting (at  least) with November within hydrological year
 
   dataset=which(metadata$startyear<=Startyear)
 
-  datasetnames=metadata$station[dataset]  #stationnames that fit in startyear
+ #stationnames that fit in startyear
+ld=length(dataset)
+  starthydro=rep(0,ld )
+  for ( i in 1:ld){
 
+    starthydro[i]=as.numeric(substr(metadata$startday[dataset[i]], 6,7))
+    start=which(starthydro<12)
+
+  }
+dataset=dataset[start]
+datasetnames=metadata$station[dataset]
+
+#Stations ending at least with October within Endyear
 
   datasetend=which(metadata$endyear>=Endyear)
+  lde=length( datasetend)
+  endhydro=rep(0,lde )
+  for ( i in 1:lde){
 
-  datasetendnames=metadata$station[datasetend]  #stationnames that fit in endyear
+    endhydro[i]=as.numeric(substr(metadata$endday[datasetend[i]], 6,7))
+    end=which(endhydro>9)
+
+  }
+
+  datasetend=datasetend[end]
+
+  datasetendnames=metadata$station[datasetend]
+
+ #stationnames that fit in endyear
 
 
 
@@ -125,12 +144,12 @@ NMxQmeta=function(x, data, metadata, Startyear, Endyear){
     datan=data[[stations[i]]]
 
 
-    min=paste((Startyear+1), "-11") #calc min of dataset
+    min=paste(Startyear, "-11") #calc min of dataset
     min=sub(" -", "-",  min)
 
     min=min(grep(min, datan[,1]))
 
-    max=paste((Endyear-1), "-10")
+    max=paste(Endyear, "-10")
     max=sub(" -", "-",  max)
 
     max=max(grep(max, datan[,1]))
@@ -138,7 +157,7 @@ NMxQmeta=function(x, data, metadata, Startyear, Endyear){
     datak=datan[min:max,]
 
 
-    years=(Startyear+1):(Endyear-1)
+    years=(Startyear):(Endyear)
 
     lm=length(years)-1
 

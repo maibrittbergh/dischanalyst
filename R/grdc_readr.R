@@ -22,6 +22,9 @@
 #'
 #'
 #'
+#'
+#'
+
 grdc_readr=function(metadata, rivername, path ){
   data_fluss= metadata[which(metadata$river==rivername),]
   grdc_no=data_fluss$grdc_no
@@ -37,10 +40,11 @@ grdc_readr=function(metadata, rivername, path ){
   read=sub(" _","_", read)
   read=sub("/ ", "/", read)
   name= vector(mode = "list", length = l)
+  ?read.table
   for (i in 1:l){
-    Tabelle=read.table(read[i], header=T, sep=";", dec=".", na.strings = c())[-2] #-999 als NA Value
+    Tabelle=read.table(read[i], header=T, sep=";", dec=".", na.strings = "NA")[-2]#-999 als NA Value
     Tabelle$YYYY.MM.DD=as.Date(Tabelle$YYYY.MM.DD)
-    Tabelle$Value[(which(Tabelle$Value<0))] = 0
+    Tabelle$Value[(which(Tabelle$Value<0))] = NA
     name[[i]]=Tabelle #hours,minutes rausgeschmissen
   }
 
@@ -50,3 +54,5 @@ grdc_readr=function(metadata, rivername, path ){
 
   return(name)
 }
+
+
