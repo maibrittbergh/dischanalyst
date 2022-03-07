@@ -1,10 +1,10 @@
 
-#' Quantile_freq
+#' Trend of Values under quantile based Threshold U
 #'
-#' @description function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
+#' @description Function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
 #'
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @param station character; Name of the station. Must equal one entry of the data list.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param station character; Name of the station. Must equal entry in data list.
 #' @param quantile numeric; If Input is 0.1; 90% of all Values are bigger than this Value.
 #' @param graphic default=T; if T, returns Histogram and Densityplot. if F; returns vector containing trends, calculated with zyp/stats.
 #'

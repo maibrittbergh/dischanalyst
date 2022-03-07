@@ -2,24 +2,24 @@
 % Please edit documentation in R/NMxQ.R
 \name{NMxQ}
 \alias{NMxQ}
-\title{NMxQ}
+\title{NMxQ-Value}
 \usage{
 NMxQ(x, data, station, year)
 }
 \arguments{
-\item{x}{length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30}
+\item{x}{numeric; Length of period (days). With decreasing values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the station. Must equal one entry of the data list.}
 
-\item{year}{hydrological year. If you enter: 2007, output will be the Result for the NMxQ of the hydrological year 2007/2008.}
+\item{year}{numeric, hydrological year. If you enter: 2007, output will be the Result for the NMxQ of the hydrological year 2007/2008.}
 }
 \value{
 NMxQ-Value
 }
 \description{
-NMxQ
+NMxQ-Value
 }
 \examples{
  \dontrun{ hyear09=NMxQ(4, data_n, "COCHEM", 2009)}

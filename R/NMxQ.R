@@ -1,12 +1,12 @@
 
-#' NMxQ
+#' NMxQ-Value
 #'
-#'@Description arithmetic mean of x consecutive days within a period (here: hydrological year) (Source: (DVWK 1983))
+#'@Description Smalles (arithmetic) mean of x consecutive days within a period (here: hydrological year) (Source: (DVWK 1983)).
 #'
-#' @param x length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param x numeric; Length of period (days). With decreasing values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the station. Must equal one entry of the data list.
-#' @param year hydrological year. If you enter: 2007, output will be the Result for the NMxQ of the hydrological year 2007/2008.
+#' @param year numeric, hydrological year. If you enter: 2007, output will be the Result for the NMxQ of the hydrological year 2007/2008.
 #'
 #' @return NMxQ-Value
 #' @export

@@ -1,24 +1,24 @@
-#' Plot timeseries of measurements
+#' Plot: timeseries of mulitple measurements
 #'
 #'@description Function plots timeseries within a certain timeframe.
-#'To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= the timeframe is above 20.
-#'The timeseries are then reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany,
-#'this function only produces a meaningflu result for german stations
+#'To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.
+#'The plotted timeseries then are reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany,
+#'this function only produces a for stations in germany as it was developed for the WebApp: Dischanalyst.
 #'
-#' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @param startyear integer; last possible startyear of timeseries. Minimum of xlim for plot.
-#' @param endyear integer; minimum endyear of timeseries. maximum of xlim for plot.
-#'@param frame1 minimum of Y-Axis -Resolution
-#'@param frame2 maximum of X-Axis - Resolution
+#' @param metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param startyear integer; Last possible startyear of timeseries. Minimum of xlim for plot.
+#' @param endyear integer; Minimum endyear of timeseries. maximum of xlim for plot.
+#'@param frame1 minimum of Y-axis -resolution
+#'@param frame2 maximum of X-axis - resolution
 #
-#' @return
+#' @return geom_line plot. Every line represents one station.
 #' @export
 #' @import dplyr
 #' @import ggplot2
 #' @examples
 #' \dontrun{
-#' timeseriesg(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
+#' tiseger(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
 #' }
 #'
 

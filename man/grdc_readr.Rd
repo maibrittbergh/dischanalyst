@@ -7,14 +7,14 @@
 grdc_readr(metadata, rivername, path)
 }
 \arguments{
-\item{metadata}{metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
+\item{metadata}{metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 
-\item{rivername}{character; name of the demanded river. Must equal name in column "river" of metadata}
+\item{rivername}{character; Name of the demanded river. Must equal name in column "river" of metadata.}
 
-\item{path}{character; Pathway of your computer where the GRDC dataset is saved.}
+\item{path}{character; Pathway of your local computer where the GRDC dataset is saved.}
 }
 \value{
-Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station of the given river.
+Function returns List. Each entry contains Discharge Measurements as well as the corresponding dates of the measurements at a specific station of the given river.
 }
 \description{
 GRDC River Dataset Reader.
@@ -24,6 +24,8 @@ GRDC River Dataset Reader.
 \dontrun{
 mosel=grdc_readr(metadata,"MOSELLE RIVER","/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" )
 }
+
+
 
 
 

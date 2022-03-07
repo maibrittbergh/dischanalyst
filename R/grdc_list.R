@@ -1,12 +1,12 @@
 #'GRDC List
 #'
-#'@description Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.It may take some time to load the GRDC-List.
+#'@description Function returns List. It may take some time to load the GRDC-List, depending on the amount of entries in metadata.
 #'
 #'
 #' @param metadata Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param path character; pathway to grdc_discharge folder on computer
+#' @param path character; Pathway to grdc_discharge folder on computer
 #'
-#' @return Grdc List
+#' @return Grdc List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station. The Number of the stations depends on the metadata.
 #' @export
 #'
 #' @examples

@@ -2,22 +2,22 @@
 % Please edit documentation in R/U_period.R
 \name{U_period}
 \alias{U_period}
-\title{Max. amount of days under value U within all measurements}
+\title{Max. amount of days under value U within Time Series}
 \usage{
 U_period(U, station, data)
 }
 \arguments{
-\item{U}{numeric; Limit Value. Function returns longest time measured under Value U.}
+\item{U}{numeric; Limit Value. Function returns longest time measured under value U.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 }
 \value{
-
+Function returns longest time measured under value U.
 }
 \description{
-Function indicates how long the longest period existed that a certain value was undercut (at a given measuring point of a given river),
+Function indicates the longest that a certain value (U) was undercut (at a given measuring point of a given river),
 within the time period of the measurements.
 }
 \examples{

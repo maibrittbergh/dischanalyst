@@ -2,14 +2,14 @@
 % Please edit documentation in R/seasonpl.R
 \name{seasonpl}
 \alias{seasonpl}
-\title{Seasonal plot}
+\title{Seasonal Plot}
 \usage{
 seasonpl(data, station, Startyear, Endyear, month_start, month_end)
 }
 \arguments{
-\item{data}{list; River from GRDC - Dataset. Output of \link[dischanalyst]{grdc_readr}. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
+\item{data}{list; River from GRDC - dataset. Output of \link[dischanalyst]{grdc_readr}. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).}
 
-\item{station}{character- must equal name of station in data.}
+\item{station}{character; Must equal name of station in data.}
 
 \item{Startyear}{numeric; Startyear.}
 
@@ -20,11 +20,11 @@ seasonpl(data, station, Startyear, Endyear, month_start, month_end)
 \item{month_end}{numeric; End of the seasoan. E.g. August=8}
 }
 \value{
-seasonal plot.
+Seasonal plot. The x-axis is scaled by the choosen season.
 }
 \description{
-Function returns a discharge plot of a given season at a given station.
-It allows the user to compare the same season/timespan within different hydrological years.
+Function returns discharge plot of a given season at a given station, possible to choose timeframe of multiple years.
+It allows the user to compare the same season/timespan within different hydrological years. Minimum startmonth: november. Maximum endmonth: october.
 }
 \examples{
 \dontrun{

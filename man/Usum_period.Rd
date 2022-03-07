@@ -7,17 +7,17 @@
 Usum_period(U, station, data)
 }
 \arguments{
-\item{U}{numeric; Limit Value. Function returns sum of  days  Value U within all measurements.}
+\item{U}{numeric; Limit Value.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 }
 \value{
-
+numeric; sum of days.
 }
 \description{
-Sum of Days under U within all measurements
+Function returns sum of  days  under value U within all measurements.
 }
 \examples{
 \dontrun{ Usum_period(88, "TRIER UP", mosel)}

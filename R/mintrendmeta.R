@@ -1,19 +1,31 @@
 
 
-#NOR_mintrend_1820_2019=mintrendmeta(metadata, data, 1820, 2019)
-#View(mintrend_1820_2019)
-
-mintrend_1980_2019_2=mintrendmeta(metadata, data_, 1980, 2019)
-#write.csv(mintrend_1980_2019_2,"new_mintrend_1980_2019_2.csv" )
-#write.csv(mintrend_1940_2019_2,"new_mintrend_1940_2019_2.csv" )
-#write.csv(mintrend_1900_2019_2,"new_mintrend_1900_2019_2.csv" )
-#write.csv(mintrend_1860_2019_2,"new_mintrend_1860_2019_2.csv" )
-#write.csv(mintrend_1820_2019_2,"new_mintrend_1820_2019_2.csv" )
-#write.csv(mintrend_1860_2019, "mintrend_1820_2019.csv")
 
 
 
-
+#' Area-wide Minimum-Values Trend
+#' @description Calculating Trend for annual minimum values. It is  possible to calculate the trend for the  minimum values of a season or for the whole hydrological year.
+#'
+#' @param metadata data.frame; Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param Startyear numeric; Startyear of timerange.
+#' @param Endyear numeric; Endyear of timerange.
+#'
+#'
+#'@import stats
+#'@import zyp
+#'
+#' @return dataframe. Including the stationname, the river, the spatial information of the station, the trend (linear model and zyp/"yuepilon"approach (with PreWhitening and Autocorrelation)) trend within every year/winter/summer/spring/autumn in timeframe.
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
+#' @export
+#'
+#' @examples
 mintrendmeta=function(metadata, data,  Startyear, Endyear){
 
 

@@ -1,11 +1,11 @@
-#' Discharge Boxplot of measured Values during specific (calendrical/hydrological) year
+#' Discharge Boxplot of measured Values during specific (calendrical/hydrological) Year
 #'
-#' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param data  list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param year numeric; year within time series of measurements.
-#' @param h logical; hydrological year. If h=TRUE (default); hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#' @param year numeric; Year within time series of measurements.
+#' @param h logical; Hydrological year. If h=TRUE (default); hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
-#' @return Boxplot graphic of Discharge Measurements in a specific (calendrical/hydrological) year. Using \link[ggplot2]{geom_boxplot}.
+#' @return Boxplot; Graphic of discharge measurements in a specific (calendrical/hydrological) year. Using \link[ggplot2]{geom_boxplot}.
 #' @import ggplot2
 #' @export
 #'

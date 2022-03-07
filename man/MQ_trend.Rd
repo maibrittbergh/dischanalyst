@@ -7,7 +7,7 @@
 MQ_trend(data, station, seasonal = Y, graphic = T)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
@@ -26,7 +26,7 @@ Graphic/ list:
 }
 }
 \description{
-MQ_trend
+Calculating Trend for annual calculated mean values. It is possible to calculate the mean values for a season or for the whole hydrological year.
 }
 \examples{
  \dontrun{

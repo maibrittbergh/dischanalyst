@@ -1,4 +1,4 @@
-#' Trend of Annual Discharge Minima since begin of Measurements
+#' Trend of Annual Discharge Minimum Values since begin of Measurements
 #'
 #' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
@@ -8,7 +8,6 @@
 #' @import ggplot2
 #' @importFrom zyp zyp.trend.vector
 #' @import stats
-#'@import Kendall
 #'
 #' @examples
 #' \dontrun{ Qmin_trend(mosel, "COCHEM")}

@@ -2,14 +2,14 @@
 % Please edit documentation in R/Quantile_freq.R
 \name{Quantile_freq}
 \alias{Quantile_freq}
-\title{Quantile_freq}
+\title{Trend of Values under quantile based Threshold U}
 \usage{
 Quantile_freq(data, station, quantile, graphic = T)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{station}{character; Name of the station. Must equal one entry of the data list.}
+\item{station}{character; Name of the station. Must equal entry in data list.}
 
 \item{quantile}{numeric; If Input is 0.1; 90% of all Values are bigger than this Value.}
 
@@ -26,7 +26,7 @@ Graph/ list
 }
 }
 \description{
-function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
+Function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
 }
 \examples{
 \dontrun{ Quantile_freq(data, "COCHEM", 0.1)}

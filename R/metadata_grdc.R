@@ -1,10 +1,12 @@
 
 #' Create Metadata for GRDC Dataset
 #'
-#' @param Country character; abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.
-#' @param path character; pathway to grdc_discharge folder on computer
+#' @description Returns metadataset for one country of local folder containing grdc-dataset.
 #'
-#' @return data.frame; metadata of GRDC -Dataset and a given Country
+#' @param Country character; Abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.
+#' @param path character; Pathway to local grdc_discharge folder on computer
+#'
+#' @return data.frame; metadata of GRDC -Dataset and a given Country. Metadata contains information about: Ther GRDC-number, the name of the river, the name of the station, the country, the catchment area, the altitude, the startmonth/startyear, the endmonth/endyear, the length of the timeseries, the longitude and the latitude.
 #' @export
 #'
 #' @examples
@@ -13,7 +15,7 @@
 #' }
 #'#' @source \url{https://www.bafg.de/GRDC/EN/Home/homepage_node.html}
 #'
-metadata_grdc=function(Country, path, trend=F){
+metadata_grdc=function(Country, path){
 
   files=list.files(path)
   l=length(files)
@@ -280,33 +282,7 @@ metadata$d_years=as.numeric(metadata$d_years)
 metadata$longitude=as.numeric(metadata$longitude)
 metadata$latitude=as.numeric(metadata$latitude)
 
-if (trend== T){
 
-
-
-  intercept_sensl=rep(0,no_length)
-  slope_sensl=rep(0,no_length)
-  sig_sensl=rep(0,no_length)
-  intercept_lm=rep(0,no_length)
-  slope_lm=rep(0,no_length)
-  for (i in 1:no_length){
-  fluss= einlesen(metadata, metadata$river[i])
-  model = min_trend(fluss, data$station[i],data$river[i])
-  intercept_sensl=rep(0,no_length)
-
-  intercept_sensl[i]=model$intercept_zyp
-  slope_sensl[i]=model$slope_zyp
-  sig_sensl[i]=model$sig_zyp
-  intercept_lm[i]=model$intercept_lm
-  slope_lm[i]=model$slope_lm
-}
-
-  metadata$intercept_sensl=intercept_sensl
-  metadata$slope_sensl= slope_sensl
-  metadata$sig_sensl=sig_sensl
-  metadata$intercept_lm=  intercept_lm
-  metadata$slope_lm=  slope_lm
-}
 
 
 n=nrow(metadata)

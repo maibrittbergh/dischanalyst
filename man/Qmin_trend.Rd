@@ -2,7 +2,7 @@
 % Please edit documentation in R/Qmin_trend.R
 \name{Qmin_trend}
 \alias{Qmin_trend}
-\title{Trend of Annual Discharge Minima since begin of Measurements}
+\title{Trend of Annual Discharge Minimum Values since begin of Measurements}
 \usage{
 Qmin_trend(data, station, mod = 1)
 }
@@ -17,7 +17,7 @@ Qmin_trend(data, station, mod = 1)
 
 }
 \description{
-Trend of Annual Discharge Minima since begin of Measurements
+Trend of Annual Discharge Minimum Values since begin of Measurements
 }
 \examples{
 \dontrun{ Qmin_trend(mosel, "COCHEM")}

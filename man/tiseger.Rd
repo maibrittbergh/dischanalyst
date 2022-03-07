@@ -2,35 +2,35 @@
 % Please edit documentation in R/tiseger.R
 \name{tiseger}
 \alias{tiseger}
-\title{Plot timeseries of measurements}
+\title{Plot: timeseries of mulitple measurements}
 \usage{
 tiseger(metadata, data, startyear, endyear, frame1, frame2)
 }
 \arguments{
-\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
+\item{metadata}{"matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function.}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{startyear}{integer; last possible startyear of timeseries. Minimum of xlim for plot.}
+\item{startyear}{integer; Last possible startyear of timeseries. Minimum of xlim for plot.}
 
-\item{endyear}{integer; minimum endyear of timeseries. maximum of xlim for plot.}
+\item{endyear}{integer; Minimum endyear of timeseries. maximum of xlim for plot.}
 
-\item{frame1}{minimum of Y-Axis -Resolution}
+\item{frame1}{minimum of Y-axis -resolution}
 
-\item{frame2}{maximum of X-Axis - Resolution}
+\item{frame2}{maximum of X-axis - resolution}
 }
 \value{
-
+geom_line plot. Every line represents one station.
 }
 \description{
 Function plots timeseries within a certain timeframe.
-To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= the timeframe is above 20.
-The timeseries are then reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany,
-this function only produces a meaningflu result for german stations
+To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.
+The plotted timeseries then are reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany,
+this function only produces a for stations in germany as it was developed for the WebApp: Dischanalyst.
 }
 \examples{
 \dontrun{
-timeseriesg(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
+tiseger(metadata, "/Users/username/Desktop/folderone/datafolder/grdc_03_2021/grdc_disc/" , 1990,2020, metadata_repg= metadata_repg)
 }
 
 }

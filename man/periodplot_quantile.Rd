@@ -2,18 +2,18 @@
 % Please edit documentation in R/periodplot_quantile.R
 \name{periodplot_quantile}
 \alias{periodplot_quantile}
-\title{periodplot_quantile}
+\title{Low Flow Period characterized by quantile based Threshold}
 \usage{
 periodplot_quantile(data, station, quantile, year, graph = T)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
 \item{quantile}{numeric; If Input is 0.1; 90% of all Values are bigger than this Value.}
 
-\item{year}{numeric;  hydrological year November - October (given year/given year +1)}
+\item{year}{numeric;  Hydrological year November - October (given year/given year +1)}
 
 \item{graph}{logical; default=T. If graph=T, function returns graph, visualizing LowFlowPeriod. If graph=F, function returns List containing characteristic Values of LowFlow Period.}
 }
@@ -21,7 +21,7 @@ periodplot_quantile(data, station, quantile, year, graph = T)
 Graph/List. Visualizing/ characterizing Low Flow Period. Threshold based.
 }
 \description{
-periodplot_quantile
+Low Flow Period characterized by quantile based Threshold
 }
 \examples{
 \dontrun{ plot=periodplot_quantile (data, "COCHEM" , 0.3, 2006)}

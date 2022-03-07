@@ -2,7 +2,7 @@
 % Please edit documentation in R/U_periody.R
 \name{U_periody}
 \alias{U_periody}
-\title{Max. amount of days under Value U within a specific (calendrical/hydrological) year}
+\title{Max. Amount of Days under Value U within a specific (calendrical/hydrological) Year}
 \usage{
 U_periody(U, station, data, year, h)
 }
@@ -11,9 +11,9 @@ U_periody(U, station, data, year, h)
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
+\item{h}{logical;  Hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{
 Function returns longest time measured under Value U in specific year.

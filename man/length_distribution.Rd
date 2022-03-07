@@ -2,20 +2,20 @@
 % Please edit documentation in R/length_distribution.R
 \name{length_distribution}
 \alias{length_distribution}
-\title{Distribution of Length of Discharge Measurements Timeseries}
+\title{Distribution of Length of Discharge Measurements of all Stations within Metadata}
 \usage{
 length_distribution(metadata, type = "map")
 }
 \arguments{
-\item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
+\item{metadata}{"matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 
-\item{type}{output; as character: "map" or "dens", default="map"- returns interactive tmap. if type"dens"- fucntion returns densityplot.}
+\item{type}{output; as character: "map" or "dens", default="map"- returns interactive tmap. If type="dens"- function returns densityplot.}
 }
 \value{
 tmap or density plot
 }
 \description{
-Distribution of Length of Discharge Measurements Timeseries
+Distribution of Length of Discharge Measurements of all Stations within Metadata
 }
 \examples{
 \dontrun{

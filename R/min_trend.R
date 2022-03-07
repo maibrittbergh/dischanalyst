@@ -1,6 +1,6 @@
 
 #'Trend of minimum value
-#'@description Calculates minimum Value for every year since the begin of the measurements. Coefficiencts for a model. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening.
+#'@description Calculates minimum Value for every year since the begin of the measurements. Uses least squares approach with a higher uncertainity and Sen-Sloap approach with "Yuepilon" PreWhitening (zyp-package).
 #'
 #' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the station. Must equal one entry of the data list.
@@ -19,7 +19,6 @@
 #' @export
 #'@importFrom zyp zyp.trend.vector
 #'@importFrom stats lm
-#'@import Kendall
 #'
 #' @examples
 #' \dontrun{ min_trend(mosel, "TRIER UP")}

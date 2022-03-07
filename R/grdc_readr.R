@@ -2,13 +2,13 @@
 
 #' GRDC River Dataset Reader.
 #'
+#'@decription Function to read in data.frames of all stations at one river.
 #'
+#' @param metadata metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
+#' @param rivername character; Name of the demanded river. Must equal name in column "river" of metadata.
+#' @param path character; Pathway of your local computer where the GRDC dataset is saved.
 #'
-#' @param metadata metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param rivername character; name of the demanded river. Must equal name in column "river" of metadata
-#' @param path character; Pathway of your computer where the GRDC dataset is saved.
-#'
-#' @return  Function returns List. Each entry contains Discharge Measurements as well as the corresponding date of a specific station of the given river.
+#' @return  Function returns List. Each entry contains Discharge Measurements as well as the corresponding dates of the measurements at a specific station of the given river.
 #' @export
 #'
 #' @examples

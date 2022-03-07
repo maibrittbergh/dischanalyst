@@ -1,16 +1,17 @@
-#' Probabilty to fall under U for every year since begin of the measurements
+#' Annual Probabilty to fall under U
 #'
 #' @param U numeric; Limit Value.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #'
-#' @param h logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#' @param h logical;  If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'
 #' @return  Function calculates probability to fall below U for every year since the begin of the measurements. Returns a Graphic and a Trend over the years.
 #' @export
 #'@import ggplot2
 #'@importFrom zyp zyp.trend.vector
 #'@import Kendall
+#'@import stats
 #' @examples
 #' \dontrun{ U_proby(150,"COCHEM", data,h=T)}
 #'

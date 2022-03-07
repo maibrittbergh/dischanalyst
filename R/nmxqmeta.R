@@ -1,24 +1,25 @@
 
-
-metadata=metadata_repg
-
-
-nmxq_7_1940_2019=NMxQmeta(7, data, metadata,1940, 2019)
-
-View(nmxq_7_1940_2019)
-
-#' NMxQmeta
+#' Area-wide NMxQ Trend
 #'
 #' @description Function creates dataframe of stations, containing Trend (every year/within a specific season) of their  NMxQ Value within the given timeframe. Therefore it filters all stations within the metadataset depending on the start- and endyear of their Measurement Series.
 #'
-#' @param x length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
-#' @param data  list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param x numeric; length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
+#' @param data  list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param metadata Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function.
-#' @param Startyear  numeric; startyear of timerange.
-#' @param Endyear  numeric; endyear of timerange.
+#' @param Startyear  numeric; Startyear of timerange.
+#' @param Endyear  numeric; Endyear of timerange.
 #'
 #' @return dataframe. Including the stationname, the river, the spatial information of the station, the trend (linear model and zyp/"yuepilon"approach (with PreWhitening and Autocorrelation)) trend within every year/winter/summer/spring/autumn in timeframe.
-#'
+
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
+#'@import stats
+#'@import zyp
 #' @export
 #'
 #' @examples

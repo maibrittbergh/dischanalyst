@@ -1,16 +1,16 @@
 
-#' Discharge Plot of the entire time series of measurements
+#' Discharge Plot of the entire Time Series
 #'
 #'
 #'
 #'
-#' @description Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
+#' @description Desciptive statistics. Time series of discharge at specific station. Including all discharge measurements.
 #'
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data
-#' @param pettitt logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} )
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param station character; Name of the station e.g. "COCHEM" - must be named equally like list entry in data.
+#' @param pettitt logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} ).
 #'
-#' @return Graphic showing Discharge time series.
+#' @return Graphic showing discharge time series.
 #' @export
 #' @import ggplot2
 #' @import trend

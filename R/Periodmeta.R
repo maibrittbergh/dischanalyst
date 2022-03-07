@@ -1,28 +1,24 @@
 
-
-
-
-library(zyp)
-library(stats)
-library(Kendall)
-
-Startyear=2005
-Endyear=2012
-View(l)
-metadata_repg
-meta=metadata_repg[1:3, ]
-l=periodmeta(meta, data, 2009, 2016)
-l
-Startyear=1820
-Endyear=2019
-metadata=metadata_repg
-metadata=meta
-
-Startyear=2009
-
-
-
-Endyear=2016
+#' Area-wide Low Flow Period Trend
+#'
+#' @param metadata data.frame; Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param Startyear numeric; Startyear of timerange.
+#' @param Endyear numeric; Endyear of timerange.
+#'@import stats
+#'@import zyp
+#'
+#' @return dataframe. Including the stationname, the river, the spatial information of the station, the trend (linear model and zyp/"yuepilon"approach (with PreWhitening and Autocorrelation)) trend within every year/winter/summer/spring/autumn in timeframe.
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
+#' @export
+#'
+#' @examples
 periodmeta=function(metadata, data, Startyear, Endyear){
 
 
@@ -197,8 +193,8 @@ mat[,4]=metadata$latitude[stations]
 
 
 
-colnames(mat)=c("station", "river", "longitude", "latitude", "Q70_tmax_zyp", "Q70_ld_zyp"," Q70_tmax_lm", "Q70_ld_lm", "Q75_tmax_zyp",
-                "Q75_ld_zyp", "Q75_tmax_lm", "Q75_ld_lm", "Q80_tmax_zyp", "Q80_ld_zyp", "Q80_tmax_lm", "Q80_ld_lm"," Q85_tmax_zyp",
+colnames(mat)=c("station", "river", "longitude", "latitude", "Q70_tmax_zyp", "Q70_ld_zyp","Q70_tmax_lm", "Q70_ld_lm", "Q75_tmax_zyp",
+                "Q75_ld_zyp", "Q75_tmax_lm", "Q75_ld_lm", "Q80_tmax_zyp", "Q80_ld_zyp", "Q80_tmax_lm", "Q80_ld_lm","Q85_tmax_zyp",
                 "Q85_ld_zyp", "Q85_tmax_lm", "Q85_ld_lm", "Q90_tmax_zyp", "Q90_ld_zyp"," Q90_tmax_lm", "Q90_ld_lm", "Q95_tmax_zyp",
                 "Q95_ld_zyp", "Q95_tmax_lm", "Q95_ld_lm", "Q70sigtmax", "Q75sigtmax", "Q80sigtmax", "Q85sigtmax", "Q90sigtmax", "Q95sigtmax", "Q70sigld",
                 "Q75sigld", "Q80sigld", "Q85sigld", "Q90sigld", "Q95sigld")
@@ -449,9 +445,6 @@ mat
 
 return(mat)
 }
-
-
-
 
 
 

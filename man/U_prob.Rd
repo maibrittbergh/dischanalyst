@@ -2,7 +2,7 @@
 % Please edit documentation in R/U_prob.R
 \name{U_prob}
 \alias{U_prob}
-\title{Probability to to receive a smaller Discharge Value than U}
+\title{Probability to fall below U}
 \usage{
 U_prob(U, station, data)
 }
@@ -14,10 +14,10 @@ U_prob(U, station, data)
 \item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 }
 \value{
-
+Probability
 }
 \description{
-Probability to to receive a smaller Discharge Value than U
+Function returns probability to to receive a smaller Discharge Value than U
 }
 \examples{
 \dontrun{ U_prob(88, "TRIER UP", mosel)}

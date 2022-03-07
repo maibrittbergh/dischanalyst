@@ -2,18 +2,18 @@
 % Please edit documentation in R/U_periodploty.R
 \name{U_periodploty}
 \alias{U_periodploty}
-\title{U_periodploty}
+\title{Low Flow Period Characteristics}
 \usage{
 U_periodploty(data, station, U, year, graph = T)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
 \item{U}{numeric; Limit Value.}
 
-\item{year}{numeric;  hydrological year November - October (given year/given year +1)}
+\item{year}{numeric;  Hydrological year November - October (given year/given year +1)}
 
 \item{graph}{logical; default=T. If graph=T, function returns graph, visualizing LowFlowPeriod. If graph=F, function returns List containing characteristic Values of LowFlow Period.}
 }
@@ -21,7 +21,7 @@ U_periodploty(data, station, U, year, graph = T)
 Graph/List. Visualizing/ characterizing Low Flow Period. Threshold based.
 }
 \description{
-U_periodploty
+Low Flow Period Characteristics
 }
 \examples{
 \dontrun{ U_periodploty(data, station, U, year, graph = T)}

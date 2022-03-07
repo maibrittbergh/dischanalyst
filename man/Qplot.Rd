@@ -2,22 +2,22 @@
 % Please edit documentation in R/Qplot.R
 \name{Qplot}
 \alias{Qplot}
-\title{Discharge Plot of the entire time series of measurements}
+\title{Discharge Plot of the entire Time Series}
 \usage{
 Qplot(data, station, pettitt = F)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data}
+\item{station}{character; Name of the station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{pettitt}{logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} )}
+\item{pettitt}{logical; (default=F); Pettitt-Test. If TRUE : non-parametric test applied on vector with discharge measurements at station. Tests for a "shift in the central tendency of a time series" (source:\link[trend]{pettitt.test} ).}
 }
 \value{
-Graphic showing Discharge time series.
+Graphic showing discharge time series.
 }
 \description{
-Desciptive Statistics. Time Series of Discharge at specific station. Including all measurements in list.
+Desciptive statistics. Time series of discharge at specific station. Including all discharge measurements.
 }
 \examples{
 \dontrun{ Qplot(mosel, "COCHEM"; T)}

@@ -2,20 +2,20 @@
 % Please edit documentation in R/QBoxplot.R
 \name{QBoxplot}
 \alias{QBoxplot}
-\title{Discharge Boxplot of measured Values within entire time series of measurements}
+\title{Discharge Boxplot of measured Discharge Values within entire Time Series at a Station}
 \usage{
 QBoxplot(data, station)
 }
 \arguments{
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
+\item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in "data".}
 }
 \value{
 Boxplot Graphic of Discharge time series. Using \link[ggplot2]{geom_boxplot}
 }
 \description{
-Desciptive Statistics. Boxplot of Time Series of Discharge at specific station. Including all measurements in list.
+Desciptive statistics. Boxplot of time series of discharge measurements at a specific station.
 }
 \examples{
 \dontrun{ QBoxplot(mosel, "COCHEM")}

@@ -4,18 +4,18 @@
 \alias{metadata_grdc}
 \title{Create Metadata for GRDC Dataset}
 \usage{
-metadata_grdc(Country, path, trend = F)
+metadata_grdc(Country, path)
 }
 \arguments{
-\item{Country}{character; abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.}
+\item{Country}{character; Abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.}
 
-\item{path}{character; pathway to grdc_discharge folder on computer}
+\item{path}{character; Pathway to local grdc_discharge folder on computer}
 }
 \value{
-data.frame; metadata of GRDC -Dataset and a given Country
+data.frame; metadata of GRDC -Dataset and a given Country. Metadata contains information about: Ther GRDC-number, the name of the river, the name of the station, the country, the catchment area, the altitude, the startmonth/startyear, the endmonth/endyear, the length of the timeseries, the longitude and the latitude.
 }
 \description{
-Create Metadata for GRDC Dataset
+Returns metadataset for one country of local folder containing grdc-dataset.
 }
 \examples{
 \dontrun{

@@ -1,46 +1,26 @@
 
-
-#nor_metaMQ_1820_2019=metaMQ(1820, 2019, metadata, data)
-#write.csv(nor_metaMQ_1820_2019, "f.nor_metaMQ_1820_2019.csv")
-#nor_metaMQ_1840_2019=metaMQ(1840, 2019, metadata, data)
-#write.csv(nor_metaMQ_1840_2019, "f.nor_metaMQ_1840_2019.csv")
- #write.csv(nor_metaMQ_1940_2019, "nor_metaMQ_1940_2019.csv")
-#nor_metaMQ_1860_2019=metaMQ(1860, 2019, metadata, data)
-#write.csv(nor_metaMQ_1860_2019, "f.nor_metaMQ_1860_2019.csv")
-#nor_metaMQ_1900_2019=metaMQ(1900, 2019, metadata, data)
-#write.csv(nor_metaMQ_1900_2019, "f.nor_metaMQ_1900_2019.csv")
-#View(nor_metaMQ_1900_2019)
-#nor_metaMQ_1940_2019=metaMQ(1940, 2019, metadata, data=data_) nur die sind mit data_
-#write.csv(nor_metaMQ_1940_2019, "f.nor_metaMQ_1940_2019.csv")
-#nor_metaMQ_1980_2019=metaMQ(1980, 2019, metadata, data=data_)
-#write.csv(nor_metaMQ_1980_2019, "f.nor_metaMQ_1980_2019.csv")
-#nor_metaMQ_1900_2019=metaMQ(1900, 2019, metadata, data=data_)
-#write.csv(nor_metaMQ_1900_2019, "f.nor_metaMQ_1900_2019_2.csv")
-#nor_metaMQ_1860_2019=metaMQ(1860, 2019, metadata, data=data_)
-#write.csv(nor_metaMQ_1860_2019, "f.nor_metaMQ_1860_2019_2.csv")
-#nor_metaMQ_1820_2019=metaMQ(1820, 2019, metadata, data=data_)
-
-#write.csv(nor_metaMQ_1820_2019, "f.nor_metaMQ_1820_2019_2.csv")
-#View(data_)
-Startyear=1940
-Endyear=2019
-
-data=data2
-#' metaMQ
+#' Area-wide MQ-Trend
 #'
 #'
-#'@description Function creates metadataset. Measurements of stations within metadataset are at least as long as the given timeframe. To guarantee comparability between stations the measurement series of the stations are adapted to the time frame and shortened to the same length.
+#'@description Function creates dataframe. Stations in metadataset are filtered by the given timeframe. To guarantee comparability between stations the measurement series of the stations are adapted to the time frame and shortened to the of the time frame.
 #'
 #'
-#' @param Startyear numeric; startyear of timerange.
-#' @param Endyear numeric; endyear of timerange.
-#' @param metadata  Data Frame. Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param Startyear numeric; Startyear of timerange.
+#' @param Endyear numeric; Endyear of timerange.
+#' @param metadata  data.frame; Overview of GRDC-Dataset.  The metadata can be created by \link[dischanalyst]{metadata_grdc} function
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #'
 #'@import zyp
 #'@import stats
 #'
 #' @return dataframe; metadata of stations whose measurement series are at least as long as the given time frame. The Dataframe includes different approaches to calculate the trend of the annual Normalized MQ (within the whole Year/the Spring/the Summer/the Autumn/the Winter)
+#' \describe{
+#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
+#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
+#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
+#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
+#'   \item{slope_ls}{slope created by \link[stats]{lm}}
+#' }
 #' @export
 #'
 #' @examples

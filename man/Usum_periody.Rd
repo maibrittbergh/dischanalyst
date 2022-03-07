@@ -2,7 +2,7 @@
 % Please edit documentation in R/Usum_periody.R
 \name{Usum_periody}
 \alias{Usum_periody}
-\title{Sum of Days under U within a specific (calendrical/hydrological) yeaf}
+\title{Sum of Days under Threshold Value within a specific (calendrical/hydrological) Year}
 \usage{
 Usum_periody(U, station, data, year, h)
 }
@@ -11,11 +11,11 @@ Usum_periody(U, station, data, year, h)
 
 \item{station}{character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.}
 
-\item{data}{list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
-\item{year}{numeric; year /hydrological year. Timespan of Analysis.}
+\item{year}{numeric; Calendrical year /hydrological year. Timespan of Analysis.}
 
-\item{h}{logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
+\item{h}{logical; If h=TRUE; Hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{
 

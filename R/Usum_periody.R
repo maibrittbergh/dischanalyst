@@ -1,4 +1,4 @@
-#' Sum of Days under U within a specific (calendrical/hydrological) yeaf
+#' Sum of Days under Threshold Value within a specific (calendrical/hydrological) Year
 
 #'
 #' @description Function returns sum of days under a certain value (at a given measuring point of a given river),
@@ -6,9 +6,9 @@
 #'
 #' @param U numeric; Limit Value. Function returns sum of days under given Value U in a year.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @param h logical;  hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
-#'@param year numeric; year /hydrological year. Timespan of Analysis.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param h logical; If h=TRUE; Hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
+#'@param year numeric; Calendrical year /hydrological year. Timespan of Analysis.
 #'
 #' @return
 #' @export

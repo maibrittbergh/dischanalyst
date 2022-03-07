@@ -10,10 +10,10 @@ area_dist(metadata)
 \item{metadata}{"matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
 }
 \value{
-dotplot, Distribution of Catchment Areas.
+histogram , Distribution of Catchment Areas.
 }
 \description{
-Area Distribution
+descriptive statistics. Function helps to gain overview over the distribution of the catchment area - sizes within grdc-dataset.
 }
 \examples{
 \dontrun{ area_dist(metadata)}

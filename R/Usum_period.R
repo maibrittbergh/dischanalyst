@@ -1,12 +1,13 @@
 
 #' Sum of Days under U within all measurements
 #'
+#'@description Function returns sum of  days  under value U within all measurements.
 #'
-#' @param U numeric; Limit Value. Function returns sum of  days  Value U within all measurements.
+#' @param U numeric; Limit Value.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
-#' @param data list; contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #'
-#' @return
+#' @return numeric; sum of days.
 #' @export
 #'
 #' @examples
