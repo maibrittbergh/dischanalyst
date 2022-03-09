@@ -1,29 +1,22 @@
-
 #' Trend of Values under quantile based Threshold U
 #'
-#' @description Function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
-#'
-#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
+#' @param data list; Contains all stations that the discharge analysis should consider. List can be created by dischanalyst. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the station. Must equal entry in data list.
 #' @param quantile numeric; If Input is 0.1; 90% of all Values are bigger than this Value.
 #' @param graphic default=T; if T, returns Histogram and Densityplot. if F; returns vector containing trends, calculated with zyp/stats.
 #'
-#'@import stats
-#'@import zyp
-#'
-#' @return Graph/ list
-#' \describe{
-#'   \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
-#'   \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
-#'   \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
-#'   \item{intercept_ls}{intercept created by \link[stats]{lm}}
-#'   \item{slope_ls}{slope created by \link[stats]{lm}}
-#' }
-#' @export
+#' @return Graph/ list containing: intercept created by \link[zyp]{zyp.trend.vector}, slope created by \link[zyp]{zyp.trend.vector}, significance (Kendall's P-Value) for the final detrended time-series, intercept_ls}{intercept created by \link[stats]{lm}, slope created by \link[stats]{lm}}
 #'
 #' @examples
-#' \dontrun{ Quantile_freq(data, "COCHEM", 0.1)}
 #'
+#' @import stats
+#' @import zyp
+#'
+#'@examples
+#'\dontrun{ Quantile_freq(data, "COCHEM", 0.1)}
+#'
+
+
 Quantile_freq=function(data,station, quantile, graphic=T){
 
 data=data[[station]]

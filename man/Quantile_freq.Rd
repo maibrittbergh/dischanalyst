@@ -7,7 +7,7 @@
 Quantile_freq(data, station, quantile, graphic = T)
 }
 \arguments{
-\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
+\item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by dischanalyst. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
 \item{station}{character; Name of the station. Must equal entry in data list.}
 
@@ -16,19 +16,13 @@ Quantile_freq(data, station, quantile, graphic = T)
 \item{graphic}{default=T; if T, returns Histogram and Densityplot. if F; returns vector containing trends, calculated with zyp/stats.}
 }
 \value{
-Graph/ list
-\describe{
-  \item{intercept_zyp}{intercept created by \link[zyp]{zyp.trend.vector}}
-  \item{slope_zyp}{slope created by \link[zyp]{zyp.trend.vector}}
-  \item{sig_zyp}{significance (Kendall's P-Value) for the final detrended time-series}
-  \item{intercept_ls}{intercept created by \link[stats]{lm}}
-  \item{slope_ls}{slope created by \link[stats]{lm}}
-}
+
 }
 \description{
-Function enables user to see whether the frequency of daily averages under a quantile based threshold is increasing or decreasing.
+Trend of Values under quantile based Threshold U
 }
 \examples{
+
 \dontrun{ Quantile_freq(data, "COCHEM", 0.1)}
 
 }

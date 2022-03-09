@@ -13,6 +13,8 @@ U_periody(U, station, data, year, h)
 
 \item{data}{list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.}
 
+\item{year}{character; E.g. "2003". Year of interest-}
+
 \item{h}{logical;  Hydrological year. If h=TRUE; hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.}
 }
 \value{

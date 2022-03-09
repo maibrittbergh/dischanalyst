@@ -23,7 +23,7 @@ tiseger(metadata, data, startyear, endyear, frame1, frame2)
 geom_line plot. Every line represents one station.
 }
 \description{
-Function plots timeseries within a certain timeframe.To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.The plotted timeseries then are reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany.
+Function plots timeseries within a certain timeframe.To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.The plotted timeseries then are reduced to the most representative timeseries within the timeframe.
 }
 \examples{
 \dontrun{
