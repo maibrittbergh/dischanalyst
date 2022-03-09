@@ -1,9 +1,6 @@
 #' Plot: timeseries of mulitple measurements
 #'
-#'@description Function plots timeseries within a certain timeframe.
-#'To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.
-#'The plotted timeseries then are reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany,
-#'this function only produces a for stations in germany as it was developed for the WebApp: Dischanalyst.
+#'@description Function plots timeseries within a certain timeframe.To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.The plotted timeseries then are reduced to the most representative timeseries within the timeframe. As the representative levels within \link[dischanalyst] were determined only for Germany.
 #'
 #' @param metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.

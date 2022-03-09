@@ -1,4 +1,6 @@
 
+
+
 #' Area-wide MQ-Trend
 #'
 #'
@@ -196,8 +198,10 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     df=data.frame(hyears, MQ, NMQ)
 
 
-    zyp=zyp.trend.vector(df$NMQ, df$hyears, "yuepilon")
-    linmod=lm(df$NMQ~df$hyears)
+    zyp=zyp.trend.vector(df$MQ, df$hyears, "yuepilon")
+
+
+    linmod=lm(df$MQ~df$hyears, na.action = "na.exclude")
 
 
     Yslopezyp[i]=zyp[2]
@@ -252,8 +256,8 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     wdf=data.frame(hyears, MQ, NMQ)
 
 
-    zyp=zyp.trend.vector(wdf$NMQ, wdf$hyears, "yuepilon")
-    linmod=lm(wdf$NMQ~wdf$hyears)
+    zyp=zyp.trend.vector(wdf$MQ, wdf$hyears, "yuepilon")
+    linmod=lm(wdf$MQ~wdf$hyears, na.action = "na.exclude")
 
 
     Wslopezyp[i]=zyp[2]
@@ -313,8 +317,8 @@ metaMQ=function(Startyear, Endyear, metadata, data){
     spdf=data.frame(hyears, MQ, NMQ)
 
 
-    zyp=zyp.trend.vector(spdf$NMQ, spdf$hyears, "yuepilon")
-    linmod=lm(spdf$NMQ~spdf$hyears)
+    zyp=zyp.trend.vector(spdf$MQ, spdf$hyears, "yuepilon")
+    linmod=lm(spdf$MQ~spdf$hyears, na.action = "na.exclude")
 
 
 
@@ -378,8 +382,8 @@ sdf=data.frame(hyears, MQ, NMQ)
 
 
 
-    zyp=zyp.trend.vector(sdf$NMQ, sdf$hyears, "yuepilon")
-    linmod=lm(sdf$NMQ~sdf$hyears)
+    zyp=zyp.trend.vector(sdf$MQ, sdf$hyears, "yuepilon")
+    linmod=lm(sdf$MQ~sdf$hyears, na.action = "na.exclude")
 
 
 
@@ -438,8 +442,8 @@ sdf=data.frame(hyears, MQ, NMQ)
     hyears=years[-1]
     adf=data.frame(hyears, MQ, NMQ)
 
-    zyp=zyp.trend.vector(adf$NMQ, adf$hyears, "yuepilon")
-    linmod=lm(adf$NMQ~adf$hyears)
+    zyp=zyp.trend.vector(adf$MQ, adf$hyears, "yuepilon")
+    linmod=lm(adf$MQ~adf$hyears, na.action = "na.exclude")
 
 
 
