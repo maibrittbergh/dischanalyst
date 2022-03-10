@@ -21,6 +21,7 @@ Imports:
     zyp, 
     dplyr, 
     sf, 
+    tmap, 
     trend, 
     stats, 
     Kendall
