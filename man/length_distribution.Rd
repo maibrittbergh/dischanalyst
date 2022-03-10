@@ -4,7 +4,7 @@
 \alias{length_distribution}
 \title{Distribution of Length of Discharge Measurements of all Stations within Metadata}
 \usage{
-length_distribution(metadata, type = "map")
+length_distribution(metadata, type = "dens")
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}

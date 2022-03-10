@@ -14,7 +14,7 @@
 #' \dontrun{
 #' length_distribution(metadata)}
 #'
-length_distribution=function(metadata, type="map"){
+length_distribution=function(metadata, type="dens"){
 
 nr=nrow(metadata)
   vec=rep("0", nr)
@@ -42,25 +42,25 @@ nr=nrow(metadata)
   st_meta$endyear=as.character(st_meta$endyear)
 
 
-  tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
+ # tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
 
 
-  tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
-    "Length of Timeseries"="length_timeseries",
-    "Startyear" = "startyear",
-    "Endyear"= "endyear"
-  ) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
-    tm_layout("Length of Timeseries [years]")
-if (type=="map"){
-  return(tm)
-}else{
+  #tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
+#    "Length of Timeseries"="length_timeseries",
+ #   "Startyear" = "startyear",
+  #  "Endyear"= "endyear"
+  #) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
+   # tm_layout("Length of Timeseries [years]")
+#if (type=="map"){
+#  return(tm)
+#}else{
 
   pl=ggplot(metadata)+geom_density(aes(y=length_timeseries, col="red"))+coord_flip()+
     theme(legend.position = "none")+ labs(y = "Length of timeseries[years]", x = "density",
                                                                              title ="Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
 
   return(pl)
-}
+#}
 
 
 
