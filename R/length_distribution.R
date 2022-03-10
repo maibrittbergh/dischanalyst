@@ -1,20 +1,26 @@
 #' Distribution of Length of Discharge Measurements of all Stations within Metadata
 #'
 #' @param metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
-#' @param type output; as character: "map" or "dens", default="map"- returns interactive tmap. If type="dens"- function returns densityplot.
 #'
-#' @return tmap or density plot
+#' @return  density plot
 #' @export
 #'
 #' @import sf
 #' @import ggplot2
-#' @import tmap
 #'
 #' @examples
 #' \dontrun{
 #' length_distribution(metadata)}
 #'
-length_distribution=function(metadata, type="map"){
+<<<<<<< HEAD
+<<<<<<< HEAD
+length_distribution=function(metadata){
+=======
+length_distribution=function(metadata, type="dens"){
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
+=======
+length_distribution=function(metadata, type="dens"){
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
 
 nr=nrow(metadata)
   vec=rep("0", nr)
@@ -42,25 +48,53 @@ nr=nrow(metadata)
   st_meta$endyear=as.character(st_meta$endyear)
 
 
-  tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 
-  tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
-    "Length of Timeseries"="length_timeseries",
-    "Startyear" = "startyear",
-    "Endyear"= "endyear"
-  ) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
-    tm_layout("Length of Timeseries [years]")
-if (type=="map"){
-  return(tm)
-}else{
+=======
+ # tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
+=======
+ # tmap_mode("view") #view einfügen, damit Hintergrundkarte funktioniert
 
+
+  #tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
+#    "Length of Timeseries"="length_timeseries",
+ #   "Startyear" = "startyear",
+  #  "Endyear"= "endyear"
+  #) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
+   # tm_layout("Length of Timeseries [years]")
+#if (type=="map"){
+#  return(tm)
+#}else{
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
+
+
+  #tm=tm_shape(st_meta)+ tm_dots("length_timeseries", title="Length of Timeseries [years]", id="river_station",interactive=T, popup.vars=c(
+#    "Length of Timeseries"="length_timeseries",
+ #   "Startyear" = "startyear",
+  #  "Endyear"= "endyear"
+  #) , palette="YlOrBr")+ tm_scale_bar()+ tm_basemap(c("OpenStreetMap","Esri.WorldImagery"))+
+   # tm_layout("Length of Timeseries [years]")
+#if (type=="map"){
+#  return(tm)
+#}else{
+
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
   pl=ggplot(metadata)+geom_density(aes(y=length_timeseries, col="red"))+coord_flip()+
     theme(legend.position = "none")+ labs(y = "Length of timeseries[years]", x = "density",
                                                                              title ="Density Distribution of Length of Discharge Time Series", subtitle="Source: GRDC-Dataset")
 
   return(pl)
-}
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+#}
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
+=======
+#}
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
 
 
 

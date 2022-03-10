@@ -4,15 +4,21 @@
 \alias{length_distribution}
 \title{Distribution of Length of Discharge Measurements of all Stations within Metadata}
 \usage{
-length_distribution(metadata, type = "map")
+<<<<<<< HEAD
+<<<<<<< HEAD
+length_distribution(metadata)
+=======
+length_distribution(metadata, type = "dens")
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
+=======
+length_distribution(metadata, type = "dens")
+>>>>>>> ffc5ade01805f6d97cd5bc4bbf8c7168d89c11ec
 }
 \arguments{
 \item{metadata}{"matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function}
-
-\item{type}{output; as character: "map" or "dens", default="map"- returns interactive tmap. If type="dens"- function returns densityplot.}
 }
 \value{
-tmap or density plot
+density plot
 }
 \description{
 Distribution of Length of Discharge Measurements of all Stations within Metadata
