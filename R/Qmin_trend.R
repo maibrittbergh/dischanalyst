@@ -5,7 +5,7 @@
 #'@param mod numeric; possible input: 1,2,3. default value: 1; output of both: \link[zyp]{zyp.trend.vector}, \link[stats]{lm}. Defines the way to calculate intercept and slope. For mod=2  \link[zyp]{zyp.trend.vector} with PreWhitening by "yuepilon-method" is used. Sen-Slope-Approach used to define direction of the trend and the significance is  determined by Kendall's P-Value computed for the final detrendet time series. For mod=3: \link[stats]{lm} with a least squares approach is used.
 
 #' @import ggplot2
-#' @importFrom zyp zyp.trend.vector
+#' @import zyp
 #' @import stats
 #'
 #' @examples
@@ -68,5 +68,4 @@ return(plot)
 
 
 }
-
 
