@@ -12,6 +12,12 @@ statistical approach to analyse hydrological data. Was created for a low
 flow Analysis. Therefore a discharge time series is required. Helps to
 create a descriptive statistical and graphical summary of a dataset.
 
+By combining the read-in, ordering and analysis functions, it is
+intended to simplify the workflow and serve as a useful tool to bundle
+several steps of the analysis and to enable a comprehensive analysis by
+integrating different approaches. By the fact that the functions are
+co-ordinated with each other, a smooth workflow is to be made possible.
+
 ## Installation
 
 You can install the development version of dischanalyst from
@@ -22,46 +28,58 @@ You can install the development version of dischanalyst from
 devtools::install_github("maibrittbergh/dischanalyst")
 ```
 
-## Example
+## Workflow
 
-This is a basic example which shows you how to solve a common problem:
+*dischanalyst* can be applied to the GRDC
+(<https://www.bafg.de/GRDC/EN/Home/homepage_node.html>) data set or to
+hydrological and climatological time series corresponding to the
+structure of the GRDC discharge measurement series. Accordingly, a date
+(YYYY-MM-DD) must be available for each daily measured value. As soon as
+a data set of this structure is available, it can be read in, structured
+and analyzed with the help of *dischanalyst*.
+
+## Structure
+
+The structure of the package corresponds to the structure of the Web
+application (<https://github.com/maibrittbergh/dischanalapp>). It is
+possible to either do a station-related analysis or an area-wide
+(Germany-wide) analysis. Therefore, the package contains:
+
+1.  Functions for reading in and structuring the data
+2.  Functions for the statistical analysis of individual measurement
+    series. These include descriptive analyses, threshold-based and
+    non-threshold-based low water analysis, and trend analysis.
+3.  Functions to generate and understand Germany-wide low water trends
+
+Since the package was developed with the objective of a “low water
+analysis for Germany”, there are few functions that are exclusively
+applicable to the Germany-wide analysis and also the *representative
+stations* that are partially integrated into the analysis are
+exclusively available for Germany. Apart from these limitations, a
+comprehensive descriptive and a low water analysis with the R package is
+also possible for any other country for which data are available.
+
+## Examples
 
 ``` r
-
-#to be able to run the functions of dischanalyst on your computer
-
-# Library Packages --------------------------------------------------------
-
-
-#library(Kendall)
-#library(dischanalyst)
-
-
-
-
-# Load in data ------------------------------------------------------------
-#enter path: where did you save GRDC-Dataset (path to grdc_disc)
-#path="/Users/maibrittberghofer/Desktop/Bachelorarbeit/Datafolder/grdc_03_2021/grdc_disc"
-#Country="DE" #in which country are you interested?
-#metadata_germany=metadata_grdc(Country, path)
-
-
-# Load in datset of interest (specific river as well as station )
-#rivername="MOSELLE RIVER" #rivername must be equal like rivername in metadata
-#station= "COCHEM" #stationname must be equal like stationname  in metadata
-#mosel=grdc_readr(metadata_germany, rivername, path )
+  
+        trendpl=function(){
+          if (input$trendpltype=="Trend der Minimumwerte"){
+            
+            plotr=Qmin_trend(data=data2,  station=stat_name, mod=1) 
+            return(plotr)
+          }
+          if (input$trendpltype=="NMxQ-Trend"){
+            x_val=input$xVALUE
+            
+            plotr=NMxQ_trend(data=data2,  station=stat_name, x=x_val, seasonal=season, graphic=T)
+            return(plotr)
+          }
+          if (input$trendpltype=="Trend der Mittelwerte"){
+            
+            
+            plotr=MQ_trend(data=data2,  station=stat_name, seasonal=seas )
+            return(plotr)
+          }
+        }
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
