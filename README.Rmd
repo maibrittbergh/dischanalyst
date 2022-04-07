@@ -70,7 +70,7 @@ Since the package was developed with the objective of a "low water analysis for 
             plotr=MQ_trend(data=data2,  station=stat_name, seasonal=seas )
             return(plotr)
           }
-        }
+        } 
 ```
 
 A possible **Output**:

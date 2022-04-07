@@ -83,7 +83,7 @@ also possible for any other country for which data are available.
             plotr=MQ_trend(data=data2,  station=stat_name, seasonal=seas )
             return(plotr)
           }
-        }
+        } 
 ```
 
 A possible **Output**:
