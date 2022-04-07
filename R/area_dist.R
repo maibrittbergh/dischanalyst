@@ -12,11 +12,11 @@
 
 
 area_dist=function(metadata){
-  metadata=metadata_repg(metadata, mark=T)
+
 
 
   graph=ggplot(data)+geom_histogram(aes( x=catch_area/1000),bins=20, fill="darkcyan", col="grey")+ylab("Count")+labs(title="Distribution of Size of Catchmen-Areas")+xlab(expression('Size of Catchemnt Area[km'^2*']  x10'^3))
-  graph$dat
+
   return(graph)
 
 

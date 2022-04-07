@@ -61,6 +61,8 @@ also possible for any other country for which data are available.
 
 ## Examples
 
+### Station based Analysis
+
 ``` r
   
         trendpl=function(){
@@ -83,3 +85,23 @@ also possible for any other country for which data are available.
           }
         }
 ```
+
+A possible **Output**:
+
+<center>
+
+<img src="zyp-trend.png" alt="Niedrigwasserperiode" width="600" />
+
+</center>
+
+### Area wide Analysis
+
+<center>
+
+<img src="map.png" alt="Niedrigwasserperiode" width="800" />
+
+</center>
+
+*Examples generated Webapp:
+(<https://github.com/maibrittbergh/dischanalapp>) Please check out the
+Website for further information\!*

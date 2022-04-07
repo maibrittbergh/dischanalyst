@@ -49,7 +49,7 @@ The structure of the package corresponds to the structure of the Web application
 Since the package was developed with the objective of a "low water analysis for Germany", there are few functions that are exclusively applicable to the Germany-wide analysis and also the *representative stations* that are partially integrated into the analysis are exclusively available for Germany. Apart from these limitations, a comprehensive descriptive and a low water analysis with the R package is also possible for any other country for which data are available. 
 
 ## Examples
-
+### Station based Analysis 
 ```{r}
   
         trendpl=function(){
@@ -73,5 +73,20 @@ Since the package was developed with the objective of a "low water analysis for 
         }
 ```
 
+A possible **Output**:
+
+<center>
+    <img src="zyp-trend.png" alt="Niedrigwasserperiode" width="600" />
+</center>
 
 
+
+### Area wide Analysis 
+
+<center>
+    <img src="map.png" alt="Niedrigwasserperiode" width="800" />
+</center>
+
+
+
+*Examples generated Webapp: (https://github.com/maibrittbergh/dischanalapp) Please check out the Website for further information!*
