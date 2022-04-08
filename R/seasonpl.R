@@ -205,7 +205,7 @@ for ( i in 1:l){
 graph= ggplot(Result, aes(x=Number, y=Value, group=HydroYear, col=HydroYear ))+geom_line()+
   labs(title= paste("Seasonal plot within the timespan of month" ,month_start, "-", month_end ),
                            subtitle = paste ("During the years", Startyear, "to", Endyear, "at", station) ,
-                   colour="Year" )+ xlab("Day (within given timespan)")
+                   colour="Year" )+ xlab("Day (within given timespan)")+ ylab(expression('Discharge Value [m'^3*'/s]'))
 
 
 

@@ -124,7 +124,7 @@ tiseger=function(metadata, data, startyear, endyear,frame1, frame2){
 
   title=paste("Timeseries of Discharge Values from", startyear, "to", endyear)
   graph= ggplot(hh, aes(x=YYYY.MM.DD, y=Value, colour=station))+geom_line()+ xlim(startyear,endyear)+ylim(frame1,frame2)+
-    theme(legend.position="right", legend.box = "vertical")+ylab("Discharge Value")+xlab("Time [years]")+
+    theme(legend.position="right", legend.box = "vertical")+ylab(expression('Discharge Value [m'^3*'/s]'))+xlab("Time [years]")+
     labs(title=title)
 
 

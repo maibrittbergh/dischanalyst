@@ -15,7 +15,7 @@
 #' @import ggplot2
 #' @import trend
 #' @examples
-#' \dontrun{ Qplot(mosel, "COCHEM"; T)}
+#' \dontrun{ Qplot(mosel, "COCHEM", T)}
 #'
 #'
 
@@ -42,7 +42,7 @@ if (pettitt==F){
 
 
   plot= ggplot()+geom_line(data[[nbr]], mapping=aes(x=YYYY.MM.DD,y=Value, group=1, col="1"))+scale_x_date(name="Year")+
-    labs(title=titl, subtitle=subtitl, y="Discharge Value")+theme(legend.position="none")
+    labs(title=titl, subtitle=subtitl,   y=expression('Discharge Value [m'^3*'/s]'))+theme(legend.position="none")
 
 
   return(plot)
@@ -68,7 +68,7 @@ subtitl=paste("from", format(data[[station]][,1], "%Y"),"to", format(data[[stati
 cap=paste("With detection of shift in central tendency of time series in red (pettitt test)")
 
 plot=ggplot()+geom_line(aes(y=datan[,2], x=datan[,1]))+geom_line(aes(y=s, x=datan[,1]), col="red")+scale_x_date(name="Year")+
-  labs(title=titl, subtitle=subtitl, caption=cap, y="Discharge Value")
+  labs(title=titl, subtitle=subtitl, caption=cap,   y=expression('Discharge Value [m'^3*'/s]'))
 return(plot)
 
 

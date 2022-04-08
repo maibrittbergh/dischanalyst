@@ -1,5 +1,5 @@
 #' Area Distribution
-#' @description descriptive statistics. Function helps to gain overview over the distribution of the catchment area - sizes within grdc-dataset.
+#' @description descriptive statistics. Function visualizes the distribution of the catchment area - sizes within dataset.
 #'
 #' @param metadata "matrix" "array" ;  metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function
 #'
