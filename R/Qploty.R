@@ -13,7 +13,7 @@
 #'
 #'@examples
 #'\dontrun{
-#'Qploty(mosel, "COCHEM", 2000, h=T)
+#'Qploty(data, "COCHEM", 2000, h=T, pettitt=T)
 #'}
 #'
 #'
@@ -67,7 +67,7 @@ Qploty=function(data, station, year,h=T, pettitt=F ){
     if (pettitt==F){
     titl=paste("Discharge Time Series","at",station)
     subtitl=paste("In Hydrological Year:", year, "/", year+1)
-    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
+    plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab(expression('Discharge Value [m'^3*'/s]'))
     return(plot)
 
     }else {
@@ -93,7 +93,7 @@ Qploty=function(data, station, year,h=T, pettitt=F ){
 
 
     plot= ggplot()+geom_line(new_data, mapping=aes(x=datan[,1],y=datan[,2], group=1))+geom_line(aes(y=s, x=datan[,1]), col="red")+
-      scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab("Discharge Value")
+      scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab(expression('Discharge Value [m'^3*'/s]'))
     return(plot)
 
 
@@ -111,7 +111,7 @@ Qploty=function(data, station, year,h=T, pettitt=F ){
     if (pettitt==F){
       titl=paste("Discharge Time Series","at",station)
       subtitl=paste("In  Year:", year)
-      plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab("Discharge Value")
+      plot= ggplot()+geom_line(new_data, mapping=aes(x=new_data[,1],y=new_data[,2], group=1, col="red"))+scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl)+theme(legend.position="none")+ylab(expression('Discharge Value [m'^3*'/s]'))
       return(plot)
 
     }else {
@@ -136,7 +136,7 @@ Qploty=function(data, station, year,h=T, pettitt=F ){
 
 
       plot= ggplot()+geom_line(new_data, mapping=aes(x=datan[,1],y=datan[,2], group=1))+geom_line(aes(y=s, x=datan[,1]), col="red")+
-        scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab("Discharge Value")
+        scale_x_date(name="Date")+labs(title=titl, subtitle=subtitl, caption=cap)+theme(legend.position="none")+ylab(expression('Discharge Value [m'^3*'/s]'))
       return(plot)
 
 
