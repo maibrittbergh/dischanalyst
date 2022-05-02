@@ -8,8 +8,8 @@
 #' Seasonal Plot
 #'
 #'
-#' @description Function returns discharge plot of a given season at a given station, possible to choose timeframe of multiple years.
-#' It allows the user to compare the same season/timespan within different hydrological years. Minimum startmonth: november. Maximum endmonth: october.
+#' @description Function returns discharge plot of a given season at a given station. It is possible to choose a timeframe of multiple years.
+#' It allows the user to compare the same season/timespan within different hydrological years. Minimum startmonth: November. Maximum endmonth: October.
 #'
 #' @param data list; River from GRDC - dataset. Output of \link[dischanalyst]{grdc_readr}. Type: list; list entries: measurement stations. For every Station: Date since begin of Measurements (as character) and Value (as numeric).
 #' @param station character; Must equal name of station in data.

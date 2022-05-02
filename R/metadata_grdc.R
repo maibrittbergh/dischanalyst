@@ -1,12 +1,12 @@
 
-#' Create Metadata for GRDC Dataset
+#'Metadata for GRDC Dataset
 #'
-#' @description Returns metadataset for one country of local folder containing grdc-dataset.
+#' @description Returns metadataset of GRDC-Dataset for one country. Dataset needs to be saved locally.
 #'
-#' @param Country character; Abbrevation used in GRDC Dataset for specific country. e.g. "DE" for Germany.
+#' @param Country character; Abbrevation used in GRDC-Dataset for specific country. e.g. "DE" for Germany.
 #' @param path character; Pathway to local grdc_discharge folder on computer
 #'
-#' @return data.frame; metadata of GRDC -Dataset and a given Country. Metadata contains information about: Ther GRDC-number, the name of the river, the name of the station, the country, the catchment area, the altitude, the startmonth/startyear, the endmonth/endyear, the length of the timeseries, the longitude and the latitude.
+#' @return data.frame; metadata of GRDC-Dataset and a given Country. Metadata contains information about: The GRDC-number, the name of the river, the name of the station, the country, the catchment area, the altitude, the startmonth/startyear of the measurements, the endmonth/endyear of the measurements, the length of the timeseries, the longitude and the latitude.
 #' @export
 #'
 #' @examples

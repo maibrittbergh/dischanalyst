@@ -1,7 +1,7 @@
 
 #' Sum of Days under U within all measurements
 #'
-#'@description Function returns sum of  days  under value U within all measurements.
+#'@description Function returns sum of days under value U within all measurements.
 #'
 #' @param U numeric; Limit Value.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.

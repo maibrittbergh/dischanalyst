@@ -1,12 +1,12 @@
-#' Max. amount of days under value U within Time Series
+#' Max. Amount of Days under Threshold value U within Time Series
 #'
 #' @description Function indicates the longest that a certain value (U) was undercut (at a given measuring point of a given river),
-#' within the time period of the measurements.
+#' within the entire time period of the measurements.
 #'
 #' @param U numeric; Limit Value. Function returns longest time measured under value U.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @return Function returns longest time measured under value U.
+#' @return Function returns longest time measured under value U in days.
 #' @export
 #'
 #'

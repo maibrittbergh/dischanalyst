@@ -1,5 +1,5 @@
 #' Annual Probabilty to fall under U
-#'
+#'@description Function calculates for each (hydrological/calendar) year since the start of the measurements the probability of obtaining a value below the given threshold U. It generates a graph showing the progression of the probabilities and calculates the trend of these probabilities. The trend is calculated using linear regression and with the Sen's Slope Estimator.
 #' @param U numeric; Limit Value.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.

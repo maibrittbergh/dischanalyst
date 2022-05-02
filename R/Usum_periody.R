@@ -1,7 +1,7 @@
 #' Sum of Days under Threshold Value within a specific (calendrical/hydrological) Year
 
 #'
-#' @description Function returns sum of days under a certain value (at a given measuring point of a given river),
+#' @description Function returns sum of days under a certain value (at a given measuring point of a given river)
 #' within one year.
 #'
 #' @param U numeric; Limit Value. Function returns sum of days under given Value U in a year.
@@ -10,7 +10,7 @@
 #' @param h logical; If h=TRUE; Hydrological year November - October (given year/given year +1). If h=FALSE: calendrical year: January- December.
 #'@param year numeric; Calendrical year /hydrological year. Timespan of Analysis.
 #'
-#' @return
+#' @return Sum of days under given threshold within a specific year.
 #' @export
 #'
 #'

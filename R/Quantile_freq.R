@@ -1,5 +1,5 @@
 #' Trend of Values under quantile based Threshold U
-#'
+#'@description  Function determines whether the sums of daily averaged discharge values that fall below the quantile-based threshold show a trend over the years. The entire time frame of the measurements is considered.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by dischanalyst. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the station. Must equal entry in data list.
 #' @param quantile numeric; If Input is 0.1; 90% of all Values are bigger than this Value.

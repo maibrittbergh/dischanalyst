@@ -1,6 +1,6 @@
 
 #' Low Flow Period characterized by quantile based Threshold
-#'
+#'@description Function describes low flow periods at a station and generates either a graph or a list for this purpose. A specific hydrological year is considered and the low water periods are characterized based on the specified quantile based threshold.
 #'@param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #'@param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #'@param quantile numeric; If Input is 0.1; 90% of all Values are bigger than this Value.

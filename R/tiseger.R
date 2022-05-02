@@ -1,13 +1,13 @@
-#' Plot: timeseries of mulitple measurements
+#' Plot: Timeseries of mulitple Measurements
 #'
-#'@description Function plots timeseries within a certain timeframe.To provide clarity the function reduces the amount of displayed timeseries if the number of stations with measurements >= 20.The plotted timeseries then are reduced to the most representative timeseries within the timeframe.
+#'@description Function plots timeseries within a certain timeframe. To provide clarity the function reduces the amount of displayed timeseries in case more than 20 stations cover the selected time frame. The plotted timeseries then are reduced to the representative timeseries within the timeframe. Besides the time it is also possible to adapt the resolution of the Y-axis. This guarantees the opportunity to compare rivers with the same mean discharge height.
 #'
 #' @param metadata "matrix" "array" ;  Metadata of grdc dataset. Can be created by \link[dischanalyst]{metadata_grdc} function.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
-#' @param startyear integer; Last possible startyear of timeseries. Minimum of xlim for plot.
-#' @param endyear integer; Minimum endyear of timeseries. maximum of xlim for plot.
-#'@param frame1 minimum of Y-axis -resolution
-#'@param frame2 maximum of X-axis - resolution
+#' @param startyear integer; Latest possible startyear of timeseries. Minimum of xlim for plot.
+#' @param endyear integer; Minimum endyear of timeseries. Maximum of xlim for plot.
+#'@param frame1 minimum of Y-axis ( discharge/measurement value) -resolution.
+#'@param frame2 maximum of Y-axis ( discharge/measurement value) - resolution.
 #
 #' @return geom_line plot. Every line represents one station.
 #' @export
