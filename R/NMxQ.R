@@ -1,7 +1,7 @@
 
 #' NMxQ-Value
 #'
-#'@Description Smalles (arithmetic) mean of x consecutive days within a period (here: hydrological year) (Source: (DVWK 1983)).
+#'@Description Smallest (arithmetic) mean of x consecutive days within a period (here: hydrological year) (Source: (DVWK 1983)).
 #'
 #' @param x numeric; Length of period (days). With decreasing values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.

@@ -1,6 +1,6 @@
 
 #' MQ_trend
-#'@description Calculating Trend for annual calculated mean values. It is possible to calculate the mean values for a season or for the whole hydrological year.
+#'@description Calculating Trend for annual calculated mean values. It is possible to calculate the mean values for a season or for the whole hydrological year. The trend is calculated using the Sen's Slope Estimator and linear regression.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param seasonal character; Possible Inputs:  "Y"( MQ Trend of (hydrological) Years); "WI"(MQ Trend of Winters during years); "SP"(MQ Trend of Springs during (hydrological) years); "SU"(MQ Trend of Summers during (hydrological) years); "AU"(MQ Trend of Autums during (hydrological) years)

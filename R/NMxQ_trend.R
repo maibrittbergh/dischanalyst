@@ -1,7 +1,7 @@
 
 #' NMxQ_trend
 #'
-#'@description Function calculates for every year within measurements NMxQ Value (Description: \link[dischanalyst]{NMxQ}). It returns a trend: Sens Sloap Trend and Linear Trend. The Trend can be calculated for a specific season or for a whole year.
+#'@description Function calculates for every year within measurements NMxQ Value (Description: \link[dischanalyst]{NMxQ}). Afterwards, a trend is calculated for the annual NM_xQ values using Sen's Slope Estimator and linear regression. The result can be output in the form of a graph or in the form of a list.
 #' @param data list; Contains all stations that the discharge analysis should consider. List can be created by \link[dischanalyst]{grdc_list}. Each entry of the list contains the existing discharge measurements (as numeric) and the corresponding dates (as character) for the station.
 #' @param station character; Name of the Station e.g. "COCHEM" - must be named equally like list entry in data.
 #' @param x numeric; Length of period (days). With decreasing Values for x , the influence of short-term anthropogenic influences increases. E.g. x=7, x=14, x=30
