@@ -72,7 +72,11 @@ for (i in 2:l){
 
 
 if (graph==T){
+<<<<<<< HEAD
 plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",round(U,2), "the", (1-quantile)*100, "% quantile (of complete timeseries at the station). Mean Value:", round(mean(data[,2]),2)), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days."))+
+=======
+plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U, "the", quantile*100, "% quantile (of complete timeseries at the station). Mean Value:", mean(data[,2])), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days."))+
+>>>>>>> c7838c82c03230bc0f5627304ac09d5094b802b1
   ylab(expression('Discharge Value [m'^3*'/s]'))+xlab("Days")+
   geom_polygon(aes(c(datayear$YYYY.MM.DD[1],datayear$YYYY.MM.DD[1],  datayear$YYYY.MM.DD[le], datayear$YYYY.MM.DD[le] ),c(0,U,U,0 ), col="i"), colour="red", fill="brown3")+
   geom_polygon(aes(c(datayear$YYYY.MM.DD[1], datayear$YYYY.MM.D, datayear$YYYY.MM.DD[le] ), c(0, valyear, 0)), colour="cornflowerblue", fill="cornflowerblue")+

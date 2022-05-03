@@ -13,7 +13,11 @@
 #'
 #' @examples
 #' \dontrun{U_periodploty(data, "COCHEM", 150, 2000, graph = T)}
+<<<<<<< HEAD
 
+=======
+#'
+>>>>>>> c7838c82c03230bc0f5627304ac09d5094b802b1
 U_periodploty=function(data, station, U,year, graph=T){
 
 
