@@ -13,11 +13,7 @@
 #'
 #' @examples
 #' \dontrun{U_periodploty(data, "COCHEM", 150, 2000, graph = T)}
-<<<<<<< HEAD
 
-=======
-#'
->>>>>>> c7838c82c03230bc0f5627304ac09d5094b802b1
 U_periodploty=function(data, station, U,year, graph=T){
 
 
@@ -77,7 +73,8 @@ U_periodploty=function(data, station, U,year, graph=T){
 
 
     if (graph==T){
-      plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",U," Mean Value:",round( mean(data[,2]),2)), caption=paste("Volume of deficite: ",deficite, ". Amount of days under Threshold:", suml, ".Longest Low Flow period is", max(e), "days."))+
+      plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",round(U,2),  "[m³/s] \n Mean Value:", round( mean(data[,2]),2), "[m³/s]"), caption=paste("Volume of deficite: ",round(deficite,2), "[m³] \n Sum of days under Threshold:", suml, "days \n Longest Low Flow period:", max(e), "days"))+
+
         ylab(expression('Discharge Value [m'^3*'/s]'))+xlab("Days")+
         geom_polygon(aes(c(datayear$YYYY.MM.DD[1],datayear$YYYY.MM.DD[1],  datayear$YYYY.MM.DD[le], datayear$YYYY.MM.DD[le] ),c(0,U,U,0 ), col="i"), colour="red", fill="brown3")+
         geom_polygon(aes(c(datayear$YYYY.MM.DD[1], datayear$YYYY.MM.D, datayear$YYYY.MM.DD[le] ), c(0, valyear, 0)), colour="cornflowerblue", fill="cornflowerblue")+
@@ -89,11 +86,12 @@ U_periodploty=function(data, station, U,year, graph=T){
     else{
       lb= list(paste(year, year+1),U , deficite, suml, max(e))
 
-      names(lb)=c("Hydrological Year", "Threshold", "Deficite",  "Sum of days under Threshold", "Longest Period in Hydrological Year [days] ")
+      names(lb)=c("Hydrological Year", "Threshold[m³/s]", "Deficite [m³]",  "Sum of days under Threshold", "Longest Period in Hydrological Year [days] ")
 
 
       return(lb)
     }}
 
 }
+
 
