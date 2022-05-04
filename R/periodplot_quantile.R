@@ -96,7 +96,4 @@ else{
 
 #periodplot_quantile= function (data, station , quantile, year, graph=T){
 
-data2=readRDS("dataset.rds")
-data=readRDS("metadata.rds")
-library(ggplot2)
-periodplot_quantile(data2, "COCHEM", 0.2, 2009)
+
