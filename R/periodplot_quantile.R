@@ -73,7 +73,7 @@ for (i in 2:l){
 
 if (graph==T){
 
-plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",round(U,2), "~", quantile*100, "% Quantile \n Mean Value:", round( mean(data[,2])),2), caption=paste("Volume of deficite: ",round(deficite,2), "[m^3/s] \n Sum of days under Threshold:", suml, "days \n Longest Low Flow period:", max(e), "days"))+
+plot=ggplot()+labs(title=paste("Low Flow Period at", station, "in", year, "/",year+1), subtitle = paste("Threshold:",round(U,2), "[m³/s] ~", quantile*100, "% Quantile \n Mean Value:", round( mean(data[,2]),2), "[m³/s]"), caption=paste("Volume of deficite: ",round(deficite,2), "[m³] \n Sum of days under Threshold:", suml, "days \n Longest Low Flow period:", max(e), "days"))+
 
   ylab(expression('Discharge Value [m'^3*'/s]'))+xlab("Days")+
   geom_polygon(aes(c(datayear$YYYY.MM.DD[1],datayear$YYYY.MM.DD[1],  datayear$YYYY.MM.DD[le], datayear$YYYY.MM.DD[le] ),c(0,U,U,0 ), col="i"), colour="red", fill="brown3")+
@@ -86,7 +86,7 @@ return(plot)}
 else{
   lb= list(paste(year, year+1),U,quantile*100 , deficite, suml, max(e))
 
-  names(lb)=c("Hydrological Year", "Threshold", "Quantile [%]","Deficite",  "Sum of days under Threshold", "Longest Period in Hydrological Year [days] ")
+  names(lb)=c("Hydrological Year", "Threshold [m³/s]", "Quantile [%]","Deficite [m³]",  "Sum of days under Threshold", "Longest Period in Hydrological Year [days] ")
 
 
   return(lb)
@@ -95,5 +95,4 @@ else{
 }
 
 #periodplot_quantile= function (data, station , quantile, year, graph=T){
-
 

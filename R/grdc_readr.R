@@ -40,7 +40,7 @@ grdc_readr=function(metadata, rivername, path ){
   read=sub(" _","_", read)
   read=sub("/ ", "/", read)
   name= vector(mode = "list", length = l)
-  ?read.table
+
   for (i in 1:l){
     Tabelle=read.table(read[i], header=T, sep=";", dec=".", na.strings = "NA")[-2]#-999 als NA Value
     Tabelle$YYYY.MM.DD=as.Date(Tabelle$YYYY.MM.DD)

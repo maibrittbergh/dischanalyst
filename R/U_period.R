@@ -49,7 +49,7 @@ U_period=function(U, station, data){
     Startdate=data[[nbr]][,1][id_Start_period]
     Enddate=data[[nbr]][,1][id_End_period]
 
-    paste("Length of maximum time period  under given Value of", U, "is", max(e), "days. Timeperiod from:",Startdate, "to:",Enddate)
+    paste("Length of maximum time period  under given Value of", U, " [m³/s] is", max(e), "days. Timeperiod from:",Startdate, "to:",Enddate)
   }
 
 }
